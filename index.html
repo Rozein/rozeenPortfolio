@@ -1,646 +1,466 @@
-<!DOCTYPE html>
-<html class="no-js ss-preload" lang="en">
+<!doctype html>
+<html lang="en">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rozeen Nakarmi — Senior Software Engineer</title>
+  <meta name="description" content="Rozeen Nakarmi — Senior Software Engineer (.NET, PostgreSQL, AWS). Portfolio and contact." />
 
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>Rozeen</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
-    <!-- mobile specific metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- favicons
-    ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-
+  <style>
+    :root { --line: rgba(0,0,0,.08); }
+    body { background: #f8fafc; }
+    .hero {
+      background:
+        radial-gradient(900px 420px at 10% 10%, rgba(13,110,253,.16), transparent 60%),
+        radial-gradient(900px 420px at 90% 0%, rgba(32,201,151,.14), transparent 55%),
+        linear-gradient(180deg, #ffffff, #f8fafc);
+      border-bottom: 1px solid var(--line);
+    }
+    .section-pad { padding: 84px 0; }
+    .card-soft {
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 30px rgba(0,0,0,.06);
+    }
+    .glass {
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(0,0,0,.06);
+      backdrop-filter: blur(10px);
+    }
+    .chip { border: 1px solid rgba(0,0,0,.10); }
+    .anchor-offset { scroll-margin-top: 92px; }
+    .muted { color: rgba(0,0,0,.62); }
+  </style>
 </head>
 
-<body id="top">
+<body>
 
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg sticky-top bg-white border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#">
+        <i class="bi bi-code-slash me-2 text-primary"></i>Rozeen Nakarmi
+      </a>
 
-    <!-- # preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="d-flex ms-lg-3 gap-2 mt-3 mt-lg-0">
+          <a class="btn btn-outline-secondary btn-sm" href="https://github.com/Rozein" target="_blank" rel="noreferrer">
+            <i class="bi bi-github me-1"></i>GitHub
+          </a>
+          <a class="btn btn-outline-secondary btn-sm" href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="noreferrer">
+            <i class="bi bi-linkedin me-1"></i>LinkedIn
+          </a>
+          <a class="btn btn-primary btn-sm" href="mailto:rozeennakarmi5@gmail.com">
+            <i class="bi bi-envelope me-1"></i>Email
+          </a>
         </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container section-pad">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="badge text-bg-light border mb-3">
+            <i class="bi bi-geo-alt me-1"></i>Kathmandu, Nepal
+          </div>
+
+          <h1 class="display-5 fw-bold lh-1 mb-3">
+            Rozeen Nakarmi — Senior Software Engineer (.NET • PostgreSQL • AWS)
+          </h1>
+
+          <p class="lead text-secondary mb-4">
+            Backend-focused engineer building scalable APIs, reporting/ETL pipelines, and cloud-ready services.
+            Strong in Clean Architecture, database design, and performance tuning.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2">
+            <a href="#projects" class="btn btn-primary btn-lg">
+              View Projects <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+            <a href="#contact" class="btn btn-outline-secondary btn-lg">
+              Contact
+            </a>
+            <!-- Put your resume PDF in the same folder and keep this name -->
+            <a class="btn btn-outline-secondary btn-lg" href="Rozeen_Nakarmi_Resume.pdf" target="_blank" rel="noreferrer">
+              Download CV <i class="bi bi-file-earmark-text ms-1"></i>
+            </a>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2 mt-4">
+            <span class="badge rounded-pill text-bg-light chip px-3 py-2">ASP.NET Core</span>
+            <span class="badge rounded-pill text-bg-light chip px-3 py-2">C#</span>
+            <span class="badge rounded-pill text-bg-light chip px-3 py-2">PostgreSQL</span>
+            <span class="badge rounded-pill text-bg-light chip px-3 py-2">AWS (Lambda, S3, RDS)</span>
+            <span class="badge rounded-pill text-bg-light chip px-3 py-2">ETL / Reporting</span>
+            <span class="badge rounded-pill text-bg-light chip px-3 py-2">CQRS / Clean Architecture</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="p-4 rounded-4 glass card-soft">
+            <h2 class="h5 fw-semibold mb-3">Highlights</h2>
+
+            <div class="d-flex gap-3 mb-3">
+              <div class="flex-shrink-0">
+                <div class="bg-primary-subtle text-primary rounded-3 p-2">
+                  <i class="bi bi-lightning-charge"></i>
+                </div>
+              </div>
+              <div>
+                <div class="fw-semibold">Performance</div>
+                <div class="muted small">Query tuning, caching, and production-focused optimizations.</div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-3 mb-3">
+              <div class="flex-shrink-0">
+                <div class="bg-success-subtle text-success rounded-3 p-2">
+                  <i class="bi bi-cloud-check"></i>
+                </div>
+              </div>
+              <div>
+                <div class="fw-semibold">AWS</div>
+                <div class="muted small">Lambda/S3/SQS/SNS + secure, cost-aware architecture.</div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-3">
+              <div class="flex-shrink-0">
+                <div class="bg-warning-subtle text-warning rounded-3 p-2">
+                  <i class="bi bi-diagram-3"></i>
+                </div>
+              </div>
+              <div>
+                <div class="fw-semibold">Architecture</div>
+                <div class="muted small">Clean Architecture, CQRS, and maintainable codebases.</div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div class="d-flex flex-wrap gap-2">
+              <a class="btn btn-outline-secondary btn-sm" href="https://github.com/Rozein" target="_blank" rel="noreferrer">
+                <i class="bi bi-github me-1"></i>GitHub
+              </a>
+              <a class="btn btn-outline-secondary btn-sm" href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="noreferrer">
+                <i class="bi bi-linkedin me-1"></i>LinkedIn
+              </a>
+              <a class="btn btn-outline-secondary btn-sm" href="mailto:rozeennakarmi5@gmail.com">
+                <i class="bi bi-envelope me-1"></i>Email
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="container section-pad anchor-offset">
+    <div class="row g-4">
+      <div class="col-lg-4">
+        <h2 class="h3 fw-bold mb-2">About</h2>
+        <p class="text-secondary mb-0">
+          I focus on backend engineering: reliable APIs, clean architecture, strong database design,
+          and cloud deployments that don’t break in production.
+        </p>
+      </div>
+      <div class="col-lg-8">
+        <div class="p-4 rounded-4 bg-white card-soft">
+          <p class="mb-2">
+            I build systems with ASP.NET Core, PostgreSQL, and AWS services (Lambda, S3, RDS/Aurora, SQS/SNS).
+          </p>
+          <p class="mb-0 text-secondary">
+            I enjoy solving scaling/performance problems, designing robust data models, and automating reporting pipelines.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="container pb-5 anchor-offset">
+    <div class="d-flex align-items-end justify-content-between mb-3">
+      <h2 class="h3 fw-bold m-0">Experience</h2>
+      <span class="text-secondary small">Most recent first</span>
     </div>
 
-
-    <!-- # page wrap
-    ================================================== -->
-    <div class="s-pagewrap">
-
-        <div class="circles">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+    <div class="row g-3">
+      <div class="col-12">
+        <div class="p-4 rounded-4 bg-white card-soft">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <div>
+              <div class="fw-semibold">Senior Software Engineer — Innovate Tech</div>
+              <div class="text-secondary small">Kathmandu • 2022 – Present</div>
+            </div>
+            <span class="badge text-bg-light border">.NET • PostgreSQL • AWS</span>
+          </div>
+          <ul class="mt-3 mb-0 text-secondary">
+            <li>Led backend modules for learning platforms (LMS) and owned features end-to-end from design to deployment.</li>
+            <li>Built scheduled reporting pipelines and automated jobs for data-heavy workflows.</li>
+            <li>Improved production performance via query tuning, indexing, and cleaner service boundaries (Clean Architecture/CQRS).</li>
+          </ul>
         </div>
+      </div>
 
-
-        <!-- ## site header 
-        ================================================== -->
-        <header class="s-header">
-
-            <div class="header-mobile">
-                <span class="mobile-home-link"><a href="index.html">Rozeen.</a></span>
-                <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
+      <div class="col-12">
+        <div class="p-4 rounded-4 bg-white card-soft">
+          <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+            <div>
+              <div class="fw-semibold">Software Engineer — Percoid IT Solutions</div>
+              <div class="text-secondary small">2019 – 2022</div>
             </div>
+            <span class="badge text-bg-light border">ASP.NET Core • SQL Server • AngularJS</span>
+          </div>
+          <ul class="mt-3 mb-0 text-secondary">
+            <li>Delivered full-stack features and maintenance across web applications with strong SQL focus.</li>
+            <li>Implemented stored procedures, optimized queries, and improved reliability of existing systems.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <div class="row wide main-nav-wrap">
-                <nav class="column lg-12 main-nav">
-                    <ul>
-                        <li><a href="index.html" class="home-link">Rozeen.</a></li>
-                        <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
-                        <li><a href="#about" class="smoothscroll">About</a></li>
-                        <li><a href="#works" class="smoothscroll">Works</a></li>
-                        <li><a href="#contact" class="smoothscroll">Say Hello</a></li>
-                    </ul>
-                </nav>
+  <!-- SKILLS -->
+  <section id="skills" class="container section-pad pt-0 anchor-offset">
+    <h2 class="h3 fw-bold mb-3">Skills</h2>
+
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold mb-2"><i class="bi bi-braces me-2 text-primary"></i>Backend</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-light border">C#</span>
+            <span class="badge text-bg-light border">ASP.NET Core</span>
+            <span class="badge text-bg-light border">REST APIs</span>
+            <span class="badge text-bg-light border">CQRS</span>
+            <span class="badge text-bg-light border">Clean Architecture</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold mb-2"><i class="bi bi-database me-2 text-primary"></i>Data</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-light border">PostgreSQL</span>
+            <span class="badge text-bg-light border">SQL Server</span>
+            <span class="badge text-bg-light border">Indexing</span>
+            <span class="badge text-bg-light border">Query Tuning</span>
+            <span class="badge text-bg-light border">Data Modeling</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold mb-2"><i class="bi bi-cloud me-2 text-primary"></i>Cloud</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-light border">AWS Lambda</span>
+            <span class="badge text-bg-light border">S3</span>
+            <span class="badge text-bg-light border">RDS / Aurora</span>
+            <span class="badge text-bg-light border">SQS / SNS</span>
+            <span class="badge text-bg-light border">CloudFront</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold mb-2"><i class="bi bi-gear me-2 text-primary"></i>Engineering</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-light border">Performance</span>
+            <span class="badge text-bg-light border">Observability</span>
+            <span class="badge text-bg-light border">Security Basics</span>
+            <span class="badge text-bg-light border">CI/CD</span>
+            <span class="badge text-bg-light border">Docker</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold mb-2"><i class="bi bi-diagram-2 me-2 text-primary"></i>Integration</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-light border">Webhooks</span>
+            <span class="badge text-bg-light border">Async Jobs</span>
+            <span class="badge text-bg-light border">Queues</span>
+            <span class="badge text-bg-light border">Caching</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold mb-2"><i class="bi bi-file-earmark-bar-graph me-2 text-primary"></i>Reporting</div>
+          <div class="d-flex flex-wrap gap-2">
+            <span class="badge text-bg-light border">Scheduled Reports</span>
+            <span class="badge text-bg-light border">ETL</span>
+            <span class="badge text-bg-light border">Parquet</span>
+            <span class="badge text-bg-light border">S3 Lifecycle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="container pb-5 anchor-offset">
+    <div class="d-flex align-items-end justify-content-between mb-3">
+      <h2 class="h3 fw-bold m-0">Projects</h2>
+      <a class="small text-decoration-none" href="https://github.com/Rozein" target="_blank" rel="noreferrer">
+        See GitHub <i class="bi bi-arrow-up-right"></i>
+      </a>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold">Home School Asia (LMS)</div>
+          <div class="text-secondary small mb-2">
+            Backend modules for a Cambridge-aligned LMS with reports, progress tracking, and learning content delivery.
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge text-bg-light border">ASP.NET Core</span>
+            <span class="badge text-bg-light border">PostgreSQL</span>
+            <span class="badge text-bg-light border">AWS</span>
+          </div>
+          <a href="#contact" class="btn btn-outline-secondary btn-sm">Ask for details</a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold">Report Generation & Scheduling</div>
+          <div class="text-secondary small mb-2">
+            Automated daily report generation by orchestrating long-running work per school to avoid timeouts.
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge text-bg-light border">PostgreSQL</span>
+            <span class="badge text-bg-light border">Scheduling</span>
+            <span class="badge text-bg-light border">Async Processing</span>
+          </div>
+          <a href="#contact" class="btn btn-outline-secondary btn-sm">Ask for details</a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="p-4 rounded-4 bg-white card-soft h-100">
+          <div class="fw-semibold">Data Archival to S3 (Parquet)</div>
+          <div class="text-secondary small mb-2">
+            Archived PostgreSQL data to S3 as Parquet for warehousing; lifecycle policies for cost optimization.
+          </div>
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge text-bg-light border">Python</span>
+            <span class="badge text-bg-light border">S3</span>
+            <span class="badge text-bg-light border">Parquet</span>
+          </div>
+          <a href="#contact" class="btn btn-outline-secondary btn-sm">Ask for details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="container section-pad pt-0 anchor-offset">
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <h2 class="h3 fw-bold mb-2">Contact</h2>
+        <p class="text-secondary mb-4">
+          If you want to collaborate or discuss opportunities, send a message.
+        </p>
+
+        <div class="p-4 rounded-4 bg-white card-soft">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="bi bi-envelope text-primary"></i>
+            <a href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a>
+          </div>
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <i class="bi bi-linkedin text-primary"></i>
+            <a href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <i class="bi bi-github text-primary"></i>
+            <a href="https://github.com/Rozein" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+
+          <hr class="my-4">
+
+          <div class="text-secondary small">
+            Resume: <a href="Rozeen_Nakarmi_Resume.pdf" target="_blank" rel="noreferrer">Rozeen_Nakarmi_Resume.pdf</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <!-- UI-only by default. To make it work without backend: use Formspree and replace the action URL. -->
+        <div class="p-4 rounded-4 bg-white card-soft">
+          <form action="#" method="POST">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input name="name" class="form-control" placeholder="Your name" required />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input name="email" type="email" class="form-control" placeholder="your@email.com" required />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message</label>
+                <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
+              </div>
+              <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">
+                  Send <i class="bi bi-send ms-1"></i>
+                </button>
+              </div>
             </div>
-
-        </header> <!-- end s-header -->
-
-
-        <!-- ## main content
-        ==================================================- -->
-        <main class="s-content">
-
-
-            <!-- ### intro
-            ================================================== -->
-            <section id="intro" class="s-intro target-section">
-
-                <div class="row intro-content wide">
-
-                    <div class="column">
-                        <div class="text-pretitle with-line">
-                            Hello World
-                        </div>
-
-                        <h1 class="text-huge-title">
-                            I am Rozeen Nakarmi, <br>
-                            a Senior Software Engineer <br>
-                            in Innovate Tech.
-                        </h1>
-                    </div>
-
-                    <ul class="intro-social">
-                        <li><a href="https://www.facebook.com/rozinnakarmi" target="_blank" rel="nofollow noopener">Facebook</a></li>
-                        <li><a href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="nofollow noopener">LinkedIn</a></li>
-                        <li><a href="https://www.instagram.com/rozeen.nakarmi/" target="_blank" rel="nofollow noopener">Instagram</a></li>
-                    </ul>
-
-                </div> <!-- end intro content -->
-
-                <a href="#about" class="intro-scrolldown smoothscroll">
-                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"/></svg>
-                </a>
-
-            </section> <!-- end s-intro -->
-
-
-            <!-- ### about
-            ================================================== -->
-            <section id="about" class="s-about target-section">
-
-
-                <div class="row about-info wide" data-animate-block>
-
-                    <div class="column lg-6 md-12 about-info__pic-block">
-                        <img src="images/RozeenNakarmiProfessionalPic.jpg" 
-                             srcset="images/RozeenNakarmiProfessionalPic.jpg 1x, images/RozeenNakarmiProfessionalPic.jpg 2x" alt="" class="about-info__pic" data-animate-el>
-                    </div>
-
-                    <div class="column lg-6 md-12">
-                        <div class="about-info__text" style="padding-left: 60px;">
-                            <h2 class="text-pretitle with-line" data-animate-el>
-                                About
-                            </h2>
-                            <p class="attention-getter" data-animate-el>
-                                I’m a passionate and results-oriented Senior Software Engineer with over 5.5 years of experience in designing and developing enterprise applications. My expertise lies in .NET technologies, database design, and API development — turning complex problems into scalable, reliable solutions.
-                                I’m enthusiastic about mentoring team members, navigating technical challenges, and delivering high-impact software that helps businesses grow. My aim is to continually learn, adapt, and contribute to innovative products, all while upholding high coding standards and best practices.
-                            </p>
-                            <a href="favicon.ico" class="btn btn--medium u-fullwidth" data-animate-el target="_blank">Download CV</a>
-
-                        </div>
-                    </div>
-                </div> <!-- about-info -->
-
-
-                <div class="row about-expertise" data-animate-block>
-                    <div class="column lg-12">
-
-                        <h2 class="text-pretitle" data-animate-el>Expertise</h2>
-
-                        <ul class="skills-list h1" data-animate-el>
-                            <li>.NET technologies (C#, ASP.NET Core)</li>
-                            <li>Database design and optimization(RDMS)</li>
-                            <li>Clean architecture, CQRS design pattern, and best practices </li>
-                            <li>Full-stack fundamentals</li>
-                        </ul>
-
-                    </div>
-                </div> <!-- end about-expertise -->
-
-
-                <div class="row about-timelines" data-animate-block>
-
-                    <div class="column lg-6 tab-12">
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Experience
-                        </h2>
-
-                        <div class="timeline" data-animate-el>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Dropbox</h3>
-                                    <h5 class="timeline__meta">Product Designer</h5>
-                                    <p class="timeline__timeframe">August 2019 - Present</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
-                                </div>
-                            </div>
-    
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Microsoft</h4>
-                                    <h5 class="timeline__meta">Frontend Developer</h5>
-                                    <p class="timeline__timeframe">August 2016 - July 2019</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
-                                </div>
-                            </div>
-    
-                        </div> <!-- end timeline -->
-
-                    </div> <!-- end column -->
-
-                    <div class="column lg-6 tab-12">
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Education
-                        </h2>
-
-                        <div class="timeline" data-animate-el>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">University of Life</h3>
-                                    <h5 class="timeline__meta">Master in Graphic Design</h5>
-                                    <p class="timeline__timeframe">April 2015</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
-                                </div>
-                            </div>
-    
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">School of Cool Designers</h4>
-                                    <h5 class="timeline__meta">B.A. Degree in Graphic Design</h5>
-                                    <p class="timeline__timeframe">August 2012</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Lorem ipsum Occaecat do esse ex et dolor culpa nisi ex in magna consectetur nisi cupidatat laboris esse eiusmod deserunt aute do quis velit esse sed Ut proident cupidatat nulla esse cillum laborum occaecat nostrud sit dolor incididunt amet est occaecat nisi.</p>
-                                </div>
-                            </div>
-    
-                        </div> <!-- end timeline -->
-                        
-                    </div> <!-- end column -->
-
-
-                </div> <!-- end about-timelines -->
-
-            </section> <!-- end s-about -->
-
-
-            <!-- ### works
-            ================================================== -->
-            <section id="works" class="s-works target-section">
-
-
-                <div class="row works-portfolio">
-
-                    <div class="column lg-12" data-animate-block>
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Recent Works
-                        </h2>
-                        <p class="h1" data-animate-el>
-                            Here are some of my favorite projects I have done lately. Feel free to check them out.
-                        </p>
-    
-                        <ul class="folio-list row block-lg-one-half block-stack-on-1000">
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-01">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/fuji.jpg"
-                                             srcset="images/portfolio/fuji.jpg 1x, images/portfolio/fuji@2x.jpg 2x"  alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Retro Camera.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-02">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/lamp.jpg" 
-                                             srcset="images/portfolio/lamp.jpg 1x, images/portfolio/lamp@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Product Design
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            The White Lamp.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-03">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/rucksack.jpg" 
-                                             srcset="images/portfolio/rucksack.jpg 1x, images/portfolio/rucksack@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Branding
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Rucksuck.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-04">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/skaterboy.jpg"
-                                             srcset="images/portfolio/skaterboy.jpg 1x, images/portfolio/skaterboy@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Website
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Since Day One.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-05">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg" 
-                                             srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Illustration
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Sand Dunes.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link" href="#modal-06">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/minimalismo.jpg" 
-                                             srcset="images/portfolio/minimalismo.jpg 1x, images/portfolio/minimalismo@2x.jpg 2x" alt="">
-                                    </div>
-                                    
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Branding
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Minimalismo.
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="folio-list__proj-link" href="#" title="project link">
-                                    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                        </ul> <!-- end folio-list -->
-
-                    </div> <!-- end column -->
-
-
-                    <!-- Modal Templates Popup
-                    -------------------------------------------- -->
-                    <div id="modal-01" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-fuji.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>Retro Camera</h5>
-                                <p>Odio soluta enim quos sit asperiores rerum rerum repudiandae cum. Vel voluptatem alias qui assumenda iure et expedita voluptatem. Ratione officiis quae.</p>
-                                <ul class="modal-popup__cat">
-                                    <li>Branding</li>
-                                    <li>Product Design</li>
-                                </ul>
-                            </div>
-                
-                            <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-02" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-lamp.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>The White Lamp</h5>
-                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                                <ul class="modal-popup__cat">
-                                    <li>Branding</li>
-                                </ul>
-                            </div>
-                
-                            <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-03" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-rucksack.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>Rucksuck</h5>
-                                <p>Exercitationem reprehenderit quod explicabo consequatur aliquid ut magni ut. Deleniti quo corrupti illum velit eveniet ratione necessitatibus ipsam mollitia.</p>
-                                <ul class="modal-popup__cat">
-                                    <li>Product Design</li>
-                                </ul>
-                            </div>
-                
-                            <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-04" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-skaterboy.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>Since Day One</h5>
-                                <p>Dolores velit qui quos nobis. Aliquam delectus voluptas quos possimus non voluptatem voluptas voluptas. Est doloribus eligendi porro doloribus voluptatum.</p>
-                                <ul class="modal-popup__cat">
-                                    <li>Website</li>
-                                </ul>
-                            </div>
-                
-                            <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-05" hidden>
-                        <div class="modal-popup">
-
-                            <img src="images/portfolio/gallery/g-sanddunes.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>Sand Dunes</h5>
-                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
-                                <ul class="modal-popup__cat">
-                                    <li>Illustration</li>
-                                </ul>
-                            </div>
-                
-                            <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-                        </div>
-                    </div> <!-- end modal -->
-
-                    <div id="modal-06" hidden>
-                        <div class="modal-popup">
-                            <img src="images/portfolio/gallery/g-minimalismo.jpg" alt="">
-                
-                            <div class="modal-popup__desc">
-                                <h5>Minimalismo</h5>
-                                <p>Quisquam vel libero consequuntur autem voluptas. Qui aut vero. Omnis fugit mollitia cupiditate voluptas. Aenean sollicitudin, lorem quis bibendum auctor.</p>
-                                <ul class="modal-popup__cat">
-                                    <li>Branding</li>
-                                    <li>Product Design</li>
-                                </ul>
-                            </div>
-                
-                            <a href="https://www.behance.net/" class="modal-popup__details">Project link</a>
-                        </div>
-                    </div> <!-- end modal -->
-
-                </div> <!-- end works-portfolio -->
-
-
-                <div class="row testimonials">
-                    <div class="column lg-12" data-animate-block>
-        
-                        <div class="swiper-container testimonial-slider" data-animate-el>
-        
-                            <div class="swiper-wrapper">
-
-                                <div class="testimonial-slider__slide swiper-slide">
-                                    <div class="testimonial-slider__author">
-                                        <img src="images/avatars/user-02.jpg" alt="Author image" class="testimonial-slider__avatar">
-                                        <cite class="testimonial-slider__cite">
-                                            <strong>Tim Cook</strong>
-                                            <span>CEO, Apple</span>
-                                        </cite>
-                                    </div>
-                                    <p>
-                                    Molestiae incidunt consequatur quis ipsa autem nam sit enim magni. Voluptas tempore rem. 
-                                    Explicabo a quaerat sint autem dolore ducimus ut consequatur neque.  Nisi dolores quaerat fuga rem nihil nostrum.
-                                    Laudantium quia consequatur molestias delectus culpa.
-                                    </p>
-                                </div> <!-- end testimonial-slider__slide -->
-                
-                                <div class="testimonial-slider__slide swiper-slide">
-                                    <div class="testimonial-slider__author">
-                                        <img src="images/avatars/user-03.jpg" alt="Author image" class="testimonial-slider__avatar">
-                                        <cite class="testimonial-slider__cite">
-                                            <strong>Sundar Pichai</strong>
-                                            <span>CEO, Google</span>
-                                        </cite>
-                                    </div>
-                                    <p>
-                                    Excepturi nam cupiditate culpa doloremque deleniti repellat. Veniam quos repellat voluptas animi adipisci.
-                                    Nisi eaque consequatur. Voluptatem dignissimos ut ducimus accusantium perspiciatis.
-                                    Quasi voluptas eius distinctio. Atque eos maxime.
-                                    </p>
-                                </div> <!-- end testimonial-slider__slide -->
-                
-                                <div class="testimonial-slider__slide swiper-slide">
-                                    <div class="testimonial-slider__author">
-                                        <img src="images/avatars/user-01.jpg" alt="Author image" class="testimonial-slider__avatar">
-                                        <cite class="testimonial-slider__cite">
-                                            <strong>Satya Nadella</strong>
-                                            <span>CEO, Microsoft</span>
-                                        </cite>
-                                    </div>
-                                    <p>
-                                    Repellat dignissimos libero. Qui sed at corrupti expedita voluptas odit. Nihil ea quia nesciunt. Ducimus aut sed ipsam.  
-                                    Autem eaque officia cum exercitationem sunt voluptatum accusamus. Quasi voluptas eius distinctio.
-                                    Voluptatem dignissimos ut.
-                                    </p>
-                                </div> <!-- end testimonial-slider__slide -->
-        
-                                <div class="testimonial-slider__slide swiper-slide">
-                                    <div class="testimonial-slider__author">
-                                        <img src="images/avatars/user-06.jpg" alt="Author image" class="testimonial-slider__avatar">
-                                        <cite class="testimonial-slider__cite">
-                                            <strong>Jeff Bezos</strong>
-                                            <span>CEO, Amazon</span>
-                                        </cite>
-                                    </div>
-                                    <p>
-                                    Nunc interdum lacus sit amet orci. Vestibulum dapibus nunc ac augue. Fusce vel dui. In ac felis 
-                                    quis tortor malesuada pretium. Curabitur vestibulum aliquam leo. Qui sed at corrupti expedita voluptas odit. 
-                                    Nihil ea quia nesciunt. Ducimus aut sed ipsam.
-                                    </p>
-                                </div> <!-- end testimonial-slider__slide -->
-            
-                            </div> <!-- end swiper-wrapper -->
-        
-                            <div class="swiper-pagination"></div>
-        
-                        </div> <!-- end swiper-container -->
-        
-                    </div> <!-- end column -->
-                </div> <!-- end row testimonials -->
-
-            </section> <!-- end s-works -->
-
-
-            <!-- ### contact
-            ================================================== -->
-            <section id="contact" class="s-contact target-section">
-
-                <div class="row contact-top">
-                    <div class="column lg-12">
-                        <h2 class="text-pretitle">
-                            Get In Touch
-                        </h2>
-
-                        <p class="h1">
-                            I love to hear from you.
-                            Whether you have a question or just 
-                            want to chat about design, tech & art — shoot me a message.
-                        </p>
-                    </div>
-                </div> <!-- end contact-top -->
-
-                <div class="row contact-bottom">
-                    <div class="column lg-3 md-5 tab-6 stack-on-550 contact-block">
-                        <h3 class="text-pretitle">Reach me at</h3>
-                        <p class="contact-links">
-                            <a href="mailto:sayhello@luther.com" class="mailtoui">sayhello@luther.com</a> <br>
-                            <a href="tel:+1975432345">+197 543 2345</a>
-                        </p>
-                    </div>
-                    <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
-                        <h3 class="text-pretitle">Social</h3>
-                        <ul class="contact-social">
-                            <li><a href="#0">Behance</a></li>
-                            <li><a href="#0">Dribble</a></li>
-                            <li><a href="#0">Twitter</a></li>
-                            <li><a href="#0">Instagram</a></li>
-                            <li><a href="#0">Github</a></li>
-                        </ul>
-                    </div>
-                    <div class="column lg-4 md-12 contact-block">
-                        <a href="mailto:sayhello@luther.com" class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
-                    </div>
-                </div> <!-- end contact-bottom -->
-
-            </section> <!-- end contact -->
-
-        </main> <!-- end s-content -->
-
-
-        <!-- ## footer
-        ================================================== -->
-        <footer class="s-footer">
-
-            <div class="row">
-                <div class="column ss-copyright">
-                    <span>© Copyright Luther 2021</span> 
-                    <span>Design by <a href="https://www.styleshout.com/">StyleShout</a> Distribution By <a href="https://themewagon.com">Themewagon</a></span>
-                </div>
-
-                <div class="ss-go-top">
-                    <a class="smoothscroll" title="Back to Top" href="#top">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path d="M11 2.206l-6.235 7.528-.765-.645 7.521-9 7.479 9-.764.646-6.236-7.53v21.884h-1v-21.883z"/></svg>
-                    </a>
-                </div>
-            </div>
-
-        </footer> <!-- end s-footer -->
-
-    </div> <!-- end -s-pagewrap -->
-
-
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-
+          </form>
+
+          <div class="text-secondary small mt-3">
+            To enable form submission without backend: replace <code>action="#"</code> with your Formspree endpoint.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-4 border-top bg-white">
+    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="text-secondary small">© <span id="y"></span> Rozeen Nakarmi</div>
+      <div class="d-flex gap-3">
+        <a class="text-secondary small text-decoration-none" href="#about">About</a>
+        <a class="text-secondary small text-decoration-none" href="#projects">Projects</a>
+        <a class="text-secondary small text-decoration-none" href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
