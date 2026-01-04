@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,38 +12,38 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
   <style>
-    :root { --line: rgba(0,0,0,.08); }
-    body { background: #f8fafc; }
-    .hero {
-      background:
-        radial-gradient(900px 420px at 10% 10%, rgba(13,110,253,.16), transparent 60%),
-        radial-gradient(900px 420px at 90% 0%, rgba(32,201,151,.14), transparent 55%),
-        linear-gradient(180deg, #ffffff, #f8fafc);
-      border-bottom: 1px solid var(--line);
-    }
-    .section-pad { padding: 84px 0; }
-    .card-soft {
-      border: 1px solid var(--line);
-      box-shadow: 0 12px 30px rgba(0,0,0,.06);
-    }
-    .glass {
-      background: rgba(255,255,255,.82);
-      border: 1px solid rgba(0,0,0,.06);
-      backdrop-filter: blur(10px);
-    }
-    .chip { border: 1px solid rgba(0,0,0,.10); }
-    .anchor-offset { scroll-margin-top: 92px; }
+    /* Minimalist: typography + spacing + subtle borders */
+    html { scroll-behavior: smooth; }
+    body { letter-spacing: .1px; }
+    .container-narrow { max-width: 980px; }
+    .section { padding: 64px 0; }
+    .anchor-offset { scroll-margin-top: 88px; }
+    .kicker { font-size: .95rem; }
     .muted { color: rgba(0,0,0,.62); }
+    [data-bs-theme="dark"] .muted { color: rgba(255,255,255,.65); }
+
+    .border-soft { border-color: rgba(0,0,0,.10) !important; }
+    [data-bs-theme="dark"] .border-soft { border-color: rgba(255,255,255,.14) !important; }
+
+    .card-min { border-radius: 16px; }
+    .tag { border: 1px solid rgba(0,0,0,.14); }
+    [data-bs-theme="dark"] .tag { border-color: rgba(255,255,255,.16); }
+
+    .hero-title { font-weight: 700; line-height: 1.1; }
+    .list-tight li { margin-bottom: .35rem; }
+
+    /* Make navbar feel minimal */
+    .navbar { backdrop-filter: blur(8px); }
   </style>
 </head>
 
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg sticky-top bg-white border-bottom">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg sticky-top bg-body border-bottom border-soft">
+    <div class="container container-narrow">
       <a class="navbar-brand fw-semibold" href="#">
-        <i class="bi bi-code-slash me-2 text-primary"></i>Rozeen Nakarmi
+        Rozeen Nakarmi
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
@@ -59,7 +59,7 @@
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
 
-        <div class="d-flex ms-lg-3 gap-2 mt-3 mt-lg-0">
+        <div class="d-flex ms-lg-3 gap-2 mt-3 mt-lg-0 align-items-center">
           <a class="btn btn-outline-secondary btn-sm" href="https://github.com/Rozein" target="_blank" rel="noreferrer">
             <i class="bi bi-github me-1"></i>GitHub
           </a>
@@ -69,104 +69,75 @@
           <a class="btn btn-primary btn-sm" href="mailto:rozeennakarmi5@gmail.com">
             <i class="bi bi-envelope me-1"></i>Email
           </a>
+
+          <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button" title="Toggle theme">
+            <i class="bi bi-moon-stars"></i>
+          </button>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- HERO -->
-  <header class="hero">
-    <div class="container section-pad">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-7">
-          <div class="badge text-bg-light border mb-3">
+  <header class="border-bottom border-soft">
+    <div class="container container-narrow section">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-8">
+          <div class="kicker muted mb-2">
             <i class="bi bi-geo-alt me-1"></i>Kathmandu, Nepal
           </div>
 
-          <h1 class="display-5 fw-bold lh-1 mb-3">
-            Rozeen Nakarmi — Senior Software Engineer (.NET • PostgreSQL • AWS)
+          <h1 class="display-5 hero-title mb-3">
+            Senior Software Engineer<br class="d-none d-md-inline"> building reliable backend systems.
           </h1>
 
-          <p class="lead text-secondary mb-4">
-            Backend-focused engineer building scalable APIs, reporting/ETL pipelines, and cloud-ready services.
-            Strong in Clean Architecture, database design, and performance tuning.
+          <p class="lead mb-4">
+            Backend-focused engineer with strong experience in <span class="fw-semibold">.NET</span>, <span class="fw-semibold">PostgreSQL</span>, and <span class="fw-semibold">AWS</span>.
+            I care about clean architecture, performance, and production stability.
           </p>
 
           <div class="d-flex flex-wrap gap-2">
-            <a href="#projects" class="btn btn-primary btn-lg">
-              View Projects <i class="bi bi-arrow-right ms-1"></i>
-            </a>
-            <a href="#contact" class="btn btn-outline-secondary btn-lg">
-              Contact
-            </a>
-            <!-- Put your resume PDF in the same folder and keep this name -->
-            <a class="btn btn-outline-secondary btn-lg" href="Rozeen_Nakarmi_Resume.pdf" target="_blank" rel="noreferrer">
-              Download CV <i class="bi bi-file-earmark-text ms-1"></i>
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-outline-secondary" href="#contact">Contact</a>
+            <!-- Put your resume PDF in the same folder -->
+            <a class="btn btn-outline-secondary" href="Rozeen_Nakarmi_Resume.pdf" target="_blank" rel="noreferrer">
+              Download CV
             </a>
           </div>
 
           <div class="d-flex flex-wrap gap-2 mt-4">
-            <span class="badge rounded-pill text-bg-light chip px-3 py-2">ASP.NET Core</span>
-            <span class="badge rounded-pill text-bg-light chip px-3 py-2">C#</span>
-            <span class="badge rounded-pill text-bg-light chip px-3 py-2">PostgreSQL</span>
-            <span class="badge rounded-pill text-bg-light chip px-3 py-2">AWS (Lambda, S3, RDS)</span>
-            <span class="badge rounded-pill text-bg-light chip px-3 py-2">ETL / Reporting</span>
-            <span class="badge rounded-pill text-bg-light chip px-3 py-2">CQRS / Clean Architecture</span>
+            <span class="badge rounded-pill text-bg-light tag px-3 py-2">ASP.NET Core</span>
+            <span class="badge rounded-pill text-bg-light tag px-3 py-2">C#</span>
+            <span class="badge rounded-pill text-bg-light tag px-3 py-2">PostgreSQL</span>
+            <span class="badge rounded-pill text-bg-light tag px-3 py-2">AWS</span>
+            <span class="badge rounded-pill text-bg-light tag px-3 py-2">ETL / Reporting</span>
+            <span class="badge rounded-pill text-bg-light tag px-3 py-2">Clean Architecture</span>
           </div>
         </div>
 
-        <div class="col-lg-5">
-          <div class="p-4 rounded-4 glass card-soft">
-            <h2 class="h5 fw-semibold mb-3">Highlights</h2>
+        <div class="col-lg-4">
+          <div class="card card-min border border-soft">
+            <div class="card-body p-4">
+              <div class="fw-semibold mb-2">Quick Links</div>
 
-            <div class="d-flex gap-3 mb-3">
-              <div class="flex-shrink-0">
-                <div class="bg-primary-subtle text-primary rounded-3 p-2">
-                  <i class="bi bi-lightning-charge"></i>
-                </div>
+              <div class="d-grid gap-2">
+                <a class="btn btn-outline-secondary" href="https://github.com/Rozein" target="_blank" rel="noreferrer">
+                  <i class="bi bi-github me-2"></i>GitHub
+                </a>
+                <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="noreferrer">
+                  <i class="bi bi-linkedin me-2"></i>LinkedIn
+                </a>
+                <a class="btn btn-outline-secondary" href="mailto:rozeennakarmi5@gmail.com">
+                  <i class="bi bi-envelope me-2"></i>rozeennakarmi5@gmail.com
+                </a>
               </div>
-              <div>
-                <div class="fw-semibold">Performance</div>
-                <div class="muted small">Query tuning, caching, and production-focused optimizations.</div>
-              </div>
-            </div>
 
-            <div class="d-flex gap-3 mb-3">
-              <div class="flex-shrink-0">
-                <div class="bg-success-subtle text-success rounded-3 p-2">
-                  <i class="bi bi-cloud-check"></i>
-                </div>
-              </div>
-              <div>
-                <div class="fw-semibold">AWS</div>
-                <div class="muted small">Lambda/S3/SQS/SNS + secure, cost-aware architecture.</div>
-              </div>
-            </div>
+              <hr class="my-4">
 
-            <div class="d-flex gap-3">
-              <div class="flex-shrink-0">
-                <div class="bg-warning-subtle text-warning rounded-3 p-2">
-                  <i class="bi bi-diagram-3"></i>
-                </div>
+              <div class="small muted">
+                Tip: Put your resume PDF next to this file named
+                <span class="fw-semibold">Rozeen_Nakarmi_Resume.pdf</span>.
               </div>
-              <div>
-                <div class="fw-semibold">Architecture</div>
-                <div class="muted small">Clean Architecture, CQRS, and maintainable codebases.</div>
-              </div>
-            </div>
-
-            <hr class="my-4">
-
-            <div class="d-flex flex-wrap gap-2">
-              <a class="btn btn-outline-secondary btn-sm" href="https://github.com/Rozein" target="_blank" rel="noreferrer">
-                <i class="bi bi-github me-1"></i>GitHub
-              </a>
-              <a class="btn btn-outline-secondary btn-sm" href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="noreferrer">
-                <i class="bi bi-linkedin me-1"></i>LinkedIn
-              </a>
-              <a class="btn btn-outline-secondary btn-sm" href="mailto:rozeennakarmi5@gmail.com">
-                <i class="bi bi-envelope me-1"></i>Email
-              </a>
             </div>
           </div>
         </div>
@@ -176,65 +147,66 @@
   </header>
 
   <!-- ABOUT -->
-  <section id="about" class="container section-pad anchor-offset">
+  <section id="about" class="container container-narrow section anchor-offset">
     <div class="row g-4">
       <div class="col-lg-4">
         <h2 class="h3 fw-bold mb-2">About</h2>
-        <p class="text-secondary mb-0">
-          I focus on backend engineering: reliable APIs, clean architecture, strong database design,
-          and cloud deployments that don’t break in production.
+        <p class="muted mb-0">
+          Short, direct, and impact-focused. No fluff.
         </p>
       </div>
       <div class="col-lg-8">
-        <div class="p-4 rounded-4 bg-white card-soft">
-          <p class="mb-2">
-            I build systems with ASP.NET Core, PostgreSQL, and AWS services (Lambda, S3, RDS/Aurora, SQS/SNS).
-          </p>
-          <p class="mb-0 text-secondary">
-            I enjoy solving scaling/performance problems, designing robust data models, and automating reporting pipelines.
-          </p>
+        <div class="card card-min border border-soft">
+          <div class="card-body p-4">
+            <p class="mb-2">
+              I build scalable APIs, data-heavy services, and scheduled pipelines for real products.
+            </p>
+            <p class="mb-0 muted">
+              Comfortable owning features end-to-end: requirements → design → implementation → deployment → monitoring.
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- EXPERIENCE -->
-  <section id="experience" class="container pb-5 anchor-offset">
+  <section id="experience" class="container container-narrow section pt-0 anchor-offset">
     <div class="d-flex align-items-end justify-content-between mb-3">
       <h2 class="h3 fw-bold m-0">Experience</h2>
-      <span class="text-secondary small">Most recent first</span>
+      <span class="small muted">Most recent first</span>
     </div>
 
-    <div class="row g-3">
-      <div class="col-12">
-        <div class="p-4 rounded-4 bg-white card-soft">
+    <div class="d-grid gap-3">
+      <div class="card card-min border border-soft">
+        <div class="card-body p-4">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
             <div>
               <div class="fw-semibold">Senior Software Engineer — Innovate Tech</div>
-              <div class="text-secondary small">Kathmandu • 2022 – Present</div>
+              <div class="small muted">Kathmandu • 2022 – Present</div>
             </div>
-            <span class="badge text-bg-light border">.NET • PostgreSQL • AWS</span>
+            <span class="badge text-bg-light border border-soft">.NET • PostgreSQL • AWS</span>
           </div>
-          <ul class="mt-3 mb-0 text-secondary">
-            <li>Led backend modules for learning platforms (LMS) and owned features end-to-end from design to deployment.</li>
-            <li>Built scheduled reporting pipelines and automated jobs for data-heavy workflows.</li>
-            <li>Improved production performance via query tuning, indexing, and cleaner service boundaries (Clean Architecture/CQRS).</li>
+          <ul class="mt-3 mb-0 muted list-tight">
+            <li>Led backend modules for learning platforms (LMS) and shipped features end-to-end.</li>
+            <li>Built scheduled reporting/ETL workflows and improved reliability of long-running jobs.</li>
+            <li>Improved performance through query tuning, indexing, and clean service boundaries.</li>
           </ul>
         </div>
       </div>
 
-      <div class="col-12">
-        <div class="p-4 rounded-4 bg-white card-soft">
+      <div class="card card-min border border-soft">
+        <div class="card-body p-4">
           <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
             <div>
               <div class="fw-semibold">Software Engineer — Percoid IT Solutions</div>
-              <div class="text-secondary small">2019 – 2022</div>
+              <div class="small muted">2019 – 2022</div>
             </div>
-            <span class="badge text-bg-light border">ASP.NET Core • SQL Server • AngularJS</span>
+            <span class="badge text-bg-light border border-soft">ASP.NET Core • SQL Server • AngularJS</span>
           </div>
-          <ul class="mt-3 mb-0 text-secondary">
-            <li>Delivered full-stack features and maintenance across web applications with strong SQL focus.</li>
-            <li>Implemented stored procedures, optimized queries, and improved reliability of existing systems.</li>
+          <ul class="mt-3 mb-0 muted list-tight">
+            <li>Delivered full-stack features and maintained existing systems with strong SQL focus.</li>
+            <li>Implemented stored procedures, optimized queries, and improved system stability.</li>
           </ul>
         </div>
       </div>
@@ -242,82 +214,50 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="container section-pad pt-0 anchor-offset">
+  <section id="skills" class="container container-narrow section pt-0 anchor-offset">
     <h2 class="h3 fw-bold mb-3">Skills</h2>
 
     <div class="row g-3">
       <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold mb-2"><i class="bi bi-braces me-2 text-primary"></i>Backend</div>
-          <div class="d-flex flex-wrap gap-2">
-            <span class="badge text-bg-light border">C#</span>
-            <span class="badge text-bg-light border">ASP.NET Core</span>
-            <span class="badge text-bg-light border">REST APIs</span>
-            <span class="badge text-bg-light border">CQRS</span>
-            <span class="badge text-bg-light border">Clean Architecture</span>
+        <div class="card card-min border border-soft h-100">
+          <div class="card-body p-4">
+            <div class="fw-semibold mb-2">Backend</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge text-bg-light tag">C#</span>
+              <span class="badge text-bg-light tag">ASP.NET Core</span>
+              <span class="badge text-bg-light tag">REST APIs</span>
+              <span class="badge text-bg-light tag">CQRS</span>
+              <span class="badge text-bg-light tag">Clean Architecture</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold mb-2"><i class="bi bi-database me-2 text-primary"></i>Data</div>
-          <div class="d-flex flex-wrap gap-2">
-            <span class="badge text-bg-light border">PostgreSQL</span>
-            <span class="badge text-bg-light border">SQL Server</span>
-            <span class="badge text-bg-light border">Indexing</span>
-            <span class="badge text-bg-light border">Query Tuning</span>
-            <span class="badge text-bg-light border">Data Modeling</span>
+        <div class="card card-min border border-soft h-100">
+          <div class="card-body p-4">
+            <div class="fw-semibold mb-2">Data</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge text-bg-light tag">PostgreSQL</span>
+              <span class="badge text-bg-light tag">SQL Server</span>
+              <span class="badge text-bg-light tag">Indexing</span>
+              <span class="badge text-bg-light tag">Query Tuning</span>
+              <span class="badge text-bg-light tag">Data Modeling</span>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold mb-2"><i class="bi bi-cloud me-2 text-primary"></i>Cloud</div>
-          <div class="d-flex flex-wrap gap-2">
-            <span class="badge text-bg-light border">AWS Lambda</span>
-            <span class="badge text-bg-light border">S3</span>
-            <span class="badge text-bg-light border">RDS / Aurora</span>
-            <span class="badge text-bg-light border">SQS / SNS</span>
-            <span class="badge text-bg-light border">CloudFront</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold mb-2"><i class="bi bi-gear me-2 text-primary"></i>Engineering</div>
-          <div class="d-flex flex-wrap gap-2">
-            <span class="badge text-bg-light border">Performance</span>
-            <span class="badge text-bg-light border">Observability</span>
-            <span class="badge text-bg-light border">Security Basics</span>
-            <span class="badge text-bg-light border">CI/CD</span>
-            <span class="badge text-bg-light border">Docker</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold mb-2"><i class="bi bi-diagram-2 me-2 text-primary"></i>Integration</div>
-          <div class="d-flex flex-wrap gap-2">
-            <span class="badge text-bg-light border">Webhooks</span>
-            <span class="badge text-bg-light border">Async Jobs</span>
-            <span class="badge text-bg-light border">Queues</span>
-            <span class="badge text-bg-light border">Caching</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold mb-2"><i class="bi bi-file-earmark-bar-graph me-2 text-primary"></i>Reporting</div>
-          <div class="d-flex flex-wrap gap-2">
-            <span class="badge text-bg-light border">Scheduled Reports</span>
-            <span class="badge text-bg-light border">ETL</span>
-            <span class="badge text-bg-light border">Parquet</span>
-            <span class="badge text-bg-light border">S3 Lifecycle</span>
+        <div class="card card-min border border-soft h-100">
+          <div class="card-body p-4">
+            <div class="fw-semibold mb-2">Cloud</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge text-bg-light tag">AWS Lambda</span>
+              <span class="badge text-bg-light tag">S3</span>
+              <span class="badge text-bg-light tag">RDS / Aurora</span>
+              <span class="badge text-bg-light tag">SQS / SNS</span>
+            </div>
           </div>
         </div>
       </div>
@@ -325,134 +265,140 @@
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="container pb-5 anchor-offset">
+  <section id="projects" class="container container-narrow section pt-0 anchor-offset">
     <div class="d-flex align-items-end justify-content-between mb-3">
       <h2 class="h3 fw-bold m-0">Projects</h2>
       <a class="small text-decoration-none" href="https://github.com/Rozein" target="_blank" rel="noreferrer">
-        See GitHub <i class="bi bi-arrow-up-right"></i>
+        GitHub <i class="bi bi-arrow-up-right"></i>
       </a>
     </div>
 
     <div class="row g-3">
       <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold">Home School Asia (LMS)</div>
-          <div class="text-secondary small mb-2">
-            Backend modules for a Cambridge-aligned LMS with reports, progress tracking, and learning content delivery.
+        <div class="card card-min border border-soft h-100">
+          <div class="card-body p-4">
+            <div class="fw-semibold">Home School Asia (LMS)</div>
+            <div class="small muted mt-1">
+              Backend modules for LMS workflows, reports, and data operations.
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="badge text-bg-light tag">ASP.NET Core</span>
+              <span class="badge text-bg-light tag">PostgreSQL</span>
+              <span class="badge text-bg-light tag">AWS</span>
+            </div>
           </div>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="badge text-bg-light border">ASP.NET Core</span>
-            <span class="badge text-bg-light border">PostgreSQL</span>
-            <span class="badge text-bg-light border">AWS</span>
-          </div>
-          <a href="#contact" class="btn btn-outline-secondary btn-sm">Ask for details</a>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold">Report Generation & Scheduling</div>
-          <div class="text-secondary small mb-2">
-            Automated daily report generation by orchestrating long-running work per school to avoid timeouts.
+        <div class="card card-min border border-soft h-100">
+          <div class="card-body p-4">
+            <div class="fw-semibold">Report Scheduling</div>
+            <div class="small muted mt-1">
+              Automated daily reporting by orchestrating long-running work per school.
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="badge text-bg-light tag">PostgreSQL</span>
+              <span class="badge text-bg-light tag">Scheduling</span>
+              <span class="badge text-bg-light tag">Async Jobs</span>
+            </div>
           </div>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="badge text-bg-light border">PostgreSQL</span>
-            <span class="badge text-bg-light border">Scheduling</span>
-            <span class="badge text-bg-light border">Async Processing</span>
-          </div>
-          <a href="#contact" class="btn btn-outline-secondary btn-sm">Ask for details</a>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4">
-        <div class="p-4 rounded-4 bg-white card-soft h-100">
-          <div class="fw-semibold">Data Archival to S3 (Parquet)</div>
-          <div class="text-secondary small mb-2">
-            Archived PostgreSQL data to S3 as Parquet for warehousing; lifecycle policies for cost optimization.
+        <div class="card card-min border border-soft h-100">
+          <div class="card-body p-4">
+            <div class="fw-semibold">Data Archival to S3 (Parquet)</div>
+            <div class="small muted mt-1">
+              Archived PostgreSQL data to S3 as Parquet with lifecycle policies for cost control.
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <span class="badge text-bg-light tag">Python</span>
+              <span class="badge text-bg-light tag">S3</span>
+              <span class="badge text-bg-light tag">Parquet</span>
+            </div>
           </div>
-          <div class="d-flex flex-wrap gap-2 mb-3">
-            <span class="badge text-bg-light border">Python</span>
-            <span class="badge text-bg-light border">S3</span>
-            <span class="badge text-bg-light border">Parquet</span>
-          </div>
-          <a href="#contact" class="btn btn-outline-secondary btn-sm">Ask for details</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="container section-pad pt-0 anchor-offset">
+  <section id="contact" class="container container-narrow section pt-0 anchor-offset">
     <div class="row g-4">
       <div class="col-lg-5">
         <h2 class="h3 fw-bold mb-2">Contact</h2>
-        <p class="text-secondary mb-4">
-          If you want to collaborate or discuss opportunities, send a message.
+        <p class="muted mb-4">
+          Email is the fastest way to reach me.
         </p>
 
-        <div class="p-4 rounded-4 bg-white card-soft">
-          <div class="d-flex align-items-center gap-2 mb-2">
-            <i class="bi bi-envelope text-primary"></i>
-            <a href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a>
-          </div>
-          <div class="d-flex align-items-center gap-2 mb-2">
-            <i class="bi bi-linkedin text-primary"></i>
-            <a href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <i class="bi bi-github text-primary"></i>
-            <a href="https://github.com/Rozein" target="_blank" rel="noreferrer">GitHub</a>
-          </div>
+        <div class="card card-min border border-soft">
+          <div class="card-body p-4">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i class="bi bi-envelope"></i>
+              <a href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a>
+            </div>
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i class="bi bi-linkedin"></i>
+              <a href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-github"></i>
+              <a href="https://github.com/Rozein" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
 
-          <hr class="my-4">
+            <hr class="my-4">
 
-          <div class="text-secondary small">
-            Resume: <a href="Rozeen_Nakarmi_Resume.pdf" target="_blank" rel="noreferrer">Rozeen_Nakarmi_Resume.pdf</a>
+            <div class="small muted">
+              Resume: <a href="Rozeen_Nakarmi_Resume.pdf" target="_blank" rel="noreferrer">Rozeen_Nakarmi_Resume.pdf</a>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-lg-7">
-        <!-- UI-only by default. To make it work without backend: use Formspree and replace the action URL. -->
-        <div class="p-4 rounded-4 bg-white card-soft">
-          <form action="#" method="POST">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label">Name</label>
-                <input name="name" class="form-control" placeholder="Your name" required />
+        <div class="card card-min border border-soft">
+          <div class="card-body p-4">
+            <!-- Optional: connect to Formspree later -->
+            <form action="#" method="POST">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Name</label>
+                  <input name="name" class="form-control" placeholder="Your name" required />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input name="email" type="email" class="form-control" placeholder="your@email.com" required />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Message</label>
+                  <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                  <button class="btn btn-primary" type="submit">Send</button>
+                </div>
               </div>
-              <div class="col-md-6">
-                <label class="form-label">Email</label>
-                <input name="email" type="email" class="form-control" placeholder="your@email.com" required />
-              </div>
-              <div class="col-12">
-                <label class="form-label">Message</label>
-                <textarea name="message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
-              </div>
-              <div class="col-12 d-flex justify-content-end">
-                <button class="btn btn-primary" type="submit">
-                  Send <i class="bi bi-send ms-1"></i>
-                </button>
-              </div>
-            </div>
-          </form>
+            </form>
 
-          <div class="text-secondary small mt-3">
-            To enable form submission without backend: replace <code>action="#"</code> with your Formspree endpoint.
+            <div class="small muted mt-3">
+              To enable this form without backend, replace <code>action="#"</code> with your Formspree endpoint.
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-4 border-top bg-white">
-    <div class="container d-flex flex-wrap align-items-center justify-content-between gap-2">
-      <div class="text-secondary small">© <span id="y"></span> Rozeen Nakarmi</div>
+  <footer class="border-top border-soft py-4">
+    <div class="container container-narrow d-flex flex-wrap align-items-center justify-content-between gap-2">
+      <div class="small muted">© <span id="y"></span> Rozeen Nakarmi</div>
       <div class="d-flex gap-3">
-        <a class="text-secondary small text-decoration-none" href="#about">About</a>
-        <a class="text-secondary small text-decoration-none" href="#projects">Projects</a>
-        <a class="text-secondary small text-decoration-none" href="#contact">Contact</a>
+        <a class="small text-decoration-none muted" href="#about">About</a>
+        <a class="small text-decoration-none muted" href="#projects">Projects</a>
+        <a class="small text-decoration-none muted" href="#contact">Contact</a>
       </div>
     </div>
   </footer>
@@ -460,7 +406,28 @@
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
+    // Year
     document.getElementById("y").textContent = new Date().getFullYear();
+
+    // Theme toggle (Bootstrap 5.3 supports data-bs-theme)
+    const root = document.documentElement;
+    const btn = document.getElementById("themeToggle");
+
+    function setTheme(theme) {
+      root.setAttribute("data-bs-theme", theme);
+      localStorage.setItem("theme", theme);
+      btn.innerHTML = theme === "dark"
+        ? '<i class="bi bi-sun"></i>'
+        : '<i class="bi bi-moon-stars"></i>';
+    }
+
+    const saved = localStorage.getItem("theme");
+    setTheme(saved || "light");
+
+    btn.addEventListener("click", () => {
+      const current = root.getAttribute("data-bs-theme");
+      setTheme(current === "dark" ? "light" : "dark");
+    });
   </script>
 </body>
 </html>
