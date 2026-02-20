@@ -5,9 +5,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rozeen Nakarmi — Senior Software Engineer</title>
+  <meta name="description"
+    content="Rozeen Nakarmi — Senior Software Engineer specializing in .NET/C#, AWS cloud architecture, and scalable backend systems. Based in Kathmandu, Nepal.">
+  <meta name="theme-color" content="#0a0a0b">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Rozeen Nakarmi — Senior Software Engineer">
+  <meta property="og:description"
+    content="Senior Software Engineer specializing in .NET/C#, AWS cloud architecture, and scalable backend systems.">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Rozeen Nakarmi — Senior Software Engineer">
+  <meta name="twitter:description"
+    content="Senior Software Engineer specializing in .NET/C#, AWS cloud architecture, and scalable backend systems.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230a0a0b' width='100' height='100' rx='20'/><text x='50' y='68' font-family='Georgia,serif' font-size='55' fill='%23c4f04d' text-anchor='middle'>R</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
     rel="stylesheet">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Rozeen Nakarmi",
+    "jobTitle": "Senior Software Engineer",
+    "email": "rozeennakarmi5@gmail.com",
+    "telephone": "+977-9860028647",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Kathmandu",
+      "addressCountry": "NP"
+    },
+    "alumniOf": [
+      {
+        "@type": "EducationalOrganization",
+        "name": "London Metropolitan University"
+      }
+    ],
+    "knowsAbout": [".NET Core", "C#", "AWS", "PostgreSQL", "Backend Development", "Cloud Architecture"]
+  }
+  </script>
+
   <style>
     :root {
       --bg: #0a0a0b;
@@ -54,6 +102,18 @@
       color: var(--bg);
     }
 
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
     /* ─── Noise Texture Overlay ─── */
     body::before {
       content: '';
@@ -62,6 +122,17 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none;
       z-index: 9999;
+    }
+
+    /* ─── Scroll Progress Bar ─── */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+      z-index: 10000;
+      width: 0%;
     }
 
     /* ─── Navigation ─── */
@@ -131,23 +202,35 @@
       width: 100%;
     }
 
-    .nav-cta {
-      padding: 0.55rem 1.4rem !important;
-      background: var(--accent) !important;
-      color: var(--bg) !important;
-      border-radius: 100px;
-      font-weight: 600 !important;
-      letter-spacing: 0.02em !important;
-      transition: all 0.3s ease !important;
+    .nav-links a.active {
+      color: var(--accent);
     }
 
-    .nav-cta:hover {
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a.nav-cta {
+      padding: 0.55rem 1.4rem;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 100px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a.nav-cta:hover {
       transform: scale(1.05);
       box-shadow: 0 0 30px rgba(196, 240, 77, 0.3);
     }
 
-    .nav-cta::after {
-      display: none !important;
+    .nav-links a.nav-cta::after {
+      display: none;
+    }
+
+    .nav-links a.nav-cta.active {
+      color: var(--bg);
     }
 
     /* ─── Mobile Menu ─── */
@@ -157,6 +240,7 @@
       border: none;
       cursor: pointer;
       padding: 8px;
+      z-index: 101;
     }
 
     .menu-toggle span {
@@ -166,6 +250,18 @@
       background: var(--text);
       margin: 5px 0;
       transition: all 0.3s;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
     }
 
     /* ─── Hero ─── */
@@ -354,6 +450,7 @@
       font-size: 2.5rem;
       color: var(--accent);
       line-height: 1;
+      font-variant-numeric: tabular-nums;
     }
 
     .stat-label {
@@ -361,6 +458,39 @@
       color: var(--text-dim);
       text-transform: uppercase;
       letter-spacing: 0.08em;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-dim);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      animation: fadeInUp 0.8s ease 0.8s both;
+    }
+
+    .scroll-indicator svg {
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+
+    @keyframes bounceDown {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(6px);
+      }
     }
 
     /* ─── Section Common ─── */
@@ -549,6 +679,107 @@
       border-color: rgba(196, 240, 77, 0.1);
     }
 
+    /* ─── Projects ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(196, 240, 77, 0.2), transparent 50%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .project-card:hover {
+      border-color: rgba(196, 240, 77, 0.15);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card:hover::before {
+      opacity: 1;
+    }
+
+    .project-card-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-impact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.8rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(196, 240, 77, 0.15);
+      border-radius: 100px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: auto;
+    }
+
+    .project-tag {
+      padding: 0.25rem 0.6rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      transition: all 0.3s;
+    }
+
+    .project-card:hover .project-tag {
+      border-color: rgba(196, 240, 77, 0.1);
+    }
+
     /* ─── Experience ─── */
     .timeline {
       position: relative;
@@ -646,7 +877,7 @@
     }
 
     .timeline-card li::before {
-      content: '→';
+      content: '\2192';
       position: absolute;
       left: 0;
       color: var(--accent);
@@ -761,6 +992,39 @@
       stroke-width: 2;
     }
 
+    /* ─── Back to Top ─── */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--accent);
+      z-index: 90;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
     /* ─── Footer ─── */
     footer {
       padding: 3rem;
@@ -801,6 +1065,13 @@
       transform: translateY(0);
     }
 
+    .reveal.stagger-1 { transition-delay: 0.1s; }
+    .reveal.stagger-2 { transition-delay: 0.2s; }
+    .reveal.stagger-3 { transition-delay: 0.3s; }
+    .reveal.stagger-4 { transition-delay: 0.4s; }
+    .reveal.stagger-5 { transition-delay: 0.5s; }
+    .reveal.stagger-6 { transition-delay: 0.6s; }
+
     /* ─── Responsive ─── */
     @media (max-width: 1024px) {
       .skills-grid {
@@ -824,15 +1095,21 @@
       .nav-links.active {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(10, 10, 11, 0.95);
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 10, 11, 0.98);
         backdrop-filter: blur(20px);
-        padding: 2rem;
-        gap: 1.5rem;
-        border-bottom: 1px solid var(--border);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 6rem 2rem 2rem;
+        gap: 2rem;
+        align-items: center;
+        justify-content: center;
+        z-index: 99;
+      }
+
+      .nav-links.active a {
+        font-size: 1.5rem;
+        letter-spacing: 0.06em;
       }
 
       .hero {
@@ -857,8 +1134,90 @@
         grid-template-columns: 1fr;
       }
 
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
       .education-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-bg-glow,
+      .hero-bg-glow-2 {
+        display: none;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: clamp(2.4rem, 10vw, 3.2rem);
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .stat-item {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      nav {
+        padding: 1rem;
+      }
+    }
+
+    @media (pointer: coarse) {
+
+      .nav-links a,
+      .contact-link,
+      .btn-primary,
+      .btn-secondary,
+      .back-to-top {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .scroll-indicator svg {
+        animation: none;
+      }
+
+      .hero-label .dot {
+        animation: none;
       }
     }
   </style>
@@ -866,349 +1225,448 @@
 
 <body>
 
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- Navigation -->
   <nav>
     <a href="#" class="nav-logo">R<span>.</span>N</a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="https://github.com/rozeennakarmi" target="_blank" rel="noopener noreferrer">GitHub</a></li>
       <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
     </ul>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"
+      aria-controls="navLinks">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-bg-glow"></div>
-    <div class="hero-bg-glow-2"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-content">
-      <div class="hero-label">
-        <span class="dot"></span>
-        Available for Opportunities
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg-glow"></div>
+      <div class="hero-bg-glow-2"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-label">
+          <span class="dot"></span>
+          Available for Opportunities
+        </div>
+        <h1>
+          Building <em>scalable</em><br>
+          backend systems<br>
+          that perform.
+        </h1>
+        <p class="hero-description">
+          Senior Software Engineer with 6+ years specializing in .NET/C# backend development,
+          cloud architecture on AWS, and database performance optimization.
+          Based in Kathmandu, Nepal.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            Let's Connect
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#experience" class="btn-secondary">View My Work</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">6+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">15%</span>
+            <span class="stat-label">Data Accuracy Boost</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">30%</span>
+            <span class="stat-label">Query Optimization</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">MSc</span>
+            <span class="stat-label">IT & Applied Security</span>
+          </div>
+        </div>
       </div>
-      <h1>
-        Building <em>scalable</em><br>
-        backend systems<br>
-        that perform.
-      </h1>
-      <p class="hero-description">
-        Senior Software Engineer with 6+ years specializing in .NET/C# backend development,
-        cloud architecture on AWS, and database performance optimization.
-        Based in Kathmandu, Nepal.
-      </p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn-primary">
-          Let's Connect
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M5 12h14M12 5l7 7-7 7" />
+      <div class="scroll-indicator" aria-hidden="true">
+        <span>Scroll</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">// About Me</div>
+        <h2 class="section-title">Passionate about <em>engineering<br>excellence</em> and clean code</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm a <strong>Senior Software Engineer</strong> with deep expertise in backend systems built on <strong>.NET
+              Core and C#</strong>. Over the past six years, I've designed, built, and scaled systems that handle
+            real-world complexity — from migrating entire backend stacks from Node.js to .NET, to architecting ETL
+            pipelines and optimizing PostgreSQL performance.
+          </p>
+          <p>
+            At <strong>Innovate Tech</strong>, I led critical infrastructure initiatives including migrating 20+ AWS
+            Lambda functions, implementing data archival to S3/Glacier, and building automated reporting systems. I
+            thrive
+            at the intersection of code quality, performance, and scalable cloud architecture.
+          </p>
+          <p>
+            I hold a <strong>Master's in IT & Applied Security</strong> and a <strong>First Class Honours in
+              Computing</strong>, both from London Metropolitan University. I'm always exploring new technologies — from
+            Redis and RabbitMQ to gRPC and event-driven patterns.
+          </p>
+        </div>
+        <div class="about-details reveal">
+          <div class="detail-card">
+            <div class="detail-label">Location</div>
+            <div class="detail-value">Kathmandu, Nepal</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-label">Email</div>
+            <div class="detail-value"><a href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a></div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-label">Phone</div>
+            <div class="detail-value">+977-9860028647</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-label">Specialization</div>
+            <div class="detail-value">Backend Development & Cloud Architecture</div>
+          </div>
+          <div class="detail-card">
+            <div class="detail-label">LinkedIn</div>
+            <div class="detail-value"><a href="https://www.linkedin.com/in/rozeen-nakarmi" target="_blank"
+                rel="noopener noreferrer">linkedin.com/in/rozeen-nakarmi</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">// Technical Arsenal</div>
+        <h2 class="section-title">Tools & technologies I <em>work with</em></h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-card reveal stagger-1">
+          <div class="skill-icon">&#9881;&#65039;</div>
+          <h3>Backend Development</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">.NET Core</span>
+            <span class="skill-tag">C#</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">RESTful APIs</span>
+            <span class="skill-tag">gRPC</span>
+            <span class="skill-tag">LINQ</span>
+          </div>
+        </div>
+        <div class="skill-card reveal stagger-2">
+          <div class="skill-icon">&#9729;&#65039;</div>
+          <h3>AWS Cloud</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Lambda</span>
+            <span class="skill-tag">S3</span>
+            <span class="skill-tag">RDS</span>
+            <span class="skill-tag">Aurora</span>
+            <span class="skill-tag">SNS</span>
+            <span class="skill-tag">SQS</span>
+            <span class="skill-tag">SES</span>
+            <span class="skill-tag">EFS</span>
+          </div>
+        </div>
+        <div class="skill-card reveal stagger-3">
+          <div class="skill-icon">&#128451;&#65039;</div>
+          <h3>Databases</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">SQL Server</span>
+            <span class="skill-tag">DynamoDB</span>
+            <span class="skill-tag">Redis</span>
+            <span class="skill-tag">Query Optimization</span>
+          </div>
+        </div>
+        <div class="skill-card reveal stagger-4">
+          <div class="skill-icon">&#128295;</div>
+          <h3>DevOps & Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">RabbitMQ</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">GitLab</span>
+            <span class="skill-tag">AWS Glue</span>
+          </div>
+        </div>
+        <div class="skill-card reveal stagger-5">
+          <div class="skill-icon">&#128421;&#65039;</div>
+          <h3>Frontend</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Angular</span>
+            <span class="skill-tag">AngularJS</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML/CSS</span>
+          </div>
+        </div>
+        <div class="skill-card reveal stagger-6">
+          <div class="skill-icon">&#128208;</div>
+          <h3>Architecture</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Design Patterns</span>
+            <span class="skill-tag">OOP</span>
+            <span class="skill-tag">ETL Pipelines</span>
+            <span class="skill-tag">Data Migration</span>
+            <span class="skill-tag">Clean Architecture</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Featured Projects -->
+    <section id="projects">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">// Featured Work</div>
+        <h2 class="section-title">Projects that made <em>an impact</em></h2>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card reveal stagger-1">
+          <div class="project-card-eyebrow">Data Engineering</div>
+          <h3>ETL Pipeline for Cross-Source Analytics</h3>
+          <p>Designed and built ETL pipelines aggregating data from multiple sources for business analytics, with
+            automated scheduling and error handling.</p>
+          <div class="project-impact">15% data accuracy improvement</div>
+          <div class="project-tags">
+            <span class="project-tag">.NET Core</span>
+            <span class="project-tag">PostgreSQL</span>
+            <span class="project-tag">AWS Glue</span>
+            <span class="project-tag">S3 Parquet</span>
+          </div>
+        </div>
+        <div class="project-card reveal stagger-2">
+          <div class="project-card-eyebrow">Cloud Migration</div>
+          <h3>Lambda Functions: Node.js to .NET Migration</h3>
+          <p>Migrated 20+ AWS Lambda functions from Node.js to .NET Core, reducing cold-start latency and unifying the
+            backend technology stack.</p>
+          <div class="project-impact">20+ functions migrated</div>
+          <div class="project-tags">
+            <span class="project-tag">AWS Lambda</span>
+            <span class="project-tag">.NET Core</span>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">C#</span>
+          </div>
+        </div>
+        <div class="project-card reveal stagger-3">
+          <div class="project-card-eyebrow">Performance</div>
+          <h3>Query & API Performance Optimization</h3>
+          <p>Optimized LINQ/Lambda queries and PostgreSQL stored procedures, cutting execution time by ~30% and
+            significantly boosting API responsiveness.</p>
+          <div class="project-impact">~30% faster query execution</div>
+          <div class="project-tags">
+            <span class="project-tag">PostgreSQL</span>
+            <span class="project-tag">LINQ</span>
+            <span class="project-tag">C#</span>
+            <span class="project-tag">Performance Tuning</span>
+          </div>
+        </div>
+        <div class="project-card reveal stagger-4">
+          <div class="project-card-eyebrow">Infrastructure</div>
+          <h3>Data Archival & Cost Optimization</h3>
+          <p>Automated data archival pipeline to S3 Parquet with Glacier lifecycle policies, plus DynamoDB-to-PostgreSQL
+            migration using Python and AWS Glue.</p>
+          <div class="project-impact">Reduced storage costs</div>
+          <div class="project-tags">
+            <span class="project-tag">S3</span>
+            <span class="project-tag">Glacier</span>
+            <span class="project-tag">DynamoDB</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">AWS Glue</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Experience -->
+    <section id="experience">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">// Career Journey</div>
+        <h2 class="section-title">Where I've built <em>things<br>that matter</em></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Feb 2022 — Aug 2025</div>
+          <div class="timeline-card">
+            <h3>Senior Software Engineer</h3>
+            <div class="company">Innovate Tech Pvt. Ltd.</div>
+            <div class="location">Kathmandu, Nepal</div>
+            <ul>
+              <li>Built scalable backend systems with ASP.NET Core, PostgreSQL, and AWS (Lambda, S3, RDS)</li>
+              <li>Migrated 20+ AWS Lambda functions from Node.js to .NET Core, reducing cold-start latency</li>
+              <li>Optimized LINQ/Lambda queries, cutting execution time by ~30% and boosting API responsiveness</li>
+              <li>Led migration of multiple Node.js modules to .NET Core, unifying the backend stack</li>
+              <li>Implemented ETL pipelines for cross-source data aggregation and analytics</li>
+              <li>Automated data archival to S3 Parquet with Glacier lifecycle policies for cost optimization</li>
+              <li>Built data migration scripts (DynamoDB to PostgreSQL) with Python and AWS Glue</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Nov 2019 — Feb 2022</div>
+          <div class="timeline-card">
+            <h3>Software Engineer</h3>
+            <div class="company">Percoid IT Solution</div>
+            <div class="location">Kathmandu, Nepal</div>
+            <ul>
+              <li>Full-stack development with ASP.NET Core, AngularJS, and SQL Server</li>
+              <li>Feature enhancement, system maintenance, and SQL query optimization</li>
+              <li>Developed and maintained stored procedures for business logic</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Jul 2019 — Oct 2019</div>
+          <div class="timeline-card">
+            <h3>Trainee Developer</h3>
+            <div class="company">Insight Workshop</div>
+            <div class="location">Kathmandu, Nepal</div>
+            <ul>
+              <li>Built real-time chat application using SignalR and AngularJS</li>
+              <li>Implemented email service using Azure Functions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item reveal">
+          <div class="timeline-date">Sep 2018 — Jan 2019</div>
+          <div class="timeline-card">
+            <h3>Backend Developer Intern</h3>
+            <div class="company">Braindigit</div>
+            <div class="location">Kathmandu, Nepal</div>
+            <ul>
+              <li>Developed School Bus Management System with ASP.NET Core and SQL Server</li>
+              <li>Database design and query optimization with SSMS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">// Education</div>
+        <h2 class="section-title">Academic <em>foundation</em></h2>
+      </div>
+      <div class="education-grid">
+        <div class="edu-card reveal stagger-1">
+          <div class="edu-degree">MSc Information Technology & Applied Security</div>
+          <div class="edu-school">London Metropolitan University</div>
+          <div class="edu-year">2021 — 2024 · Islington College, Kathmandu</div>
+          <span class="edu-grade">Merit — 66.44%</span>
+        </div>
+        <div class="edu-card reveal stagger-2">
+          <div class="edu-degree">BSc (Hons) Computing</div>
+          <div class="edu-school">London Metropolitan University</div>
+          <div class="edu-year">2016 — 2019 · Islington College, Kathmandu</div>
+          <span class="edu-grade">First Class Honours — 73.11%</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">// Let's Connect</div>
+        <h2 class="section-title">Have a project in mind?<br><em>Let's talk.</em></h2>
+        <p class="contact-description">
+          I'm open to discussing new opportunities, collaborations, or just chatting about backend architecture and
+          cloud systems.
+        </p>
+      </div>
+      <div class="contact-links reveal">
+        <a href="mailto:rozeennakarmi5@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
           </svg>
+          rozeennakarmi5@gmail.com
         </a>
-        <a href="#experience" class="btn-secondary">View My Work</a>
+        <a href="tel:+9779860028647" class="contact-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+          </svg>
+          +977-9860028647
+        </a>
+        <a href="https://www.linkedin.com/in/rozeen-nakarmi" target="_blank" rel="noopener noreferrer"
+          class="contact-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/rozeennakarmi" target="_blank" rel="noopener noreferrer" class="contact-link">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
+          </svg>
+          GitHub
+        </a>
       </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number">6+</span>
-          <span class="stat-label">Years Experience</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">15%</span>
-          <span class="stat-label">Data Accuracy Boost</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">30%</span>
-          <span class="stat-label">Query Optimization</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number">MSc</span>
-          <span class="stat-label">IT & Applied Security</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <div class="section-divider"></div>
+  </main>
 
-  <!-- About -->
-  <section id="about">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// About Me</div>
-      <h2 class="section-title">Passionate about <em>engineering<br>excellence</em> and clean code</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>
-          I'm a <strong>Senior Software Engineer</strong> with deep expertise in backend systems built on <strong>.NET
-            Core and C#</strong>. Over the past six years, I've designed, built, and scaled systems that handle
-          real-world complexity — from migrating entire backend stacks from Node.js to .NET, to architecting ETL
-          pipelines and optimizing PostgreSQL performance.
-        </p>
-        <p>
-          At <strong>Innovate Tech</strong>, I led critical infrastructure initiatives including migrating 20+ AWS
-          Lambda functions, implementing data archival to S3/Glacier, and building automated reporting systems. I thrive
-          at the intersection of code quality, performance, and scalable cloud architecture.
-        </p>
-        <p>
-          I hold a <strong>Master's in IT & Applied Security</strong> and a <strong>First Class Honours in
-            Computing</strong>, both from London Metropolitan University. I'm always exploring new technologies — from
-          Redis and RabbitMQ to gRPC and event-driven patterns.
-        </p>
-      </div>
-      <div class="about-details reveal">
-        <div class="detail-card">
-          <div class="detail-label">Location</div>
-          <div class="detail-value">Kathmandu, Nepal 🇳🇵</div>
-        </div>
-        <div class="detail-card">
-          <div class="detail-label">Email</div>
-          <div class="detail-value"><a href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a></div>
-        </div>
-        <div class="detail-card">
-          <div class="detail-label">Phone</div>
-          <div class="detail-value">+977-9860028647</div>
-        </div>
-        <div class="detail-card">
-          <div class="detail-label">Specialization</div>
-          <div class="detail-value">Backend Development & Cloud Architecture</div>
-        </div>
-        <div class="detail-card">
-          <div class="detail-label">LinkedIn</div>
-          <div class="detail-value"><a href="https://linkedin.com" target="_blank">linkedin.com/in/rozeen</a></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- Skills -->
-  <section id="skills">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Technical Arsenal</div>
-      <h2 class="section-title">Tools & technologies I <em>work with</em></h2>
-    </div>
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-icon">⚙️</div>
-        <h3>Backend Development</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">.NET Core</span>
-          <span class="skill-tag">C#</span>
-          <span class="skill-tag">Node.js</span>
-          <span class="skill-tag">RESTful APIs</span>
-          <span class="skill-tag">gRPC</span>
-          <span class="skill-tag">LINQ</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">☁️</div>
-        <h3>AWS Cloud</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Lambda</span>
-          <span class="skill-tag">S3</span>
-          <span class="skill-tag">RDS</span>
-          <span class="skill-tag">Aurora</span>
-          <span class="skill-tag">SNS</span>
-          <span class="skill-tag">SQS</span>
-          <span class="skill-tag">SES</span>
-          <span class="skill-tag">EFS</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">🗄️</div>
-        <h3>Databases</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">SQL Server</span>
-          <span class="skill-tag">DynamoDB</span>
-          <span class="skill-tag">Redis</span>
-          <span class="skill-tag">Query Optimization</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">🔧</div>
-        <h3>DevOps & Tools</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Docker</span>
-          <span class="skill-tag">RabbitMQ</span>
-          <span class="skill-tag">Git</span>
-          <span class="skill-tag">GitHub</span>
-          <span class="skill-tag">GitLab</span>
-          <span class="skill-tag">AWS Glue</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">🖥️</div>
-        <h3>Frontend</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Angular</span>
-          <span class="skill-tag">AngularJS</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">HTML/CSS</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-icon">📐</div>
-        <h3>Architecture</h3>
-        <div class="skill-tags">
-          <span class="skill-tag">Design Patterns</span>
-          <span class="skill-tag">OOP</span>
-          <span class="skill-tag">ETL Pipelines</span>
-          <span class="skill-tag">Data Migration</span>
-          <span class="skill-tag">Clean Architecture</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- Experience -->
-  <section id="experience">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Career Journey</div>
-      <h2 class="section-title">Where I've built <em>things<br>that matter</em></h2>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Feb 2022 — Aug 2025</div>
-        <div class="timeline-card">
-          <h3>Senior Software Engineer</h3>
-          <div class="company">Innovate Tech Pvt. Ltd.</div>
-          <div class="location">📍 Kathmandu, Nepal</div>
-          <ul>
-            <li>Built scalable backend systems with ASP.NET Core, PostgreSQL, and AWS (Lambda, S3, RDS)</li>
-            <li>Migrated 20+ AWS Lambda functions from Node.js to .NET Core, reducing cold-start latency</li>
-            <li>Optimized LINQ/Lambda queries, cutting execution time by ~30% and boosting API responsiveness</li>
-            <li>Led migration of multiple Node.js modules to .NET Core, unifying the backend stack</li>
-            <li>Implemented ETL pipelines for cross-source data aggregation and analytics</li>
-            <li>Automated data archival to S3 Parquet with Glacier lifecycle policies for cost optimization</li>
-            <li>Built data migration scripts (DynamoDB → PostgreSQL) with Python and AWS Glue</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Nov 2019 — Feb 2022</div>
-        <div class="timeline-card">
-          <h3>Software Engineer</h3>
-          <div class="company">Percoid IT Solution</div>
-          <div class="location">📍 Kathmandu, Nepal</div>
-          <ul>
-            <li>Full-stack development with ASP.NET Core, AngularJS, and SQL Server</li>
-            <li>Feature enhancement, system maintenance, and SQL query optimization</li>
-            <li>Developed and maintained stored procedures for business logic</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Jul 2019 — Oct 2019</div>
-        <div class="timeline-card">
-          <h3>Trainee Developer</h3>
-          <div class="company">Insight Workshop</div>
-          <div class="location">📍 Kathmandu, Nepal</div>
-          <ul>
-            <li>Built real-time chat application using SignalR and AngularJS</li>
-            <li>Implemented email service using Azure Functions</li>
-          </ul>
-        </div>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-date">Sep 2018 — Jan 2019</div>
-        <div class="timeline-card">
-          <h3>Backend Developer Intern</h3>
-          <div class="company">Braindigit</div>
-          <div class="location">📍 Kathmandu, Nepal</div>
-          <ul>
-            <li>Developed School Bus Management System with ASP.NET Core and SQL Server</li>
-            <li>Database design and query optimization with SSMS</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- Education -->
-  <section id="education">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Education</div>
-      <h2 class="section-title">Academic <em>foundation</em></h2>
-    </div>
-    <div class="education-grid">
-      <div class="edu-card reveal">
-        <div class="edu-degree">MSc Information Technology & Applied Security</div>
-        <div class="edu-school">London Metropolitan University</div>
-        <div class="edu-year">2021 — 2024 · Islington College, Kathmandu</div>
-        <span class="edu-grade">Merit — 66.44%</span>
-      </div>
-      <div class="edu-card reveal">
-        <div class="edu-degree">BSc (Hons) Computing</div>
-        <div class="edu-school">London Metropolitan University</div>
-        <div class="edu-year">2016 — 2019 · Islington College, Kathmandu</div>
-        <span class="edu-grade">First Class Honours — 73.11%</span>
-      </div>
-    </div>
-  </section>
-
-  <div class="section-divider"></div>
-
-  <!-- Contact -->
-  <section id="contact" class="contact-section">
-    <div class="section-header reveal">
-      <div class="section-eyebrow">// Let's Connect</div>
-      <h2 class="section-title">Have a project in mind?<br><em>Let's talk.</em></h2>
-      <p class="contact-description">
-        I'm open to discussing new opportunities, collaborations, or just chatting about backend architecture and cloud
-        systems.
-      </p>
-    </div>
-    <div class="contact-links reveal">
-      <a href="mailto:rozeennakarmi5@gmail.com" class="contact-link">
-        <svg viewBox="0 0 24 24">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-          <polyline points="22,6 12,13 2,6" />
-        </svg>
-        rozeennakarmi5@gmail.com
-      </a>
-      <a href="tel:+9779860028647" class="contact-link">
-        <svg viewBox="0 0 24 24">
-          <path
-            d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-        </svg>
-        +977-9860028647
-      </a>
-      <a href="https://linkedin.com" target="_blank" class="contact-link">
-        <svg viewBox="0 0 24 24">
-          <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
-          <rect x="2" y="9" width="4" height="12" />
-          <circle cx="4" cy="4" r="2" />
-        </svg>
-        LinkedIn
-      </a>
-    </div>
-  </section>
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      aria-hidden="true">
+      <path d="M18 15l-6-6-6 6" />
+    </svg>
+  </button>
 
   <!-- Footer -->
   <footer>
     <p class="footer-text">
-      © 2025 Rozeen Nakarmi <span>·</span> Built with precision and purpose
+      &copy; 2026 Rozeen Nakarmi <span>&middot;</span> Built with precision and purpose
     </p>
   </footer>
 
   <script>
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // Intersection Observer for scroll reveal
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
+      entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, index * 80);
+          entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
@@ -1221,28 +1679,107 @@
     const navLinks = document.getElementById('navLinks');
 
     menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active', isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
     });
 
     // Close mobile menu on link click
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('active');
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
       });
     });
 
-    // Navbar scroll effect
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
-      const nav = document.querySelector('nav');
-      const scrollTop = window.scrollY;
+    // Active nav indicator
+    const sections = document.querySelectorAll('section[id]');
+    const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
 
-      if (scrollTop > 100) {
-        nav.style.padding = '0.8rem 3rem';
-      } else {
-        nav.style.padding = '1.2rem 3rem';
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navItems.forEach(link => {
+            link.classList.toggle('active',
+              link.getAttribute('href') === '#' + entry.target.id
+            );
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Animated stat counters
+    function animateStats() {
+      document.querySelectorAll('.stat-number').forEach(stat => {
+        const text = stat.textContent;
+        const match = text.match(/^(\d+)/);
+        if (!match) return;
+
+        const target = parseInt(match[1], 10);
+        const suffix = text.replace(match[1], '');
+
+        if (prefersReducedMotion) {
+          stat.textContent = target + suffix;
+          return;
+        }
+
+        let current = 0;
+        const duration = 1500;
+        const increment = target / (duration / 16);
+
+        function update() {
+          current += increment;
+          if (current >= target) {
+            stat.textContent = target + suffix;
+            return;
+          }
+          stat.textContent = Math.floor(current) + suffix;
+          requestAnimationFrame(update);
+        }
+        update();
+      });
+    }
+
+    const heroStats = document.querySelector('.hero-stats');
+    if (heroStats) {
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateStats();
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      statsObserver.observe(heroStats);
+    }
+
+    // Consolidated scroll handler
+    const scrollProgress = document.getElementById('scrollProgress');
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+      // Nav compact on scroll
+      const nav = document.querySelector('nav');
+      nav.style.padding = scrollTop > 100 ? '0.8rem 3rem' : '1.2rem 3rem';
+
+      // Scroll progress
+      if (docHeight > 0) {
+        scrollProgress.style.width = ((scrollTop / docHeight) * 100) + '%';
       }
-      lastScroll = scrollTop;
+
+      // Back to top
+      backToTop.classList.toggle('visible', scrollTop > 500);
+    });
+
+    // Back to top click
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });
   </script>
 
