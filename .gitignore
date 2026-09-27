@@ -1,0 +1,8 @@
+# Resume sources and update briefs — never commit
+*.tex
+*.pdf
+*resume*
+*Resume*
+SITE_UPDATE_BRIEF*.md
+
+.DS_Store
