@@ -7,8 +7,8 @@
   <title>Rozeen Nakarmi | Lead Software Engineer / Tech Lead</title>
   <meta name="description"
     content="Rozeen Nakarmi, Lead Software Engineer / Tech Lead designing and delivering enterprise systems on .NET, Python, AWS, and Azure, from pre-sales proposals and high-level design to production. Architected Frost &amp; Sullivan's 7 Gates platform and a core-banking integration middleware for Nepal SBI Bank. AWS Certified Solutions Architect. Based in Kathmandu, Nepal.">
-  <meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0d0e11" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f6f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
 
   <!-- Open Graph -->
@@ -25,13 +25,14 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230d0e11' width='100' height='100' rx='22'/><text x='44' y='70' font-family='Arial,sans-serif' font-weight='700' font-size='56' fill='%23eceef2' text-anchor='middle'>R</text><circle cx='76' cy='66' r='7' fill='%238fa3ff'/></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230e0f11' width='100' height='100'/><text x='50' y='72' font-family='Arial,sans-serif' font-weight='700' font-size='60' fill='%23f6f6f7' text-anchor='middle'>R</text><rect x='12' y='84' width='76' height='5' fill='%238f9cff'/></svg>">
 
   <!-- Self-hosted fonts (Geist + Geist Mono, SIL OFL, see fonts/OFL.txt) -->
   <link rel="preload" href="fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin>
 
-  <!-- Motion gate: animations only run when the user allows motion and GSAP loads -->
+  <!-- Feature gates: .js enables the collapsed project list, .motion enables GSAP reveals -->
   <script>
+    document.documentElement.classList.add('js');
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       document.documentElement.classList.add('motion');
     }
@@ -80,49 +81,42 @@
     }
 
     /*
-      Design tokens: one theme family (cool neutrals + cobalt), automatic light/dark.
-      Shape rule: surfaces use --r-surface (20px); buttons and chips are full pills.
+      Swiss resume system: black on neutral white, hairline rules, one accent.
+      Light/dark follow the visitor's system. No cards: structure comes from the grid and rules.
+      Shape rule: the only rounded elements are pills (buttons, status chip).
       Z-index scale: skip link 60, nav 50, mobile menu 40, back-to-top 30.
     */
     :root {
-      --bg: #f4f5f7;
-      --bg-2: #eaecf0;
-      --surface: #fbfbfc;
-      --text: #0f1115;
-      --text-2: #4a505c;
-      --text-3: #646a78;
-      --line: #dadde3;
-      --accent: #2f4fd8;
-      --accent-hover: #2541bd;
-      --on-accent: #f4f5f7;
-      --accent-soft: #e3e8fb;
+      --bg: #f6f6f7;
+      --bg-2: #ececee;
+      --text: #121316;
+      --text-2: #4b4f58;
+      --text-3: #666b76;
+      --line: #d6d7dc;
+      --rule: #121316;
+      --accent: #2c3df5;
       --live: #1a8a57;
-      --shadow: 0 1px 2px rgba(23, 30, 60, 0.04), 0 12px 32px -12px rgba(23, 30, 60, 0.12);
 
       --sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
       --mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
       --max: 1280px;
       --gutter: clamp(1rem, 4vw, 3rem);
+      --col-gap: clamp(1rem, 2.2vw, 2rem);
       --nav-h: 68px;
-      --r-surface: 20px;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0d0e11;
-        --bg-2: #15171c;
-        --surface: #1a1d23;
+        --bg: #0e0f11;
+        --bg-2: #17191d;
         --text: #eceef2;
         --text-2: #a9afbc;
         --text-3: #8a90a0;
-        --line: #272b33;
-        --accent: #8fa3ff;
-        --accent-hover: #a9b8ff;
-        --on-accent: #0d0e11;
-        --accent-soft: #1b2240;
+        --line: #2a2d34;
+        --rule: #eceef2;
+        --accent: #8f9cff;
         --live: #3fcf8e;
-        --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px -12px rgba(0, 0, 0, 0.5);
       }
     }
 
@@ -165,13 +159,13 @@
 
     ::selection {
       background: var(--accent);
-      color: var(--on-accent);
+      color: var(--bg);
     }
 
     :focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
-      border-radius: 4px;
+      border-radius: 2px;
     }
 
     a {
@@ -181,6 +175,11 @@
     ul,
     ol {
       list-style: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
     }
 
     .icon {
@@ -221,6 +220,19 @@
       top: 0.75rem;
     }
 
+    /* Inline link: underline wipes out and back on hover */
+    .ulink {
+      text-decoration: none;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+      transition: background-size 0.5s var(--ease-out), color 0.2s;
+    }
+
+    .ulink:hover {
+      color: var(--accent);
+      background-size: 0 1px;
+      background-position: 100% 100%;
+    }
+
     /* ─── Buttons ─── */
     .btn {
       display: inline-flex;
@@ -240,31 +252,31 @@
       transform: scale(0.98);
     }
 
-    .btn-primary {
+    .btn-solid {
+      background: var(--text);
+      color: var(--bg);
+    }
+
+    .btn-solid:hover {
       background: var(--accent);
-      color: var(--on-accent);
     }
 
-    .btn-primary:hover {
-      background: var(--accent-hover);
-    }
-
-    .btn-primary .icon {
+    .btn-solid .icon {
       transition: transform 0.4s var(--ease-out);
     }
 
-    .btn-primary:hover .icon {
+    .btn-solid:hover .icon {
       transform: translateX(3px);
     }
 
-    .btn-ghost {
-      border: 1px solid var(--line);
+    .btn-line {
+      border: 1px solid var(--text);
       color: var(--text);
     }
 
-    .btn-ghost:hover {
-      border-color: var(--text-3);
-      background: var(--bg-2);
+    .btn-line:hover {
+      background: var(--text);
+      color: var(--bg);
     }
 
     /* ─── Navigation ─── */
@@ -277,9 +289,9 @@
     }
 
     .nav.is-scrolled {
-      background: color-mix(in srgb, var(--bg) 82%, transparent);
-      -webkit-backdrop-filter: blur(14px);
-      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
       box-shadow: 0 1px 0 var(--line);
     }
 
@@ -298,15 +310,12 @@
     .nav-logo {
       position: relative;
       z-index: 51;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.04em;
+      font-size: 1.05rem;
+      font-weight: 650;
+      letter-spacing: -0.02em;
       text-decoration: none;
       color: var(--text);
-    }
-
-    .nav-logo span {
-      color: var(--accent);
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -342,13 +351,13 @@
       align-items: center;
       padding: 0 1.1rem;
       border-radius: 999px;
-      background: var(--accent);
-      color: var(--on-accent);
+      background: var(--text);
+      color: var(--bg);
       text-decoration: none;
     }
 
     .nav-links a.nav-cta:hover {
-      background: var(--accent-hover);
+      background: var(--accent);
     }
 
     .menu-toggle {
@@ -361,9 +370,9 @@
       padding: 0 1rem;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: var(--surface);
-      color: var(--text);
-      font: 500 0.875rem var(--sans);
+      background: transparent;
+      font-size: 0.875rem;
+      font-weight: 500;
       cursor: pointer;
     }
 
@@ -387,35 +396,9 @@
       transform: translateY(-2.75px) rotate(-45deg);
     }
 
-    /* ─── Sections ─── */
-    main section {
-      scroll-margin-top: var(--nav-h);
-    }
-
-    .section {
-      padding: clamp(5rem, 10vw, 8rem) 0;
-    }
-
-    .h2 {
-      font-size: clamp(2rem, 4.2vw, 3.5rem);
-      font-weight: 620;
-      line-height: 1.05;
-      letter-spacing: -0.035em;
-      max-width: 18ch;
-      padding-bottom: 0.08em;
-    }
-
-    .hl {
-      color: var(--accent);
-    }
-
-    .section-head {
-      margin-bottom: clamp(2.5rem, 5vw, 4rem);
-    }
-
     /* ─── Hero ─── */
     .hero {
-      padding: calc(var(--nav-h) + clamp(3rem, 9vh, 6rem)) 0 clamp(2.5rem, 6vh, 4rem);
+      padding: calc(var(--nav-h) + clamp(2.5rem, 8vh, 5rem)) 0 clamp(2.5rem, 6vh, 4rem);
     }
 
     .status {
@@ -426,7 +409,6 @@
       padding: 0 0.9rem;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: var(--surface);
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--text-2);
@@ -464,23 +446,27 @@
 
     .hero-title {
       margin-top: 1.75rem;
-      font-size: clamp(2.6rem, 4.6vw, 4.4rem);
-      font-weight: 650;
+      font-size: clamp(2.5rem, 5.2vw, 5.6rem);
+      font-weight: 640;
       line-height: 1.04;
-      letter-spacing: -0.045em;
+      letter-spacing: -0.048em;
       padding-bottom: 0.06em;
-      transform-origin: left top;
+    }
+
+    .hl {
+      color: var(--accent);
     }
 
     .hero-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 1.75rem var(--col-gap);
       align-items: end;
-      gap: 2rem 4rem;
       margin-top: clamp(1.75rem, 4vh, 2.75rem);
     }
 
     .hero-sub {
+      grid-column: 1 / 7;
       font-size: clamp(1.05rem, 1.4vw, 1.25rem);
       line-height: 1.55;
       color: var(--text-2);
@@ -488,84 +474,114 @@
     }
 
     .hero-ctas {
+      grid-column: 8 / 13;
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-end;
       gap: 0.75rem;
     }
 
-    /* ─── Metrics ─── */
     .metrics {
       display: grid;
-      grid-template-columns: 1.35fr 1fr 1fr 1fr;
-      gap: 0.75rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: clamp(2.5rem, 7vh, 4.5rem);
+      border-top: 1px solid var(--rule);
     }
 
     .metric {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 2.5rem;
-      min-height: 168px;
-      padding: 1.5rem;
-      border-radius: var(--r-surface);
-      background: var(--surface);
-      box-shadow: var(--shadow);
+      padding: 1.1rem var(--col-gap) 0;
+      border-left: 1px solid var(--line);
     }
 
     .metric:first-child {
-      background: var(--accent);
-      color: var(--on-accent);
-    }
-
-    .metric:first-child .stat-label {
-      color: inherit;
-    }
-
-    .metric:nth-child(4) {
-      background: var(--bg-2);
-      box-shadow: none;
+      padding-left: 0;
+      border-left: 0;
     }
 
     .stat-number {
-      font-size: clamp(2.6rem, 4.6vw, 4rem);
+      display: block;
+      font-size: clamp(2.4rem, 4.4vw, 4rem);
       font-weight: 600;
       line-height: 1;
       letter-spacing: -0.05em;
-      font-variant-numeric: tabular-nums;
     }
 
     .stat-label {
+      display: block;
+      margin-top: 0.6rem;
       font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--text-2);
+      color: var(--text-3);
+    }
+
+    /* ─── Sections: heading in the left columns, content in the right ─── */
+    main section {
+      scroll-margin-top: var(--nav-h);
+    }
+
+    .sec {
+      position: relative;
+      padding: clamp(3.5rem, 7vw, 5.5rem) 0 clamp(4rem, 8vw, 6.5rem);
+    }
+
+    .sec-rule {
+      position: absolute;
+      top: 0;
+      left: var(--gutter);
+      right: var(--gutter);
+      max-width: calc(var(--max) - 2 * var(--gutter));
+      margin: 0 auto;
+      height: 1px;
+      background: var(--rule);
+      transform-origin: left;
+    }
+
+    .sec-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: var(--col-gap);
+      row-gap: 2rem;
+      align-items: start;
+    }
+
+    .sec-head {
+      grid-column: 1 / 5;
+      position: sticky;
+      top: calc(var(--nav-h) + 1.5rem);
+    }
+
+    .h2 {
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+      font-weight: 620;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      padding-bottom: 0.08em;
+    }
+
+    .sec-body {
+      grid-column: 5 / 13;
+      min-width: 0;
     }
 
     /* ─── About ─── */
     .about-lead {
-      margin-top: clamp(2rem, 4vw, 3rem);
-      max-width: 1000px;
-      font-size: clamp(1.4rem, 2.5vw, 2.15rem);
-      font-weight: 500;
-      line-height: 1.32;
+      font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+      font-weight: 480;
+      line-height: 1.34;
       letter-spacing: -0.025em;
     }
 
     .about-lead strong {
-      font-weight: 650;
+      font-weight: 640;
     }
 
-    .about-cols {
-      display: grid;
-      grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
-      gap: 3rem clamp(2rem, 6vw, 6rem);
-      margin-top: clamp(3rem, 6vw, 4.5rem);
+    .about-text {
+      margin-top: 2.25rem;
     }
 
     .about-text p {
-      color: var(--text-2);
-      font-size: 1.05rem;
-      line-height: 1.75;
       max-width: 65ch;
+      color: var(--text-2);
+      line-height: 1.75;
     }
 
     .about-text p+p {
@@ -577,316 +593,228 @@
       font-weight: 600;
     }
 
-    .about-details {
+    .facts {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem 1.25rem;
-      align-content: start;
-      padding: 1.75rem;
-      border-radius: var(--r-surface);
-      background: var(--bg-2);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 3rem;
+      border-top: 1px solid var(--rule);
     }
 
-    .detail-row.wide {
+    .fact {
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fact:nth-child(odd) {
+      padding-right: var(--col-gap);
+    }
+
+    .fact.wide {
       grid-column: 1 / -1;
     }
 
-    .detail-label {
-      font-size: 0.8rem;
+    .fact dt {
+      font-size: 0.82rem;
       color: var(--text-3);
-      margin-bottom: 0.2rem;
     }
 
-    .detail-value {
-      font-size: 0.95rem;
+    .fact dd {
+      font-size: 0.98rem;
       font-weight: 500;
       overflow-wrap: anywhere;
     }
 
-    .detail-value a {
-      text-decoration: none;
+    /* ─── Skills: grouped plain text ─── */
+    .skill-list {
+      border-top: 1px solid var(--rule);
+    }
+
+    .skill-group {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+      gap: 0.5rem var(--col-gap);
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-group h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.15rem 0;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .skill-items li::after {
+      content: ',';
+      margin-right: 0.45em;
+      color: var(--text-3);
+    }
+
+    .skill-items li:last-child::after {
+      content: '';
+      margin: 0;
+    }
+
+    .skill-sub {
+      margin-top: 0.7rem;
+      font-size: 0.85rem;
+      color: var(--text-3);
+    }
+
+    .skill-sub:first-child {
+      margin-top: 0;
+    }
+
+    /* ─── Projects: numbered list, rows expand in place ─── */
+    .proj-list {
+      border-top: 1px solid var(--rule);
+    }
+
+    .proj {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .proj-head {
+      display: grid;
+      grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 0.5rem var(--col-gap);
+      width: 100%;
+      padding: 1.25rem 0;
+      text-align: left;
+      background: none;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .proj-num {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text-3);
+    }
+
+    .proj-title {
+      display: block;
+      font-size: clamp(1.2rem, 1.9vw, 1.55rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      transition: color 0.25s, transform 0.5s var(--ease-out);
+    }
+
+    .proj-cat {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: 0.88rem;
+      color: var(--text-3);
+    }
+
+    .proj-head:hover .proj-title {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .proj-toggle {
+      align-self: center;
+      width: 1.25rem;
+      height: 1.25rem;
+      transition: transform 0.5s var(--ease-out), color 0.25s;
+    }
+
+    .proj.is-open .proj-toggle {
+      transform: rotate(45deg);
       color: var(--accent);
     }
 
-    .detail-value a:hover {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    /* ─── Skills: bento (exactly 5 cells for 5 groups) ─── */
-    .bento {
+    .proj-panel {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-areas:
-        'lang lang lang lang cloud cloud'
-        'db   db   auth auth cloud cloud'
-        'prac prac prac prac prac  prac';
-      gap: 0.75rem;
+      grid-template-rows: 1fr;
     }
 
-    .cell {
-      padding: clamp(1.4rem, 2.4vw, 2rem);
-      border-radius: var(--r-surface);
-      background: var(--surface);
-      box-shadow: var(--shadow);
+    .js .proj-panel {
+      grid-template-rows: 0fr;
+      visibility: hidden;
+      transition: grid-template-rows 0.55s var(--ease-out), visibility 0s linear 0.55s;
     }
 
-    .cell h3 {
-      font-size: 1.2rem;
+    .js .proj.is-open .proj-panel {
+      grid-template-rows: 1fr;
+      visibility: visible;
+      transition: grid-template-rows 0.55s var(--ease-out), visibility 0s;
+    }
+
+    .proj-inner {
+      overflow: hidden;
+      min-height: 0;
+    }
+
+    .proj-content {
+      padding: 0 0 1.6rem calc(2.5rem + var(--col-gap));
+      max-width: calc(65ch + 2.5rem + var(--col-gap));
+    }
+
+    .proj-content p {
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    .proj-content .proj-impact {
+      margin-top: 1rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.1rem;
+      color: var(--accent);
     }
 
-    .cell-lang {
-      grid-area: lang;
-    }
-
-    .cell-db {
-      grid-area: db;
-      background-image: radial-gradient(color-mix(in srgb, var(--text-3) 32%, transparent) 1px, transparent 1.4px);
-      background-size: 14px 14px;
-    }
-
-    .cell-auth {
-      grid-area: auth;
-      background: var(--bg-2);
-      box-shadow: none;
-    }
-
-    .cell-cloud {
-      grid-area: cloud;
-      background: var(--accent);
-      color: var(--on-accent);
-    }
-
-    .cell-prac {
-      grid-area: prac;
-      background: var(--accent-soft);
-      box-shadow: none;
-    }
-
-    .skill-tags {
+    .proj-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .skill-tag {
-      display: inline-flex;
-      align-items: center;
-      height: 32px;
-      padding: 0 0.85rem;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: var(--bg);
+      gap: 0.1rem 0;
+      margin-top: 0.9rem;
       font-family: var(--mono);
       font-size: 0.8rem;
-      color: var(--text);
-    }
-
-    .cell-auth .skill-tag,
-    .cell-prac .skill-tag {
-      background: var(--surface);
-    }
-
-    .cell-prac .skill-tag {
-      border-color: transparent;
-    }
-
-    .cell-cloud .skill-tag {
-      background: color-mix(in srgb, var(--on-accent) 14%, transparent);
-      border-color: color-mix(in srgb, var(--on-accent) 32%, transparent);
-      color: var(--on-accent);
-    }
-
-    .skill-group-label {
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin: 0 0 0.6rem;
-    }
-
-    .skill-tags+.skill-group-label {
-      margin-top: 1.4rem;
-    }
-
-    /* ─── Projects: grid by default, pinned horizontal pan on desktop ─── */
-    .projects-track {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 0.75rem;
-    }
-
-    .project {
-      display: flex;
-      flex-direction: column;
-      padding: clamp(1.5rem, 2.4vw, 2rem);
-      border-radius: var(--r-surface);
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .project.is-featured {
-      background: var(--accent);
-      color: var(--on-accent);
-    }
-
-    .project-cat {
-      font-size: 0.85rem;
-      font-weight: 500;
       color: var(--text-3);
     }
 
-    .project h3 {
-      margin-top: 0.5rem;
-      font-size: clamp(1.35rem, 2vw, 1.65rem);
-      font-weight: 620;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+    .proj-tags li+li::before {
+      content: '/';
+      margin: 0 0.6em;
+      color: var(--line);
     }
 
-    .project p {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      line-height: 1.65;
-      color: var(--text-2);
-    }
-
-    .project-impact {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      margin-top: 1.25rem;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--accent);
-    }
-
-    .project-impact .icon {
-      margin-top: 0.2em;
-    }
-
-    .project.is-featured .project-cat,
-    .project.is-featured p,
-    .project.is-featured .project-impact {
-      color: inherit;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: auto;
-      padding-top: 1.5rem;
-    }
-
-    .project-tag {
-      display: inline-flex;
-      align-items: center;
-      height: 28px;
-      padding: 0 0.7rem;
-      border-radius: 999px;
-      background: var(--bg-2);
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--text-2);
-    }
-
-    .project.is-featured .project-tag {
-      background: color-mix(in srgb, var(--on-accent) 16%, transparent);
-      color: inherit;
-    }
-
-    .projects.is-pan {
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .projects.is-pan .projects-track {
-      display: flex;
-      width: max-content;
-      align-items: stretch;
-    }
-
-    .projects.is-pan .project {
-      width: min(540px, 40vw);
-    }
-
-    /* ─── Experience: sticky role index + roles ─── */
-    .journey {
-      display: grid;
-      grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
-      gap: clamp(2rem, 6vw, 6rem);
-      align-items: start;
-    }
-
-    .role-index {
-      position: sticky;
-      top: calc(var(--nav-h) + 2rem);
-      display: grid;
-      gap: 0.25rem;
-    }
-
-    .role-index a {
-      display: grid;
-      gap: 0.1rem;
-      padding: 0.85rem 1rem;
-      border-radius: 14px;
-      text-decoration: none;
-      color: var(--text-3);
-      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-    }
-
-    .role-index a:hover {
-      color: var(--text);
-    }
-
-    .role-index a.is-active {
-      background: var(--surface);
-      box-shadow: var(--shadow);
-      color: var(--text);
-    }
-
-    .ri-title {
-      font-size: 0.98rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-    }
-
-    .ri-org {
-      font-size: 0.85rem;
-    }
-
-    .role-index a.is-active .ri-org {
-      color: var(--text-2);
-    }
-
+    /* ─── Experience ─── */
     .roles {
+      border-top: 1px solid var(--rule);
+    }
+
+    .role {
       display: grid;
-      gap: clamp(3.5rem, 7vw, 5.5rem);
+      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+      gap: 0.75rem var(--col-gap);
+      padding: 1.9rem 0;
+      border-bottom: 1px solid var(--line);
     }
 
     .role-date {
       font-family: var(--mono);
       font-size: 0.85rem;
-      color: var(--accent);
+      color: var(--text-2);
     }
 
     .role h3 {
-      margin-top: 0.6rem;
-      font-size: clamp(1.6rem, 2.8vw, 2.25rem);
+      font-size: clamp(1.25rem, 2vw, 1.6rem);
       font-weight: 620;
-      line-height: 1.1;
-      letter-spacing: -0.035em;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
     }
 
     .role-org {
-      margin-top: 0.4rem;
-      font-size: 1.05rem;
+      margin-top: 0.3rem;
       font-weight: 500;
     }
 
@@ -897,65 +825,45 @@
 
     .role ul {
       display: grid;
-      gap: 0.9rem;
-      margin-top: 1.5rem;
+      gap: 0.8rem;
+      margin-top: 1.25rem;
       max-width: 68ch;
     }
 
     .role li {
       position: relative;
-      padding-left: 1.4rem;
-      line-height: 1.65;
+      padding-left: 1.3rem;
       color: var(--text-2);
+      line-height: 1.65;
     }
 
     .role li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 0.7em;
+      top: 0.72em;
       width: 6px;
       height: 6px;
-      border-radius: 2px;
       background: var(--accent);
     }
 
-    /* ─── Education + Certifications (asymmetric pair) ─── */
-    .creds {
+    /* ─── Education + Certifications ─── */
+    .ledger {
+      border-top: 1px solid var(--rule);
+    }
+
+    .ledger-row {
       display: grid;
-      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-      gap: 0.75rem;
-      align-items: stretch;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
+      gap: 0.5rem var(--col-gap);
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .creds>section {
-      padding: clamp(1.75rem, 3vw, 2.5rem);
-      border-radius: var(--r-surface);
-    }
-
-    .creds .edu {
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .creds .cert {
-      display: flex;
-      flex-direction: column;
-      background: var(--bg-2);
-    }
-
-    .creds .h2 {
-      font-size: clamp(1.6rem, 2.8vw, 2.25rem);
-    }
-
-    .degree {
-      margin-top: 2rem;
-    }
-
-    .degree+.degree {
-      margin-top: 1.75rem;
-      padding-top: 1.75rem;
-      border-top: 1px solid var(--line);
+    .ledger-meta {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text-2);
     }
 
     .edu-degree {
@@ -966,55 +874,28 @@
     }
 
     .edu-school {
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
       color: var(--text-2);
     }
 
     .edu-year {
-      margin-top: 0.25rem;
-      font-family: var(--mono);
-      font-size: 0.82rem;
+      margin-top: 0.2rem;
+      font-size: 0.9rem;
       color: var(--text-3);
     }
 
     .edu-grade {
-      display: inline-flex;
-      align-items: center;
-      height: 30px;
-      margin-top: 0.85rem;
-      padding: 0 0.8rem;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.85rem;
+      margin-top: 0.6rem;
       font-weight: 600;
-    }
-
-    .cert-item {
-      margin-top: auto;
-      padding-top: 2rem;
-    }
-
-    .cert-badge {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 1.25rem;
-      background: var(--accent);
-      color: var(--on-accent);
-      font-weight: 700;
-      font-size: 1.05rem;
-      letter-spacing: -0.02em;
+      color: var(--accent);
     }
 
     /* ─── Contact ─── */
     .contact-title {
-      font-size: clamp(2.6rem, 6.4vw, 5.5rem);
-      font-weight: 650;
+      font-size: clamp(2.5rem, 6vw, 5.4rem);
+      font-weight: 640;
       line-height: 1.02;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.048em;
       padding-bottom: 0.08em;
     }
 
@@ -1026,38 +907,48 @@
       color: var(--text-2);
     }
 
-    .contact-mail {
-      display: inline-flex;
+    .contact-list {
+      margin-top: clamp(2.5rem, 5vw, 3.5rem);
+      border-top: 1px solid var(--rule);
+    }
+
+    .contact-link {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 8fr) auto;
       align-items: center;
-      gap: 0.75rem;
-      margin-top: clamp(2rem, 4vw, 3rem);
-      font-size: clamp(1.35rem, 3.4vw, 2.6rem);
-      font-weight: 600;
-      letter-spacing: -0.035em;
-      color: var(--accent);
+      gap: 0.5rem var(--col-gap);
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
       text-decoration: none;
+    }
+
+    .cl-label {
+      font-size: 0.9rem;
+      color: var(--text-3);
+    }
+
+    .cl-value {
+      font-size: clamp(1.15rem, 2.6vw, 2rem);
+      font-weight: 570;
+      letter-spacing: -0.03em;
       overflow-wrap: anywhere;
+      transition: color 0.25s, transform 0.5s var(--ease-out);
     }
 
-    .contact-mail .icon {
-      transition: transform 0.45s var(--ease-out);
+    .contact-link .icon {
+      width: 1.4rem;
+      height: 1.4rem;
+      transition: transform 0.5s var(--ease-out), color 0.25s;
     }
 
-    .contact-mail:hover .icon {
-      transform: translate(4px, -4px);
+    .contact-link:hover .cl-value {
+      color: var(--accent);
+      transform: translateX(4px);
     }
 
-    .contact-mail:hover span {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 6px;
-    }
-
-    .contact-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 2rem;
+    .contact-link:hover .icon {
+      color: var(--accent);
+      transform: translate(3px, -3px);
     }
 
     /* ─── Footer ─── */
@@ -1066,22 +957,10 @@
     }
 
     footer .wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
       padding-top: 1.75rem;
       padding-bottom: 1.75rem;
       font-size: 0.875rem;
       color: var(--text-3);
-    }
-
-    footer a {
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      color: var(--text);
     }
 
     /* ─── Back to top ─── */
@@ -1096,8 +975,8 @@
       place-items: center;
       border: 0;
       border-radius: 999px;
-      background: var(--accent);
-      color: var(--on-accent);
+      background: var(--text);
+      color: var(--bg);
       cursor: pointer;
       opacity: 0;
       visibility: hidden;
@@ -1112,7 +991,7 @@
     }
 
     .back-to-top:hover {
-      background: var(--accent-hover);
+      background: var(--accent);
     }
 
     /* ─── Motion gate: hide what GSAP will reveal ─── */
@@ -1120,6 +999,10 @@
     .motion [data-reveal],
     .motion [data-split] {
       visibility: hidden;
+    }
+
+    .motion .sec-rule {
+      transform: scaleX(0);
     }
 
     /* ─── Responsive ─── */
@@ -1166,7 +1049,7 @@
         padding: 0 1.4rem;
         font-size: 1.05rem;
         letter-spacing: 0;
-        color: var(--on-accent);
+        color: var(--bg);
       }
 
       .nav.menu-open {
@@ -1176,66 +1059,65 @@
         box-shadow: none;
       }
 
-      .metrics {
-        grid-template-columns: repeat(2, 1fr);
+      .sec-head {
+        grid-column: 1 / -1;
+        position: static;
       }
 
-      .bento {
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-areas:
-          'lang  lang'
-          'cloud cloud'
-          'db    auth'
-          'prac  prac';
+      .sec-body {
+        grid-column: 1 / -1;
       }
 
-      .journey {
-        grid-template-columns: 1fr;
-      }
-
-      .role-index {
-        display: none;
+      .hero-sub,
+      .hero-ctas {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
       }
     }
 
     @media (max-width: 767px) {
-      .hero-row {
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .metric:nth-child(3) {
+        padding-left: 0;
+        border-left: 0;
+      }
+
+      .metric:nth-child(n + 3) {
+        margin-top: 1.5rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .skill-group,
+      .role,
+      .ledger-row {
         grid-template-columns: 1fr;
       }
 
-      .metric {
-        min-height: 132px;
-        gap: 1.5rem;
+      .contact-link {
+        grid-template-columns: minmax(0, 1fr) auto;
       }
 
-      .about-cols {
+      .cl-label {
+        grid-column: 1 / -1;
+      }
+
+      .proj-content {
+        padding-left: 0;
+      }
+
+      .facts {
         grid-template-columns: 1fr;
       }
 
-      .bento {
-        grid-template-columns: 1fr;
-        grid-template-areas: 'lang' 'cloud' 'db' 'auth' 'prac';
-      }
-
-      .projects-track {
-        grid-template-columns: 1fr;
-      }
-
-      .creds {
-        grid-template-columns: 1fr;
-      }
-
-      footer .wrap {
-        flex-direction: column;
-        align-items: flex-start;
+      .fact:nth-child(odd) {
+        padding-right: 0;
       }
     }
 
     @media (max-width: 420px) {
-      .about-details {
-        grid-template-columns: 1fr;
-      }
-
       .hero-ctas .btn {
         flex: 1 1 auto;
         justify-content: center;
@@ -1250,6 +1132,7 @@
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
         scroll-behavior: auto !important;
       }
 
@@ -1268,7 +1151,7 @@
   <!-- Navigation -->
   <header class="nav" id="siteNav">
     <div class="wrap nav-inner">
-      <a href="#top" class="nav-logo" aria-label="Rozeen Nakarmi, back to top">R<span>.</span>N</a>
+      <a href="#top" class="nav-logo" aria-label="Rozeen Nakarmi, back to top">Rozeen Nakarmi</a>
       <nav aria-label="Primary">
         <ul class="nav-links" id="navLinks">
           <li><a href="#about">About</a></li>
@@ -1290,7 +1173,7 @@
 
   <main id="main">
 
-    <!-- Hero: kinetic type, no asset -->
+    <!-- Hero -->
     <section class="hero" id="hero" aria-label="Introduction">
       <div class="wrap">
         <span class="status" data-hero><span class="status-dot" aria-hidden="true"></span>Available for
@@ -1301,30 +1184,24 @@
           <p class="hero-sub" data-hero>Lead Software Engineer / Tech Lead with 7+ years designing and delivering
             enterprise systems on .NET, Python, AWS, and Azure.</p>
           <div class="hero-ctas" data-hero>
-            <a href="#contact" class="btn btn-primary">Get in Touch <svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
-            <a href="#projects" class="btn btn-ghost">View My Work</a>
+            <a href="#contact" class="btn btn-solid">Get in Touch <svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+            <a href="#projects" class="btn btn-line">View My Work</a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Highlights -->
-    <section aria-label="Highlights">
-      <div class="wrap">
-        <div class="metrics">
-          <div class="metric" data-reveal>
-            <span class="stat-number" data-count="5" data-suffix="x">5x</span>
+        <div class="metrics" data-reveal>
+          <div class="metric">
+            <span class="stat-number">5x</span>
             <span class="stat-label">Capacity Scaled</span>
           </div>
-          <div class="metric" data-reveal>
-            <span class="stat-number" data-count="7" data-suffix="+">7+</span>
+          <div class="metric">
+            <span class="stat-number">7+</span>
             <span class="stat-label">Years Experience</span>
           </div>
-          <div class="metric" data-reveal>
-            <span class="stat-number" data-count="30" data-suffix="%">30%</span>
+          <div class="metric">
+            <span class="stat-number">30%</span>
             <span class="stat-label">Query Optimization</span>
           </div>
-          <div class="metric" data-reveal>
+          <div class="metric">
             <span class="stat-number">AWS</span>
             <span class="stat-label">Solutions Architect</span>
           </div>
@@ -1333,18 +1210,21 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="section">
-      <div class="wrap">
-        <h2 class="h2" data-split>Passionate about <span class="hl">engineering excellence</span> and clean code</h2>
-        <p class="about-lead" id="aboutLead">
-          I'm a <strong>Lead Software Engineer / Tech Lead</strong> with 7+ years designing and delivering enterprise
-          systems on <strong>.NET, Python, AWS, and Azure</strong>. I own solutions end to end on the technical side,
-          from <strong>pre-sales proposals, team allocation, and costing</strong> to <strong>high-level design</strong>
-          and production, and my architecture work is grounded in hands-on performance engineering: I've taken
-          critical APIs from <strong>~24s response times to milliseconds</strong> and scaled capacity
-          <strong>5x</strong>.
-        </p>
-        <div class="about-cols">
+    <section id="about" class="sec">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div class="wrap sec-grid">
+        <div class="sec-head">
+          <h2 class="h2" data-split>Passionate about engineering excellence and clean code</h2>
+        </div>
+        <div class="sec-body">
+          <p class="about-lead" data-reveal>
+            I'm a <strong>Lead Software Engineer / Tech Lead</strong> with 7+ years designing and delivering enterprise
+            systems on <strong>.NET, Python, AWS, and Azure</strong>. I own solutions end to end on the technical side,
+            from <strong>pre-sales proposals, team allocation, and costing</strong> to
+            <strong>high-level design</strong> and production, and my architecture work is grounded in hands-on
+            performance engineering: I've taken critical APIs from <strong>~24s response times to
+              milliseconds</strong> and scaled capacity <strong>5x</strong>.
+          </p>
           <div class="about-text" data-reveal>
             <p>
               I work across two sibling verticals. At <strong>CAS Total Solutions</strong>, I'm Lead Software Engineer
@@ -1364,31 +1244,31 @@
               supervise final-year projects at Islington College.
             </p>
           </div>
-          <dl class="about-details" data-reveal>
-            <div class="detail-row">
-              <dt class="detail-label">Location</dt>
-              <dd class="detail-value">Kathmandu, Nepal</dd>
+          <dl class="facts" data-reveal>
+            <div class="fact">
+              <dt>Location</dt>
+              <dd>Kathmandu, Nepal</dd>
             </div>
-            <div class="detail-row">
-              <dt class="detail-label">Phone</dt>
-              <dd class="detail-value">+977-9860028647</dd>
+            <div class="fact">
+              <dt>Phone</dt>
+              <dd>+977-9860028647</dd>
             </div>
-            <div class="detail-row wide">
-              <dt class="detail-label">Email</dt>
-              <dd class="detail-value"><a href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a></dd>
+            <div class="fact wide">
+              <dt>Email</dt>
+              <dd><a class="ulink" href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a></dd>
             </div>
-            <div class="detail-row wide">
-              <dt class="detail-label">Specialization</dt>
-              <dd class="detail-value">Solution Architecture &amp; Performance Engineering</dd>
+            <div class="fact wide">
+              <dt>Specialization</dt>
+              <dd>Solution Architecture &amp; Performance Engineering</dd>
             </div>
-            <div class="detail-row">
-              <dt class="detail-label">Website</dt>
-              <dd class="detail-value"><a href="https://rozeen.com.np" target="_blank"
+            <div class="fact">
+              <dt>Website</dt>
+              <dd><a class="ulink" href="https://rozeen.com.np" target="_blank"
                   rel="noopener noreferrer">rozeen.com.np</a></dd>
             </div>
-            <div class="detail-row">
-              <dt class="detail-label">LinkedIn</dt>
-              <dd class="detail-value"><a href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank"
+            <div class="fact">
+              <dt>LinkedIn</dt>
+              <dd><a class="ulink" href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank"
                   rel="noopener noreferrer">linkedin.com/in/rozeen-nakarmi</a></dd>
             </div>
           </dl>
@@ -1397,402 +1277,534 @@
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 class="h2" data-split>Tools &amp; technologies I <span class="hl">work with</span></h2>
+    <section id="skills" class="sec">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div class="wrap sec-grid">
+        <div class="sec-head">
+          <h2 class="h2" data-split>Tools &amp; technologies I work with</h2>
         </div>
-        <div class="bento">
-          <div class="cell cell-lang" data-reveal>
-            <h3>Languages &amp; Frameworks</h3>
-            <ul class="skill-tags">
-              <li class="skill-tag">C#</li>
-              <li class="skill-tag">Python</li>
-              <li class="skill-tag">TypeScript</li>
-              <li class="skill-tag">.NET Core</li>
-              <li class="skill-tag">ASP.NET Core</li>
-              <li class="skill-tag">Web APIs</li>
-              <li class="skill-tag">EF Core</li>
-              <li class="skill-tag">LINQ</li>
-              <li class="skill-tag">SignalR</li>
-              <li class="skill-tag">ABP</li>
-              <li class="skill-tag">FastAPI</li>
-              <li class="skill-tag">Frappe</li>
-            </ul>
-          </div>
-          <div class="cell cell-cloud" data-reveal>
-            <h3>Cloud</h3>
-            <div class="skill-group-label">AWS</div>
-            <ul class="skill-tags">
-              <li class="skill-tag">Lambda</li>
-              <li class="skill-tag">EC2</li>
-              <li class="skill-tag">S3</li>
-              <li class="skill-tag">RDS</li>
-              <li class="skill-tag">Aurora</li>
-              <li class="skill-tag">SQS</li>
-              <li class="skill-tag">SNS</li>
-              <li class="skill-tag">SES</li>
-              <li class="skill-tag">CloudWatch</li>
-            </ul>
-            <div class="skill-group-label">Azure</div>
-            <ul class="skill-tags">
-              <li class="skill-tag">Azure</li>
-            </ul>
-          </div>
-          <div class="cell cell-db" data-reveal>
-            <h3>Databases</h3>
-            <ul class="skill-tags">
-              <li class="skill-tag">PostgreSQL</li>
-              <li class="skill-tag">SQL Server</li>
-              <li class="skill-tag">DynamoDB</li>
-              <li class="skill-tag">Redis</li>
-            </ul>
-          </div>
-          <div class="cell cell-auth" data-reveal>
-            <h3>Auth &amp; Messaging</h3>
-            <ul class="skill-tags">
-              <li class="skill-tag">OpenIddict</li>
-              <li class="skill-tag">Keycloak</li>
-              <li class="skill-tag">OAuth2/OIDC</li>
-              <li class="skill-tag">JWT/JWKS</li>
-              <li class="skill-tag">REST</li>
-              <li class="skill-tag">gRPC</li>
-              <li class="skill-tag">RabbitMQ</li>
-            </ul>
-          </div>
-          <div class="cell cell-prac" data-reveal>
-            <h3>Practices</h3>
-            <ul class="skill-tags">
-              <li class="skill-tag">Solution Architecture &amp; HLD</li>
-              <li class="skill-tag">Microservices</li>
-              <li class="skill-tag">System Design</li>
-              <li class="skill-tag">Cloud Migration</li>
-              <li class="skill-tag">AI/ML Integration</li>
-              <li class="skill-tag">Performance Optimization</li>
-              <li class="skill-tag">Security Assessment</li>
-              <li class="skill-tag">Technical Proposals &amp; Costing</li>
-              <li class="skill-tag">Team Leadership</li>
-              <li class="skill-tag">Mentoring</li>
-            </ul>
+        <div class="sec-body">
+          <div class="skill-list">
+            <div class="skill-group" data-reveal>
+              <h3>Languages &amp; Frameworks</h3>
+              <ul class="skill-items">
+                <li>C#</li>
+                <li>Python</li>
+                <li>TypeScript</li>
+                <li>.NET Core</li>
+                <li>ASP.NET Core</li>
+                <li>Web APIs</li>
+                <li>EF Core</li>
+                <li>LINQ</li>
+                <li>SignalR</li>
+                <li>ABP</li>
+                <li>FastAPI</li>
+                <li>Frappe</li>
+              </ul>
+            </div>
+            <div class="skill-group" data-reveal>
+              <h3>Databases</h3>
+              <ul class="skill-items">
+                <li>PostgreSQL</li>
+                <li>SQL Server</li>
+                <li>DynamoDB</li>
+                <li>Redis</li>
+              </ul>
+            </div>
+            <div class="skill-group" data-reveal>
+              <h3>Cloud</h3>
+              <div>
+                <div class="skill-sub">AWS</div>
+                <ul class="skill-items">
+                  <li>Lambda</li>
+                  <li>EC2</li>
+                  <li>S3</li>
+                  <li>RDS</li>
+                  <li>Aurora</li>
+                  <li>SQS</li>
+                  <li>SNS</li>
+                  <li>SES</li>
+                  <li>CloudWatch</li>
+                </ul>
+                <div class="skill-sub">Azure</div>
+                <ul class="skill-items">
+                  <li>Azure</li>
+                </ul>
+              </div>
+            </div>
+            <div class="skill-group" data-reveal>
+              <h3>Auth &amp; Messaging</h3>
+              <ul class="skill-items">
+                <li>OpenIddict</li>
+                <li>Keycloak</li>
+                <li>OAuth2/OIDC</li>
+                <li>JWT/JWKS</li>
+                <li>REST</li>
+                <li>gRPC</li>
+                <li>RabbitMQ</li>
+              </ul>
+            </div>
+            <div class="skill-group" data-reveal>
+              <h3>Practices</h3>
+              <ul class="skill-items">
+                <li>Solution Architecture &amp; HLD</li>
+                <li>Microservices</li>
+                <li>System Design</li>
+                <li>Cloud Migration</li>
+                <li>AI/ML Integration</li>
+                <li>Performance Optimization</li>
+                <li>Security Assessment</li>
+                <li>Technical Proposals &amp; Costing</li>
+                <li>Team Leadership</li>
+                <li>Mentoring</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="section projects">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 class="h2" data-split>Projects that made <span class="hl">an impact</span></h2>
+    <section id="projects" class="sec">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div class="wrap sec-grid">
+        <div class="sec-head">
+          <h2 class="h2" data-split>Projects that made an impact</h2>
         </div>
-        <div class="projects-track" id="projectsTrack">
-          <article class="project is-featured" data-reveal>
-            <span class="project-cat">Platform Architecture</span>
-            <h3>"7 Gates" Multi-Product Microservices Platform</h3>
-            <p>Architected a multi-product microservices platform for Frost &amp; Sullivan: 7 application services
-              plus AWS Lambda workers, with a centralized AuthServer (OpenIddict, OAuth2/OIDC) providing SSO across 6
-              products and decentralized JWT/JWKS validation.</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>Launched enterprise-wide to Frost &amp; Sullivan's
-              global workforce</div>
-            <ul class="project-tags">
-              <li class="project-tag">.NET Core</li>
-              <li class="project-tag">OpenIddict</li>
-              <li class="project-tag">OAuth2/OIDC</li>
-              <li class="project-tag">JWT/JWKS</li>
-              <li class="project-tag">Microservices</li>
-            </ul>
-          </article>
-          <article class="project" data-reveal>
-            <span class="project-cat">Banking Integration</span>
-            <h3>Signature Middleware: Nepal SBI Bank</h3>
-            <p>Architected a Frappe-based middleware that embeds account, balance, signature, and cheque-status
-              verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing workflow. Authored the client-ready
-              Solution Architecture &amp; High-Level Design (HLD) covering DC/DR and security considerations, defined
-              the Module I/II scope boundary, routed all core-banking access through an approved integration layer
-              instead of direct database access, and led the security assessment against the vendor security
-              checklist.</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>Verification embedded in the clearing workflow</div>
-            <ul class="project-tags">
-              <li class="project-tag">Frappe</li>
-              <li class="project-tag">Solution Architecture</li>
-              <li class="project-tag">Finacle</li>
-              <li class="project-tag">Security Assessment</li>
-            </ul>
-          </article>
-          <article class="project" data-reveal>
-            <span class="project-cat">Enterprise Sales Engineering</span>
-            <h3>Technical Proposals &amp; Enterprise RFPs</h3>
-            <p>Own technical proposals for prospective clients (designing the solution architecture, allocating team
-              members, and making costing decisions), including multi-million NPR banking RFP responses (technical,
-              compliance, and financial) featuring a multilingual AI chatbot architecture (.NET + Python FastAPI).</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>Multi-million NPR enterprise tenders</div>
-            <ul class="project-tags">
-              <li class="project-tag">.NET</li>
-              <li class="project-tag">Python</li>
-              <li class="project-tag">FastAPI</li>
-            </ul>
-          </article>
-          <article class="project" data-reveal>
-            <span class="project-cat">Banking &amp; Pension Fund</span>
-            <h3>NPPF: Loan Management System (Bhutan)</h3>
-            <p>Took over technical ownership of the Loan Management System for Bhutan's National Pension and Provident
-              Fund: a Frappe (Python) middleware platform spanning digital lending, loan origination, servicing, and
-              collections/litigation, integrated with Finacle CBS, Newgen DMS, the Credit Information Bureau, National
-              Digital Identity, the Pension &amp; PF system, and bank payment gateways.</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>Replaces the legacy Kastle LOS</div>
-            <ul class="project-tags">
-              <li class="project-tag">Frappe</li>
-              <li class="project-tag">Python</li>
-              <li class="project-tag">Finacle CBS</li>
-              <li class="project-tag">Newgen DMS</li>
-            </ul>
-          </article>
-          <article class="project" data-reveal>
-            <span class="project-cat">Banking &amp; Insurance</span>
-            <h3>Veni: Loan Management System Integration</h3>
-            <p>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product: a Python
-              FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services behind a single
-              interface for AI-integrated document workflows.</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>3 disparate systems unified behind one API</div>
-            <ul class="project-tags">
-              <li class="project-tag">Python</li>
-              <li class="project-tag">FastAPI</li>
-              <li class="project-tag">API Gateway</li>
-              <li class="project-tag">Frappe</li>
-              <li class="project-tag">NewGen DMS</li>
-            </ul>
-          </article>
-          <article class="project" data-reveal>
-            <span class="project-cat">Performance Engineering</span>
-            <h3>Critical API Performance Overhaul</h3>
-            <p>Optimized multiple critical APIs from ~24s response times down to milliseconds, scaling capacity from
-              500 concurrent users across multiple pods to 2,500+ users on a single pod.</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>5x throughput, reduced infrastructure</div>
-            <ul class="project-tags">
-              <li class="project-tag">ASP.NET Core</li>
-              <li class="project-tag">PostgreSQL</li>
-              <li class="project-tag">AWS</li>
-              <li class="project-tag">Performance Tuning</li>
-            </ul>
-          </article>
-          <article class="project" data-reveal>
-            <span class="project-cat">Global EdTech</span>
-            <h3>My Second Teacher: Global EdTech Platform</h3>
-            <p>Backend engineer on a global EdTech platform deployed in Indonesia and international markets, adopted
-              across all Ing Group colleges, built on ASP.NET Core, PostgreSQL, and AWS.</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>Deployed across international markets</div>
-            <ul class="project-tags">
-              <li class="project-tag">ASP.NET Core</li>
-              <li class="project-tag">PostgreSQL</li>
-              <li class="project-tag">AWS</li>
-            </ul>
-          </article>
-          <article class="project" data-reveal>
-            <span class="project-cat">Cloud Migration</span>
-            <h3>Lambda Functions: Node.js to .NET Migration</h3>
-            <p>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with the core
-              platform, eliminating schema drift and the recurring production issues it caused in legacy modules.</p>
-            <div class="project-impact"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>Schema drift eliminated</div>
-            <ul class="project-tags">
-              <li class="project-tag">AWS Lambda</li>
-              <li class="project-tag">.NET Core</li>
-              <li class="project-tag">Node.js</li>
-              <li class="project-tag">C#</li>
-            </ul>
-          </article>
+        <div class="sec-body">
+          <ol class="proj-list" id="projList">
+            <li class="proj is-open" data-reveal>
+              <button class="proj-head" aria-expanded="true" aria-controls="proj-1">
+                <span class="proj-num">01</span>
+                <span><span class="proj-title">"7 Gates" Multi-Product Microservices Platform</span><span
+                    class="proj-cat">Platform Architecture</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-1" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Architected a multi-product microservices platform for Frost &amp; Sullivan: 7 application
+                      services plus AWS Lambda workers, with a centralized AuthServer (OpenIddict, OAuth2/OIDC)
+                      providing SSO across 6 products and decentralized JWT/JWKS validation.</p>
+                    <p class="proj-impact">Launched enterprise-wide to Frost &amp; Sullivan's global workforce</p>
+                    <ul class="proj-tags">
+                      <li>.NET Core</li>
+                      <li>OpenIddict</li>
+                      <li>OAuth2/OIDC</li>
+                      <li>JWT/JWKS</li>
+                      <li>Microservices</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="proj" data-reveal>
+              <button class="proj-head" aria-expanded="false" aria-controls="proj-2">
+                <span class="proj-num">02</span>
+                <span><span class="proj-title">Signature Middleware: Nepal SBI Bank</span><span
+                    class="proj-cat">Banking Integration</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-2" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Architected a Frappe-based middleware that embeds account, balance, signature, and
+                      cheque-status verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing workflow.
+                      Authored the client-ready Solution Architecture &amp; High-Level Design (HLD) covering DC/DR and
+                      security considerations, defined the Module I/II scope boundary, routed all core-banking access
+                      through an approved integration layer instead of direct database access, and led the security
+                      assessment against the vendor security checklist.</p>
+                    <p class="proj-impact">Verification embedded in the clearing workflow</p>
+                    <ul class="proj-tags">
+                      <li>Frappe</li>
+                      <li>Solution Architecture</li>
+                      <li>Finacle</li>
+                      <li>Security Assessment</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="proj" data-reveal>
+              <button class="proj-head" aria-expanded="false" aria-controls="proj-3">
+                <span class="proj-num">03</span>
+                <span><span class="proj-title">Technical Proposals &amp; Enterprise RFPs</span><span
+                    class="proj-cat">Enterprise Sales Engineering</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-3" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Own technical proposals for prospective clients (designing the solution architecture,
+                      allocating team members, and making costing decisions), including multi-million NPR banking RFP
+                      responses (technical, compliance, and financial) featuring a multilingual AI chatbot
+                      architecture (.NET + Python FastAPI).</p>
+                    <p class="proj-impact">Multi-million NPR enterprise tenders</p>
+                    <ul class="proj-tags">
+                      <li>.NET</li>
+                      <li>Python</li>
+                      <li>FastAPI</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="proj" data-reveal>
+              <button class="proj-head" aria-expanded="false" aria-controls="proj-4">
+                <span class="proj-num">04</span>
+                <span><span class="proj-title">NPPF: Loan Management System (Bhutan)</span><span
+                    class="proj-cat">Banking &amp; Pension Fund</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-4" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Took over technical ownership of the Loan Management System for Bhutan's National Pension and
+                      Provident Fund: a Frappe (Python) middleware platform spanning digital lending, loan
+                      origination, servicing, and collections/litigation, integrated with Finacle CBS, Newgen DMS, the
+                      Credit Information Bureau, National Digital Identity, the Pension &amp; PF system, and bank
+                      payment gateways.</p>
+                    <p class="proj-impact">Replaces the legacy Kastle LOS</p>
+                    <ul class="proj-tags">
+                      <li>Frappe</li>
+                      <li>Python</li>
+                      <li>Finacle CBS</li>
+                      <li>Newgen DMS</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="proj" data-reveal>
+              <button class="proj-head" aria-expanded="false" aria-controls="proj-5">
+                <span class="proj-num">05</span>
+                <span><span class="proj-title">Veni: Loan Management System Integration</span><span
+                    class="proj-cat">Banking &amp; Insurance</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-5" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product:
+                      a Python FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services
+                      behind a single interface for AI-integrated document workflows.</p>
+                    <p class="proj-impact">3 disparate systems unified behind one API</p>
+                    <ul class="proj-tags">
+                      <li>Python</li>
+                      <li>FastAPI</li>
+                      <li>API Gateway</li>
+                      <li>Frappe</li>
+                      <li>NewGen DMS</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="proj" data-reveal>
+              <button class="proj-head" aria-expanded="false" aria-controls="proj-6">
+                <span class="proj-num">06</span>
+                <span><span class="proj-title">Critical API Performance Overhaul</span><span
+                    class="proj-cat">Performance Engineering</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-6" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Optimized multiple critical APIs from ~24s response times down to milliseconds, scaling
+                      capacity from 500 concurrent users across multiple pods to 2,500+ users on a single pod.</p>
+                    <p class="proj-impact">5x throughput, reduced infrastructure</p>
+                    <ul class="proj-tags">
+                      <li>ASP.NET Core</li>
+                      <li>PostgreSQL</li>
+                      <li>AWS</li>
+                      <li>Performance Tuning</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="proj" data-reveal>
+              <button class="proj-head" aria-expanded="false" aria-controls="proj-7">
+                <span class="proj-num">07</span>
+                <span><span class="proj-title">My Second Teacher: Global EdTech Platform</span><span
+                    class="proj-cat">Global EdTech</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-7" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Backend engineer on a global EdTech platform deployed in Indonesia and international markets,
+                      adopted across all Ing Group colleges, built on ASP.NET Core, PostgreSQL, and AWS.</p>
+                    <p class="proj-impact">Deployed across international markets</p>
+                    <ul class="proj-tags">
+                      <li>ASP.NET Core</li>
+                      <li>PostgreSQL</li>
+                      <li>AWS</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="proj" data-reveal>
+              <button class="proj-head" aria-expanded="false" aria-controls="proj-8">
+                <span class="proj-num">08</span>
+                <span><span class="proj-title">Lambda Functions: Node.js to .NET Migration</span><span
+                    class="proj-cat">Cloud Migration</span></span>
+                <svg class="icon proj-toggle" viewBox="0 0 256 256" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg>
+              </button>
+              <div class="proj-panel" id="proj-8" role="region">
+                <div class="proj-inner">
+                  <div class="proj-content">
+                    <p>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with
+                      the core platform, eliminating schema drift and the recurring production issues it caused in
+                      legacy modules.</p>
+                    <p class="proj-impact">Schema drift eliminated</p>
+                    <ul class="proj-tags">
+                      <li>AWS Lambda</li>
+                      <li>.NET Core</li>
+                      <li>Node.js</li>
+                      <li>C#</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
 
     <!-- Experience -->
-    <section id="experience" class="section">
-      <div class="wrap">
-        <div class="section-head">
-          <h2 class="h2" data-split>Where I've built <span class="hl">things that matter</span></h2>
+    <section id="experience" class="sec">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div class="wrap sec-grid">
+        <div class="sec-head">
+          <h2 class="h2" data-split>Where I've built things that matter</h2>
         </div>
-        <div class="journey">
-          <nav class="role-index" id="roleIndex" aria-label="Roles">
-            <a href="#role-1"><span class="ri-title">Lead Software Engineer</span><span class="ri-org">CAS Total
-                Solutions</span></a>
-            <a href="#role-2"><span class="ri-title">Senior Software Engineer (Tech Lead)</span><span
-                class="ri-org">CAS Techno Sales (Frost Digital Ventures)</span></a>
-            <a href="#role-3"><span class="ri-title">Final Year Project Supervisor (Part-time)</span><span
-                class="ri-org">Islington College</span></a>
-            <a href="#role-4"><span class="ri-title">Senior Software Engineer</span><span class="ri-org">Innovate Tech
-                Pvt. Ltd.</span></a>
-            <a href="#role-5"><span class="ri-title">Software Engineer</span><span class="ri-org">Percoid IT
-                Solution</span></a>
-            <a href="#role-6"><span class="ri-title">Earlier Roles</span><span class="ri-org">Insight Workshop
-                &amp; Braindigit</span></a>
-          </nav>
-
+        <div class="sec-body">
           <div class="roles">
-            <article class="role" id="role-1" data-reveal>
+            <article class="role" data-reveal>
               <div class="role-date">Aug 2026 - Present</div>
-              <h3>Lead Software Engineer</h3>
-              <div class="role-org">CAS Total Solutions</div>
-              <div class="role-loc">Kathmandu, Nepal</div>
-              <ul>
-                <li>Architected the Signature Middleware for Nepal SBI Bank on Frappe, embedding account, balance,
-                  signature, and cheque-status verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing
-                  workflow, removing the need for clearing users to check core banking separately. Authored the
-                  client-ready Solution Architecture &amp; HLD covering DC/DR and security considerations; defined the
-                  Module I/II scope boundary and routed all CBS access through an approved integration layer instead of
-                  direct database access.</li>
-                <li>Led the security assessment of the SBI Signature Middleware against the vendor security checklist,
-                  defining scope and responsibility boundaries.</li>
-                <li>Took over technical ownership of the Loan Management System for Bhutan's National Pension and
-                  Provident Fund (NPPF): a Frappe (Python) middleware platform spanning digital lending, loan
-                  origination, servicing, and collections/litigation, integrated with Finacle CBS, Newgen DMS, the
-                  Credit Information Bureau, National Digital Identity, the Pension &amp; PF system, and bank payment
-                  gateways.</li>
-                <li>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product: a
-                  Python FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services behind
-                  a single interface for AI-integrated document workflows.</li>
-              </ul>
+              <div>
+                <h3>Lead Software Engineer</h3>
+                <div class="role-org">CAS Total Solutions</div>
+                <div class="role-loc">Kathmandu, Nepal</div>
+                <ul>
+                  <li>Architected the Signature Middleware for Nepal SBI Bank on Frappe, embedding account, balance,
+                    signature, and cheque-status verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing
+                    workflow, removing the need for clearing users to check core banking separately. Authored the
+                    client-ready Solution Architecture &amp; HLD covering DC/DR and security considerations; defined
+                    the Module I/II scope boundary and routed all CBS access through an approved integration layer
+                    instead of direct database access.</li>
+                  <li>Led the security assessment of the SBI Signature Middleware against the vendor security
+                    checklist, defining scope and responsibility boundaries.</li>
+                  <li>Took over technical ownership of the Loan Management System for Bhutan's National Pension and
+                    Provident Fund (NPPF): a Frappe (Python) middleware platform spanning digital lending, loan
+                    origination, servicing, and collections/litigation, integrated with Finacle CBS, Newgen DMS, the
+                    Credit Information Bureau, National Digital Identity, the Pension &amp; PF system, and bank payment
+                    gateways.</li>
+                  <li>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product:
+                    a Python FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services
+                    behind a single interface for AI-integrated document workflows.</li>
+                </ul>
+              </div>
             </article>
 
-            <article class="role" id="role-2" data-reveal>
+            <article class="role" data-reveal>
               <div class="role-date">Oct 2025 - Present</div>
-              <h3>Senior Software Engineer (Tech Lead)</h3>
-              <div class="role-org">CAS Techno Sales (Frost Digital Ventures)</div>
-              <div class="role-loc">Kathmandu, Nepal</div>
-              <ul>
-                <li>Architected "7 Gates" for Frost &amp; Sullivan: 7 application services plus AWS Lambda workers
-                  behind a centralized OpenIddict AuthServer (OAuth2/OIDC), delivering SSO across 6 products; launched
-                  enterprise-wide to the client's global workforce.</li>
-                <li>Planning and executing the AWS-to-Azure migration of Frost &amp; Sullivan's platforms (MyClient, 7
-                  Gates, AI Growth Coach) as a phased 8-week programme, with board-ready migration plans and Gantt
-                  timelines.</li>
-                <li>Own technical proposals for prospective clients (designing the solution architecture, allocating
-                  team members, and making costing decisions), including multi-million NPR banking RFP responses
-                  (technical, compliance, and financial) featuring a multilingual AI chatbot architecture (.NET +
-                  Python FastAPI).</li>
-                <li>Re-architected a lab-stage AI prototype into production microservices: async AI job orchestration
-                  via AWS SQS with dedicated Lambda workers for compute-heavy document processing, eliminating
-                  out-of-memory failures, enabling EC2 right-sizing, and cutting infrastructure cost.</li>
-                <li>Defined the enterprise-readiness roadmap for Navi, an in-house workflow automation platform
-                  (security, multi-tenancy, and commercialization strategy), presented to executive leadership.</li>
-                <li>Lead technical decision-making for a 5-person engineering team and serve as the sole technical
-                  representative on client and executive calls, reviewing BRDs and presenting feasibility assessments
-                  and delivery timelines directly to the board.</li>
-              </ul>
+              <div>
+                <h3>Senior Software Engineer (Tech Lead)</h3>
+                <div class="role-org">CAS Techno Sales (Frost Digital Ventures)</div>
+                <div class="role-loc">Kathmandu, Nepal</div>
+                <ul>
+                  <li>Architected "7 Gates" for Frost &amp; Sullivan: 7 application services plus AWS Lambda workers
+                    behind a centralized OpenIddict AuthServer (OAuth2/OIDC), delivering SSO across 6 products;
+                    launched enterprise-wide to the client's global workforce.</li>
+                  <li>Planning and executing the AWS-to-Azure migration of Frost &amp; Sullivan's platforms (MyClient,
+                    7 Gates, AI Growth Coach) as a phased 8-week programme, with board-ready migration plans and Gantt
+                    timelines.</li>
+                  <li>Own technical proposals for prospective clients (designing the solution architecture,
+                    allocating team members, and making costing decisions), including multi-million NPR banking RFP
+                    responses (technical, compliance, and financial) featuring a multilingual AI chatbot architecture
+                    (.NET + Python FastAPI).</li>
+                  <li>Re-architected a lab-stage AI prototype into production microservices: async AI job
+                    orchestration via AWS SQS with dedicated Lambda workers for compute-heavy document processing,
+                    eliminating out-of-memory failures, enabling EC2 right-sizing, and cutting infrastructure cost.
+                  </li>
+                  <li>Defined the enterprise-readiness roadmap for Navi, an in-house workflow automation platform
+                    (security, multi-tenancy, and commercialization strategy), presented to executive leadership.</li>
+                  <li>Lead technical decision-making for a 5-person engineering team and serve as the sole technical
+                    representative on client and executive calls, reviewing BRDs and presenting feasibility
+                    assessments and delivery timelines directly to the board.</li>
+                </ul>
+              </div>
             </article>
 
-            <article class="role" id="role-3" data-reveal>
+            <article class="role" data-reveal>
               <div class="role-date">Sep 2024 - Present</div>
-              <h3>Final Year Project Supervisor (Part-time)</h3>
-              <div class="role-org">Islington College</div>
-              <div class="role-loc">Kathmandu, Nepal</div>
-              <ul>
-                <li>Supervise final-year students through full project lifecycles (scoping, stack selection, and
-                  delivery) with structured feedback on documentation, implementation quality, and non-functional
-                  requirements.</li>
-              </ul>
+              <div>
+                <h3>Final Year Project Supervisor (Part-time)</h3>
+                <div class="role-org">Islington College</div>
+                <div class="role-loc">Kathmandu, Nepal</div>
+                <ul>
+                  <li>Supervise final-year students through full project lifecycles (scoping, stack selection, and
+                    delivery) with structured feedback on documentation, implementation quality, and non-functional
+                    requirements.</li>
+                </ul>
+              </div>
             </article>
 
-            <article class="role" id="role-4" data-reveal>
+            <article class="role" data-reveal>
               <div class="role-date">Feb 2022 - Aug 2025</div>
-              <h3>Senior Software Engineer</h3>
-              <div class="role-org">Innovate Tech Pvt. Ltd.</div>
-              <div class="role-loc">Kathmandu, Nepal</div>
-              <ul>
-                <li>Cut critical API response times from ~24s to milliseconds, scaling capacity 5x: from 500 concurrent
-                  users across multiple pods to 2,500+ users on a single pod with reduced infrastructure.</li>
-                <li>Reduced average query execution time by 30% through LINQ optimization, query-plan analysis, and
-                  targeted PostgreSQL indexing.</li>
-                <li>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with the
-                  core platform, eliminating schema drift and the recurring production issues it caused in legacy
-                  modules.</li>
-                <li>Significantly reduced storage costs by building ETL and archival pipelines across DynamoDB,
-                  PostgreSQL, and S3 (Parquet serialization with lifecycle policies to Glacier), plus Python-based data
-                  migration pipelines.</li>
-                <li>Delivered backend services for My Second Teacher (a global EdTech platform deployed in Indonesia
-                  and international markets and adopted across all Ing Group colleges) and Home School Asia, on ASP.NET
-                  Core, PostgreSQL, and AWS.</li>
-                <li>Mentored junior engineers and interns through a self-designed onboarding curriculum (C#, ASP.NET
-                  Core, PostgreSQL) and regular code reviews.</li>
-              </ul>
+              <div>
+                <h3>Senior Software Engineer</h3>
+                <div class="role-org">Innovate Tech Pvt. Ltd.</div>
+                <div class="role-loc">Kathmandu, Nepal</div>
+                <ul>
+                  <li>Cut critical API response times from ~24s to milliseconds, scaling capacity 5x: from 500
+                    concurrent users across multiple pods to 2,500+ users on a single pod with reduced
+                    infrastructure.</li>
+                  <li>Reduced average query execution time by 30% through LINQ optimization, query-plan analysis, and
+                    targeted PostgreSQL indexing.</li>
+                  <li>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with
+                    the core platform, eliminating schema drift and the recurring production issues it caused in
+                    legacy modules.</li>
+                  <li>Significantly reduced storage costs by building ETL and archival pipelines across DynamoDB,
+                    PostgreSQL, and S3 (Parquet serialization with lifecycle policies to Glacier), plus Python-based
+                    data migration pipelines.</li>
+                  <li>Delivered backend services for My Second Teacher (a global EdTech platform deployed in
+                    Indonesia and international markets and adopted across all Ing Group colleges) and Home School
+                    Asia, on ASP.NET Core, PostgreSQL, and AWS.</li>
+                  <li>Mentored junior engineers and interns through a self-designed onboarding curriculum (C#,
+                    ASP.NET Core, PostgreSQL) and regular code reviews.</li>
+                </ul>
+              </div>
             </article>
 
-            <article class="role" id="role-5" data-reveal>
+            <article class="role" data-reveal>
               <div class="role-date">Nov 2019 - Feb 2022</div>
-              <h3>Software Engineer</h3>
-              <div class="role-org">Percoid IT Solution</div>
-              <div class="role-loc">Kathmandu, Nepal</div>
-              <ul>
-                <li>Delivered full-stack client systems on ASP.NET Core MVC, Web APIs, AngularJS, and SQL Server,
-                  including a Billboard Management System for outdoor advertising operations.</li>
-                <li>Optimized high-volume SQL queries and stored procedures and resolved production issues across
-                  concurrent client engagements.</li>
-              </ul>
+              <div>
+                <h3>Software Engineer</h3>
+                <div class="role-org">Percoid IT Solution</div>
+                <div class="role-loc">Kathmandu, Nepal</div>
+                <ul>
+                  <li>Delivered full-stack client systems on ASP.NET Core MVC, Web APIs, AngularJS, and SQL Server,
+                    including a Billboard Management System for outdoor advertising operations.</li>
+                  <li>Optimized high-volume SQL queries and stored procedures and resolved production issues across
+                    concurrent client engagements.</li>
+                </ul>
+              </div>
             </article>
 
-            <article class="role" id="role-6" data-reveal>
+            <article class="role" data-reveal>
               <div class="role-date">Sep 2018 - Oct 2019</div>
-              <h3>Earlier Roles</h3>
-              <div class="role-org">Insight Workshop (Trainee, 2019) &middot; Braindigit (Intern, 2018-19)</div>
-              <div class="role-loc">Kathmandu, Nepal</div>
-              <ul>
-                <li>Built a real-time chat application (SignalR), a serverless email service (Azure Functions), and
-                  backend modules for a School Bus Management System (ASP.NET Core, SQL Server)</li>
-              </ul>
+              <div>
+                <h3>Earlier Roles</h3>
+                <div class="role-org">Insight Workshop (Trainee, 2019) &middot; Braindigit (Intern, 2018-19)</div>
+                <div class="role-loc">Kathmandu, Nepal</div>
+                <ul>
+                  <li>Built a real-time chat application (SignalR), a serverless email service (Azure Functions), and
+                    backend modules for a School Bus Management System (ASP.NET Core, SQL Server)</li>
+                </ul>
+              </div>
             </article>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Education + Certifications -->
-    <div class="section">
-      <div class="wrap creds">
-        <section id="education" class="edu" data-reveal>
-          <h2 class="h2">Academic <span class="hl">foundation</span></h2>
-          <div class="degree">
-            <h3 class="edu-degree">MSc Information Technology &amp; Applied Security</h3>
-            <div class="edu-school">London Metropolitan University</div>
-            <div class="edu-year">2021 - 2024 &middot; Islington College, Kathmandu</div>
-            <span class="edu-grade">Merit, 66.44%</span>
+    <!-- Education -->
+    <section id="education" class="sec">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div class="wrap sec-grid">
+        <div class="sec-head">
+          <h2 class="h2" data-split>Academic foundation</h2>
+        </div>
+        <div class="sec-body">
+          <div class="ledger">
+            <div class="ledger-row" data-reveal>
+              <div class="ledger-meta">2021 - 2024</div>
+              <div>
+                <h3 class="edu-degree">MSc Information Technology &amp; Applied Security</h3>
+                <div class="edu-school">London Metropolitan University</div>
+                <div class="edu-year">Islington College, Kathmandu</div>
+                <div class="edu-grade">Merit, 66.44%</div>
+              </div>
+            </div>
+            <div class="ledger-row" data-reveal>
+              <div class="ledger-meta">2016 - 2019</div>
+              <div>
+                <h3 class="edu-degree">BSc (Hons) Computing</h3>
+                <div class="edu-school">London Metropolitan University</div>
+                <div class="edu-year">Islington College, Kathmandu</div>
+                <div class="edu-grade">First Class Honours, 73.11%</div>
+              </div>
+            </div>
           </div>
-          <div class="degree">
-            <h3 class="edu-degree">BSc (Hons) Computing</h3>
-            <div class="edu-school">London Metropolitan University</div>
-            <div class="edu-year">2016 - 2019 &middot; Islington College, Kathmandu</div>
-            <span class="edu-grade">First Class Honours, 73.11%</span>
-          </div>
-        </section>
-        <section id="certifications" class="cert" data-reveal>
-          <h2 class="h2">Certified &amp; <span class="hl">validated</span></h2>
-          <div class="cert-item">
-            <div class="cert-badge" aria-hidden="true">AWS</div>
-            <h3 class="edu-degree">AWS Certified Solutions Architect - Associate (SAA-C03)</h3>
-            <div class="edu-school">Amazon Web Services</div>
-            <div class="edu-year">Mar 2026</div>
-            <span class="edu-grade">Active</span>
-          </div>
-        </section>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="sec">
+      <span class="sec-rule" aria-hidden="true"></span>
+      <div class="wrap sec-grid">
+        <div class="sec-head">
+          <h2 class="h2" data-split>Certified &amp; validated</h2>
+        </div>
+        <div class="sec-body">
+          <div class="ledger">
+            <div class="ledger-row" data-reveal>
+              <div class="ledger-meta">Mar 2026</div>
+              <div>
+                <h3 class="edu-degree">AWS Certified Solutions Architect - Associate (SAA-C03)</h3>
+                <div class="edu-school">Amazon Web Services</div>
+                <div class="edu-grade">Active</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Contact -->
-    <section id="contact" class="section">
+    <section id="contact" class="sec">
+      <span class="sec-rule" aria-hidden="true"></span>
       <div class="wrap">
         <h2 class="contact-title" data-split>Have a project in mind?<br><span class="hl">Let's talk.</span></h2>
         <p class="contact-description" data-reveal>
           I'm open to discussing new opportunities, collaborations, or just chatting about backend architecture, AI
           and cloud systems.
         </p>
-        <a href="mailto:rozeennakarmi5@gmail.com" class="contact-mail" data-reveal>
-          <span>rozeennakarmi5@gmail.com</span><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
-        </a>
-        <div class="contact-links" data-reveal>
-          <a href="tel:+9779860028647" class="btn btn-ghost"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></svg>+977-9860028647</a>
+        <div class="contact-list">
+          <a href="mailto:rozeennakarmi5@gmail.com" class="contact-link" data-reveal>
+            <span class="cl-label">Email</span>
+            <span class="cl-value">rozeennakarmi5@gmail.com</span>
+            <svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
+          </a>
+          <a href="tel:+9779860028647" class="contact-link" data-reveal>
+            <span class="cl-label">Phone</span>
+            <span class="cl-value">+977-9860028647</span>
+            <svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
+          </a>
           <a href="https://www.linkedin.com/in/rozeen-nakarmi" target="_blank" rel="noopener noreferrer"
-            class="btn btn-ghost"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></svg>LinkedIn</a>
-          <a href="https://github.com/Rozein" target="_blank" rel="noopener noreferrer"
-            class="btn btn-ghost"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"/></svg>GitHub</a>
-          <a href="https://rozeen.com.np" target="_blank" rel="noopener noreferrer"
-            class="btn btn-ghost"><svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M128,24h0A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm87.62,96H175.79C174,83.49,159.94,57.67,148.41,42.4A88.19,88.19,0,0,1,215.63,120ZM96.23,136h63.54c-2.31,41.61-22.23,67.11-31.77,77C118.45,203.1,98.54,177.6,96.23,136Zm0-16C98.54,78.39,118.46,52.89,128,43c9.55,9.93,29.46,35.43,31.77,77Zm11.36-77.6C96.06,57.67,82,83.49,80.21,120H40.37A88.19,88.19,0,0,1,107.59,42.4ZM40.37,136H80.21c1.82,36.51,15.85,62.33,27.38,77.6A88.19,88.19,0,0,1,40.37,136Zm108,77.6c11.53-15.27,25.56-41.09,27.38-77.6h39.84A88.19,88.19,0,0,1,148.41,213.6Z"/></svg>rozeen.com.np</a>
+            class="contact-link" data-reveal>
+            <span class="cl-label">LinkedIn</span>
+            <span class="cl-value">LinkedIn</span>
+            <svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
+          </a>
+          <a href="https://github.com/Rozein" target="_blank" rel="noopener noreferrer" class="contact-link"
+            data-reveal>
+            <span class="cl-label">GitHub</span>
+            <span class="cl-value">GitHub</span>
+            <svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
+          </a>
+          <a href="https://rozeen.com.np" target="_blank" rel="noopener noreferrer" class="contact-link"
+            data-reveal>
+            <span class="cl-label">Website</span>
+            <span class="cl-value">rozeen.com.np</span>
+            <svg class="icon" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -1882,6 +1894,20 @@
       });
       backToTop.addEventListener('click', () => scrollToTarget(0));
 
+      // ── Project list: rows expand in place (CSS animates the height) ──
+      document.querySelectorAll('.proj').forEach((proj) => {
+        const btn = proj.querySelector('.proj-head');
+        const panel = proj.querySelector('.proj-panel');
+        btn.addEventListener('click', () => {
+          const open = !proj.classList.contains('is-open');
+          proj.classList.toggle('is-open', open);
+          btn.setAttribute('aria-expanded', String(open));
+        });
+        panel.addEventListener('transitionend', (e) => {
+          if (e.propertyName === 'grid-template-rows' && hasGsap) ScrollTrigger.refresh();
+        });
+      });
+
       // ── Observers instead of scroll listeners ──
       new IntersectionObserver(([entry]) => {
         backToTop.classList.toggle('is-visible', !entry.isIntersecting);
@@ -1902,16 +1928,6 @@
       ['hero', 'about', 'skills', 'projects', 'experience', 'education', 'certifications', 'contact']
         .forEach((id) => activeObserver.observe(document.getElementById(id)));
 
-      // Experience: highlight the role being read in the sticky index
-      const roleLinks = [...document.querySelectorAll('#roleIndex a')];
-      const roleObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          roleLinks.forEach((a) => a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id));
-        });
-      }, { rootMargin: '-40% 0px -55% 0px' });
-      document.querySelectorAll('.role').forEach((r) => roleObserver.observe(r));
-
       // Nav steps aside while reading down and returns on scroll up
       if (hasGsap) {
         ScrollTrigger.create({
@@ -1927,7 +1943,7 @@
       // ───────────── Motion: each animation has one job ─────────────
       const revealAll = () => {
         root.classList.remove('motion');
-        gsap.set('[data-hero], [data-reveal], [data-split]', { clearProps: 'all' });
+        gsap.set('[data-hero], [data-reveal], [data-split], .sec-rule', { clearProps: 'all' });
       };
 
       const init = () => {
@@ -1936,85 +1952,37 @@
         gsap.set(heroTitle, { autoAlpha: 1 });
         SplitText.create(heroTitle, {
           type: 'lines', mask: 'lines', autoSplit: true,
-          onSplit: (self) => gsap.from(self.lines, { yPercent: 105, duration: 1.4, stagger: 0.12, ease: 'expo.out', delay: 0.1 }),
+          onSplit: (self) => gsap.from(self.lines, { yPercent: 105, duration: 1.3, stagger: 0.12, ease: 'expo.out', delay: 0.1 }),
         });
-        gsap.fromTo('[data-hero]', { y: 20, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 1.1, stagger: 0.1, ease: 'expo.out', delay: 0.45 });
+        gsap.fromTo('[data-hero]', { y: 18, autoAlpha: 0 },
+          { y: 0, autoAlpha: 1, duration: 1, stagger: 0.1, ease: 'expo.out', delay: 0.4 });
 
-        // Hero hands focus to the content below as it scrolls away
-        gsap.to(heroTitle, {
-          scale: 0.94, opacity: 0.3, ease: 'none',
-          scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true },
+        // Section rules draw in to mark where each section starts
+        gsap.utils.toArray('.sec-rule').forEach((rule) => {
+          gsap.to(rule, {
+            scaleX: 1, duration: 1.2, ease: 'expo.inOut',
+            scrollTrigger: { trigger: rule, start: 'top 90%', once: true },
+          });
         });
 
-        // Section headings: masked line reveal marks where each section starts
+        // Section headings: masked line reveal
         gsap.utils.toArray('[data-split]:not([data-split="hero"])').forEach((el) => {
           gsap.set(el, { autoAlpha: 1 });
           SplitText.create(el, {
             type: 'lines', mask: 'lines', autoSplit: true,
             onSplit: (self) => gsap.from(self.lines, {
-              yPercent: 105, duration: 1.2, stagger: 0.1, ease: 'expo.out',
-              scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+              yPercent: 105, duration: 1.1, stagger: 0.09, ease: 'expo.out',
+              scrollTrigger: { trigger: el, start: 'top 88%', once: true },
             }),
           });
         });
 
-        // Content blocks enter together in small batches
+        // Rows and blocks enter together in small batches
         ScrollTrigger.batch('[data-reveal]', {
-          start: 'top 88%',
+          start: 'top 90%',
           once: true,
-          onEnter: (batch) => gsap.fromTo(batch, { y: 32, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 1, stagger: 0.07, ease: 'expo.out', overwrite: true }),
-        });
-
-        // Metrics count up so the numbers register
-        document.querySelectorAll('.stat-number[data-count]').forEach((el) => {
-          const target = parseInt(el.dataset.count, 10);
-          const suffix = el.dataset.suffix || '';
-          const o = { v: 0 };
-          el.textContent = '0' + suffix;
-          gsap.to(o, {
-            v: target, duration: 1.6, ease: 'power3.out',
-            onUpdate: () => { el.textContent = Math.round(o.v) + suffix; },
-            scrollTrigger: { trigger: el, start: 'top 92%', once: true },
-          });
-        });
-
-        // About lead: words brighten at reading pace
-        const lead = document.getElementById('aboutLead');
-        const leadWords = SplitText.create(lead, { type: 'words' }).words;
-        gsap.fromTo(leadWords, { opacity: 0.18 }, {
-          opacity: 1, stagger: 0.05, ease: 'none',
-          scrollTrigger: { trigger: lead, start: 'top 80%', end: 'bottom 45%', scrub: 0.5 },
-        });
-
-        // Projects: pin and pan sideways on desktop so the eight read as one set
-        const mm = gsap.matchMedia();
-        mm.add('(min-width: 1024px)', () => {
-          const section = document.getElementById('projects');
-          const track = document.getElementById('projectsTrack');
-          section.classList.add('is-pan');
-          const wrap = track.parentElement;
-          const inset = () => wrap.getBoundingClientRect().left + parseFloat(getComputedStyle(wrap).paddingLeft);
-          const distance = () => Math.max(0, track.scrollWidth - document.documentElement.clientWidth + inset() * 2);
-          const tween = gsap.to(track, {
-            x: () => -distance(),
-            ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top top',
-              end: () => '+=' + distance(),
-              pin: true,
-              scrub: 1,
-              invalidateOnRefresh: true,
-            },
-          });
-          ScrollTrigger.refresh();
-          return () => {
-            tween.kill();
-            gsap.set(track, { clearProps: 'transform' });
-            section.classList.remove('is-pan');
-          };
+          onEnter: (batch) => gsap.fromTo(batch, { y: 24, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.9, stagger: 0.06, ease: 'expo.out', overwrite: true }),
         });
       };
 
