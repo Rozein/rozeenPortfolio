@@ -7,7 +7,8 @@
   <title>Rozeen Nakarmi — Lead Software Engineer / Tech Lead</title>
   <meta name="description"
     content="Rozeen Nakarmi — Lead Software Engineer / Tech Lead designing and delivering enterprise systems on .NET, Python, AWS, and Azure — from pre-sales proposals and high-level design to production. Architected Frost &amp; Sullivan's 7 Gates platform and a core-banking integration middleware for Nepal SBI Bank. AWS Certified Solutions Architect. Based in Kathmandu, Nepal.">
-  <meta name="theme-color" content="#0a0a0b">
+  <meta name="theme-color" content="#f1ede4">
+  <meta name="color-scheme" content="light">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Rozeen Nakarmi — Lead Software Engineer / Tech Lead">
@@ -23,14 +24,21 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%230a0a0b' width='100' height='100' rx='20'/><text x='50' y='68' font-family='Georgia,serif' font-size='55' fill='%23c4f04d' text-anchor='middle'>R</text></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23f1ede4' width='100' height='100'/><rect fill='%23e2471b' x='12' y='12' width='14' height='14'/><text x='54' y='80' font-family='Arial Narrow,Arial,sans-serif' font-weight='700' font-size='72' fill='%23151412' text-anchor='middle'>R</text></svg>">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
     rel="stylesheet">
+
+  <!-- Motion gate: animations only run when the user allows motion and GSAP loads -->
+  <script>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+    }
+  </script>
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -59,26 +67,30 @@
 
   <style>
     :root {
-      --bg: #0a0a0b;
-      --bg-elevated: #111113;
-      --bg-card: #16161a;
-      --surface: #1c1c21;
-      --border: #2a2a30;
-      --border-light: #3a3a42;
-      --text: #e8e6e3;
-      --text-muted: #8a8a8e;
-      --text-dim: #5a5a60;
-      --accent: #c4f04d;
-      --accent-dim: #a8d43a;
-      --accent-glow: rgba(196, 240, 77, 0.08);
-      --gradient-1: #c4f04d;
-      --gradient-2: #7df09a;
-      --serif: 'Instrument Serif', Georgia, serif;
-      --sans: 'DM Sans', -apple-system, sans-serif;
-      --mono: 'JetBrains Mono', monospace;
+      --paper: #f1ede4;
+      --paper-2: #e8e2d6;
+      --ink: #151412;
+      --ink-2: #45423c;
+      --ink-3: #6a665d;
+      --rule: #cbc3b3;
+      --signal: #e2471b;
+      --signal-ink: #b83a12;
+      --on-ink: #f1ede4;
+      --on-ink-2: #b9b3a7;
+      --on-ink-rule: rgba(241, 237, 228, 0.18);
+      --display: 'Archivo', 'Arial Narrow', Arial, sans-serif;
+      --sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+      --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+      --max: 1280px;
+      --gutter: clamp(1rem, 4vw, 3rem);
+      --col-gap: clamp(1rem, 2vw, 2rem);
+      --nav-h: 64px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    * {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -87,53 +99,113 @@
     html {
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: var(--border) var(--bg);
+      scrollbar-color: var(--ink-3) var(--paper);
+    }
+
+    html.lenis,
+    html.lenis body {
+      height: auto;
+    }
+
+    html.lenis {
+      scroll-behavior: auto;
     }
 
     body {
       font-family: var(--sans);
-      background: var(--bg);
-      color: var(--text);
+      background: var(--paper);
+      color: var(--ink);
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    body.menu-locked {
+      overflow: hidden;
     }
 
     ::selection {
-      background: var(--accent);
-      color: var(--bg);
+      background: var(--signal);
+      color: var(--paper);
     }
 
     :focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--signal-ink);
       outline-offset: 3px;
     }
 
-    a:focus-visible,
-    button:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-      border-radius: 4px;
+    a {
+      color: inherit;
     }
 
-    /* ─── Noise Texture Overlay ─── */
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    /* Paper grain */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      mix-blend-mode: multiply;
       pointer-events: none;
       z-index: 9999;
     }
 
-    /* ─── Scroll Progress Bar ─── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: var(--gutter);
+      top: -100px;
+      z-index: 10001;
+      padding: 0.6rem 1rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    .skip-link:focus {
+      top: 0.75rem;
+    }
+
+    /* Underline wipe used on inline links */
+    .link-wipe {
+      text-decoration: none;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 100% 1px no-repeat;
+      transition: background-size 0.5s var(--ease-out);
+    }
+
+    .link-wipe:hover {
+      background-size: 0% 1px;
+      background-position: 100% 100%;
+    }
+
+    /* ─── Scroll progress ─── */
     .scroll-progress {
       position: fixed;
       top: 0;
       left: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
+      width: 100%;
+      background: var(--signal);
+      transform: scaleX(0);
+      transform-origin: left;
       z-index: 10000;
-      width: 0%;
     }
 
     /* ─── Navigation ─── */
@@ -142,521 +214,640 @@
       top: 0;
       left: 0;
       right: 0;
+      height: var(--nav-h);
       z-index: 100;
-      padding: 1.2rem 3rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      background: rgba(10, 10, 11, 0.8);
-      border-bottom: 1px solid rgba(42, 42, 48, 0.5);
-      transition: all 0.3s ease;
+      justify-content: space-between;
+      padding: 0 var(--gutter);
+      border-bottom: 1px solid transparent;
+      transition: transform 0.5s var(--ease-out), background-color 0.3s, border-color 0.3s;
+    }
+
+    nav.scrolled {
+      background: rgba(241, 237, 228, 0.88);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom-color: var(--rule);
+    }
+
+    nav.nav-hidden {
+      transform: translateY(-100%);
     }
 
     .nav-logo {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--display);
+      font-stretch: 85%;
+      font-weight: 650;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
       text-decoration: none;
-      letter-spacing: -0.02em;
+      position: relative;
+      z-index: 102;
+      transition: color 0.3s;
     }
 
-    .nav-logo span {
-      color: var(--accent);
+    .nav-logo::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      background: var(--signal);
     }
 
     .nav-links {
       display: flex;
-      gap: 2.5rem;
-      list-style: none;
       align-items: center;
+      gap: clamp(1rem, 2vw, 2rem);
     }
 
     .nav-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.85rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: color 0.3s;
+      color: var(--ink-2);
+      text-decoration: none;
       position: relative;
+      padding: 0.35rem 0;
+      transition: color 0.3s;
+    }
+
+    .nav-links a[data-n]::before {
+      content: attr(data-n);
+      color: var(--signal-ink);
+      margin-right: 0.4em;
     }
 
     .nav-links a::after {
       content: '';
       position: absolute;
-      bottom: -4px;
       left: 0;
-      width: 0;
+      right: 0;
+      bottom: 0;
       height: 1px;
-      background: var(--accent);
-      transition: width 0.3s ease;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.5s var(--ease-out);
     }
 
-    .nav-links a:hover {
-      color: var(--accent);
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
+    .nav-links a:hover,
     .nav-links a.active {
-      color: var(--accent);
+      color: var(--ink);
     }
 
+    .nav-links a:hover::after,
     .nav-links a.active::after {
-      width: 100%;
+      transform: scaleX(1);
+      transform-origin: left;
     }
 
     .nav-links a.nav-cta {
-      padding: 0.55rem 1.4rem;
-      background: var(--accent);
-      color: var(--bg);
-      border-radius: 100px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      transition: all 0.3s ease;
-    }
-
-    .nav-links a.nav-cta:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(196, 240, 77, 0.3);
+      background: var(--ink);
+      color: var(--paper);
+      padding: 0.6rem 0.95rem;
     }
 
     .nav-links a.nav-cta::after {
       display: none;
     }
 
-    .nav-links a.nav-cta.active {
-      color: var(--bg);
+    .nav-links a.nav-cta:hover {
+      background: var(--signal-ink);
     }
 
-    /* ─── Mobile Menu ─── */
     .menu-toggle {
       display: none;
+      position: relative;
+      z-index: 102;
+      align-items: center;
+      gap: 0.6rem;
       background: none;
-      border: none;
+      border: 0;
       cursor: pointer;
-      padding: 8px;
-      z-index: 101;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 0.5rem 0;
     }
 
-    .menu-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--text);
-      margin: 5px 0;
-      transition: all 0.3s;
+    .menu-toggle .bars {
+      display: grid;
+      gap: 5px;
+      width: 22px;
     }
 
-    .menu-toggle.active span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
+    .menu-toggle .bars span {
+      height: 1.5px;
+      background: currentColor;
+      transition: transform 0.4s var(--ease-out);
     }
 
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
+    .menu-toggle[aria-expanded="true"] .bars span:first-child {
+      transform: translateY(3.25px) rotate(45deg);
     }
 
-    .menu-toggle.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
+    .menu-toggle[aria-expanded="true"] .bars span:last-child {
+      transform: translateY(-3.25px) rotate(-45deg);
+    }
+
+    /* ─── Section scaffolding ─── */
+    main>section {
+      padding: clamp(5rem, 10vw, 8.5rem) 0;
+      scroll-margin-top: 0;
+    }
+
+    .sec-head {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--col-gap);
+      padding-top: 1.25rem;
+      margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+    }
+
+    .sec-rule {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--ink);
+      transform-origin: left;
+    }
+
+    .sec-meta {
+      grid-column: 1 / 4;
+      display: flex;
+      gap: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      padding-top: 0.45rem;
+    }
+
+    .sec-num {
+      color: var(--signal-ink);
+    }
+
+    .sec-title {
+      grid-column: 4 / 13;
+      font-family: var(--display);
+      font-stretch: 80%;
+      font-weight: 620;
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .sec-title em,
+    .hero-title em,
+    .contact-title em {
+      color: var(--signal-ink);
+      font-weight: 500;
     }
 
     /* ─── Hero ─── */
     .hero {
       min-height: 100vh;
+      min-height: 100svh;
+      padding: calc(var(--nav-h) + 1.5rem) 0 2.5rem;
       display: flex;
-      align-items: center;
-      padding: 8rem 3rem 4rem;
-      position: relative;
-      overflow: hidden;
+      flex-direction: column;
     }
 
-    .hero-bg-glow {
-      position: absolute;
-      top: -30%;
-      right: -20%;
-      width: 800px;
-      height: 800px;
-      background: radial-gradient(circle, rgba(196, 240, 77, 0.04) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero-bg-glow-2 {
-      position: absolute;
-      bottom: -40%;
-      left: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(125, 240, 154, 0.03) 0%, transparent 60%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(42, 42, 48, 0.15) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(42, 42, 48, 0.15) 1px, transparent 1px);
-      background-size: 80px 80px;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 80%);
-    }
-
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
+    .hero>.wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       width: 100%;
-      position: relative;
-      z-index: 2;
     }
 
-    .hero-label {
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem 2rem;
+      padding-bottom: 0.9rem;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+
+    .status {
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.5rem 1.2rem;
-      background: var(--accent-glow);
-      border: 1px solid rgba(196, 240, 77, 0.15);
-      border-radius: 100px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
-      animation: fadeInUp 0.8s ease both;
+      color: var(--ink);
     }
 
-    .hero-label .dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+    .blink {
+      width: 8px;
+      height: 8px;
+      background: var(--signal);
+      animation: blink 1.6s steps(1, end) infinite;
     }
 
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
+    @keyframes blink {
       50% {
-        opacity: 0.5;
-        transform: scale(0.8);
+        opacity: 0.15;
       }
     }
 
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(3.2rem, 7.5vw, 6.5rem);
-      font-weight: 400;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 2rem;
-      animation: fadeInUp 0.8s ease 0.15s both;
+    .hero-title {
+      font-family: var(--display);
+      font-stretch: 72%;
+      font-weight: 700;
+      font-size: clamp(3rem, 9.4vw, 9.2rem);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      margin: clamp(2rem, 6vh, 4.5rem) 0 clamp(2rem, 5vh, 3.5rem);
     }
 
-    .hero h1 em {
-      font-style: italic;
-      color: var(--accent);
-      position: relative;
+    .hero-title em {
+      font-weight: 600;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--col-gap);
+      row-gap: 2.5rem;
+      align-items: start;
+    }
+
+    .hero-intro {
+      grid-column: 1 / 7;
     }
 
     .hero-description {
-      max-width: 560px;
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 3rem;
-      animation: fadeInUp 0.8s ease 0.3s both;
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--ink-2);
+      max-width: 60ch;
     }
 
     .hero-actions {
       display: flex;
-      gap: 1rem;
-      align-items: center;
-      animation: fadeInUp 0.8s ease 0.45s both;
       flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem 2rem;
+      margin-top: 2rem;
     }
 
-    .btn-primary {
+    .btn-ink {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      background: var(--accent);
-      color: var(--bg);
-      border: none;
-      border-radius: 100px;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 40px rgba(196, 240, 77, 0.25);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2rem;
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border-light);
-      border-radius: 100px;
-      font-family: var(--sans);
-      font-size: 0.9rem;
+      gap: 0.9rem;
+      padding: 1rem 1.4rem;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--mono);
+      font-size: 0.8rem;
       font-weight: 500;
-      cursor: pointer;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-glow);
+    .btn-ink:hover {
+      background: var(--signal-ink);
+    }
+
+    .roll {
+      display: inline-block;
+      height: 1.25em;
+      line-height: 1.25em;
+      overflow: hidden;
+    }
+
+    .roll>span {
+      display: block;
+      transition: transform 0.55s var(--ease-out);
+    }
+
+    .btn-ink:hover .roll>span,
+    .btn-ink:focus-visible .roll>span {
+      transform: translateY(-100%);
+    }
+
+    .btn-ink svg {
+      transition: transform 0.55s var(--ease-out);
+    }
+
+    .btn-ink:hover svg {
+      transform: translateX(4px);
+    }
+
+    .btn-text {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 0.35rem 0;
+    }
+
+    /* Figure: request-path diagram */
+    .hero-fig {
+      grid-column: 8 / 13;
+      margin: 0;
+    }
+
+    .fig-plate {
+      position: relative;
+      border: 1px solid var(--rule);
+      background-color: rgba(255, 255, 255, 0.25);
+      background-image: radial-gradient(var(--rule) 1px, transparent 1.2px);
+      background-size: 16px 16px;
+      padding: 1.25rem 1rem;
+    }
+
+    .fig-plate svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .fig .node rect {
+      fill: var(--paper);
+      stroke: var(--ink);
+      stroke-width: 1;
+      transition: fill 0.4s;
+    }
+
+    .fig .node text {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      fill: var(--ink);
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+
+    .fig .node.is-key rect {
+      fill: var(--ink);
+    }
+
+    .fig .node.is-key text {
+      fill: var(--paper);
+    }
+
+    .fig .node.hit rect {
+      fill: var(--signal);
+    }
+
+    .fig .node.hit text {
+      fill: var(--paper);
+    }
+
+    .fig .edge {
+      fill: none;
+      stroke: var(--ink-3);
+      stroke-width: 1;
+    }
+
+    .fig .packet {
+      fill: var(--signal);
+    }
+
+    .fig figcaption {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-3);
     }
 
     .hero-stats {
-      display: flex;
-      gap: 3rem;
-      margin-top: 5rem;
-      padding-top: 3rem;
-      border-top: 1px solid var(--border);
-      animation: fadeInUp 0.8s ease 0.6s both;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: clamp(3rem, 7vh, 5rem);
+      border-top: 1px solid var(--ink);
     }
 
     .stat-item {
       display: flex;
       flex-direction: column;
-      gap: 0.3rem;
+      gap: 0.5rem;
+      padding: 1.1rem 1rem 0;
+      border-left: 1px solid var(--rule);
+    }
+
+    .stat-item:first-child {
+      border-left: 0;
+      padding-left: 0;
     }
 
     .stat-number {
-      font-family: var(--serif);
-      font-size: 2.5rem;
-      color: var(--accent);
+      font-family: var(--display);
+      font-stretch: 80%;
+      font-weight: 650;
+      font-size: clamp(2.4rem, 4.6vw, 4rem);
       line-height: 1;
+      letter-spacing: -0.03em;
       font-variant-numeric: tabular-nums;
     }
 
     .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-dim);
+      font-family: var(--mono);
       font-size: 0.7rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      font-family: var(--mono);
-      animation: fadeInUp 0.8s ease 0.8s both;
+      color: var(--ink-3);
     }
 
-    .scroll-indicator svg {
-      animation: bounceDown 2s ease-in-out infinite;
+    /* ─── Marquee ─── */
+    .marquee {
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      overflow: hidden;
+      padding: 1rem 0;
+      user-select: none;
     }
 
-    @keyframes bounceDown {
-
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(6px);
-      }
+    .marquee-track {
+      display: flex;
+      width: max-content;
     }
 
-    /* ─── Section Common ─── */
-    section {
-      padding: 7rem 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      margin-bottom: 4rem;
-    }
-
-    .section-eyebrow {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 400;
+    .marquee-track span {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--display);
+      font-stretch: 125%;
+      font-weight: 800;
+      font-size: clamp(1.8rem, 4.6vw, 3.6rem);
+      line-height: 1;
       letter-spacing: -0.02em;
-      line-height: 1.15;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
-    .section-title em {
-      font-style: italic;
-      color: var(--accent);
+    .marquee-track span:nth-child(even) {
+      color: transparent;
+      -webkit-text-stroke: 1px var(--ink);
     }
 
-    .section-divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
-      max-width: 1200px;
-      margin: 0 auto;
+    .marquee-track span::after {
+      content: '';
+      display: inline-block;
+      width: 0.32em;
+      height: 0.32em;
+      margin: 0 0.6em;
+      background: var(--signal);
     }
 
     /* ─── About ─── */
     .about-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--col-gap);
+      row-gap: 3rem;
       align-items: start;
     }
 
-    .about-text p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
-
-    .about-text strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
     .about-details {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
+      grid-column: 1 / 4;
+      grid-row: 1;
+      position: sticky;
+      top: calc(var(--nav-h) + 1.5rem);
+      border-top: 1px solid var(--ink);
     }
 
-    .detail-card {
-      padding: 1.5rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      transition: all 0.3s ease;
-    }
-
-    .detail-card:hover {
-      border-color: rgba(196, 240, 77, 0.2);
-      background: rgba(196, 240, 77, 0.02);
+    .detail-row {
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--rule);
     }
 
     .detail-label {
       font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--text-dim);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
+      color: var(--ink-3);
+      margin-bottom: 0.2rem;
     }
 
     .detail-value {
-      font-size: 1rem;
-      color: var(--text);
+      font-size: 0.95rem;
       font-weight: 500;
+      overflow-wrap: anywhere;
     }
 
-    .detail-value a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: opacity 0.3s;
+    .about-text {
+      grid-column: 5 / 13;
+      grid-row: 1;
     }
 
-    .detail-value a:hover {
-      opacity: 0.8;
+    .about-text p {
+      color: var(--ink-2);
+      font-size: 1.02rem;
+      line-height: 1.75;
+      max-width: 64ch;
     }
 
-    /* ─── Skills ─── */
-    .skills-grid {
+    .about-text p+p {
+      margin-top: 1.4rem;
+    }
+
+    .about-text strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .about-text .about-lead {
+      font-family: var(--display);
+      font-stretch: 92%;
+      font-weight: 420;
+      font-size: clamp(1.3rem, 2.1vw, 1.75rem);
+      line-height: 1.38;
+      letter-spacing: -0.012em;
+      color: var(--ink);
+      max-width: none;
+      margin-bottom: 2.25rem;
+    }
+
+    .about-lead strong {
+      font-weight: 650;
+      background: linear-gradient(var(--signal), var(--signal)) 0 92% / 100% 2px no-repeat;
+    }
+
+    /* ─── Skills: spec sheet ─── */
+    .spec {
+      border-top: 1px solid var(--ink);
+    }
+
+    .spec-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .skill-card {
-      padding: 2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: all 0.4s ease;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--col-gap);
+      row-gap: 0.9rem;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--rule);
       position: relative;
-      overflow: hidden;
     }
 
-    .skill-card::before {
+    .spec-row::before {
       content: '';
       position: absolute;
-      top: 0;
       left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gradient-1), var(--gradient-2));
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      top: -1px;
+      height: 1px;
+      width: 100%;
+      background: var(--signal);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.7s var(--ease-out);
     }
 
-    .skill-card:hover {
-      border-color: rgba(196, 240, 77, 0.15);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    .spec-row:hover::before {
+      transform: scaleX(1);
     }
 
-    .skill-card:hover::before {
-      opacity: 1;
+    .spec-idx {
+      grid-column: 1 / 2;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--signal-ink);
+      padding-top: 0.3rem;
     }
 
-    .skill-icon {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent-glow);
-      border: 1px solid rgba(196, 240, 77, 0.1);
-      border-radius: 12px;
-      margin-bottom: 1.2rem;
-      font-size: 1.3rem;
+    .spec-row h3 {
+      grid-column: 2 / 5;
+      font-family: var(--display);
+      font-stretch: 85%;
+      font-weight: 620;
+      font-size: 1.35rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
     }
 
-    .skill-card h3 {
-      font-family: var(--sans);
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-      color: var(--text);
+    .spec-items {
+      grid-column: 5 / 13;
+      display: grid;
+      gap: 1rem;
     }
 
     .skill-tags {
@@ -666,557 +857,706 @@
     }
 
     .skill-tag {
-      padding: 0.3rem 0.7rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
       font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--text-muted);
-      transition: all 0.3s;
+      font-size: 0.8rem;
+      color: var(--ink-2);
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--rule);
+      transition: background-color 0.25s, color 0.25s, border-color 0.25s;
     }
 
-    .skill-card:hover .skill-tag {
-      border-color: rgba(196, 240, 77, 0.1);
+    .skill-tag:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
     }
 
     .skill-group-label {
       font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-dim);
-      text-transform: uppercase;
+      font-size: 0.66rem;
       letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 0.45rem;
     }
 
-    .skill-tags + .skill-group-label {
-      margin-top: 1rem;
+    /* ─── Projects: work index ─── */
+    .work-list {
+      border-top: 1px solid var(--ink);
     }
 
-    /* ─── Projects ─── */
-    .projects-grid {
+    .work {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-
-    .project-card {
-      padding: 2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: all 0.4s ease;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--col-gap);
+      row-gap: 1rem;
+      padding: 2.2rem 0;
+      border-bottom: 1px solid var(--rule);
       position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      transition: background-color 0.4s;
     }
 
-    .project-card::before {
+    .work::before {
       content: '';
       position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(196, 240, 77, 0.2), transparent 50%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      left: calc(-1 * min(var(--gutter), 1.25rem));
+      top: 2.2rem;
+      bottom: 2.2rem;
+      width: 3px;
+      background: var(--signal);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.6s var(--ease-out);
     }
 
-    .project-card:hover {
-      border-color: rgba(196, 240, 77, 0.15);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    .work:hover::before {
+      transform: scaleY(1);
     }
 
-    .project-card:hover::before {
-      opacity: 1;
-    }
-
-    .project-card-eyebrow {
+    .work-num {
+      grid-column: 1 / 2;
       font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.8rem;
+      font-size: 0.78rem;
+      color: var(--signal-ink);
+      padding-top: 0.25rem;
     }
 
-    .project-card h3 {
-      font-size: 1.15rem;
-      font-weight: 600;
+    .work-head {
+      grid-column: 2 / 7;
+    }
+
+    .work-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
       margin-bottom: 0.6rem;
     }
 
-    .project-card p {
-      font-size: 0.9rem;
-      color: var(--text-muted);
+    .work h3 {
+      font-family: var(--display);
+      font-stretch: 80%;
+      font-weight: 640;
+      font-size: clamp(1.55rem, 2.7vw, 2.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .work:hover h3 {
+      transform: translateX(0.4rem);
+    }
+
+    .work-body {
+      grid-column: 7 / 13;
+    }
+
+    .work-body p {
+      font-size: 0.95rem;
       line-height: 1.7;
-      margin-bottom: 1.2rem;
+      color: var(--ink-2);
     }
 
-    .project-impact {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.3rem 0.8rem;
-      background: var(--accent-glow);
-      border: 1px solid rgba(196, 240, 77, 0.15);
-      border-radius: 100px;
+    .work-impact {
+      margin-top: 1rem;
       font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--signal-ink);
     }
 
-    .project-tags {
+    .work-impact::before {
+      content: '\2192\00a0';
+    }
+
+    .work-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: auto;
-    }
-
-    .project-tag {
-      padding: 0.25rem 0.6rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
+      margin-top: 0.8rem;
       font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      transition: all 0.3s;
+      font-size: 0.72rem;
+      color: var(--ink-3);
     }
 
-    .project-card:hover .project-tag {
-      border-color: rgba(196, 240, 77, 0.1);
+    .work-tags li+li::before {
+      content: '/';
+      margin: 0 0.55em;
+      color: var(--rule);
     }
 
-    /* ─── Experience ─── */
-    .timeline {
+    /* ─── Experience: journey ─── */
+    .journey {
       position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
     }
 
-    .timeline::before {
-      content: '';
+    .journey-rail,
+    .journey-fill {
       position: absolute;
-      left: 0;
       top: 0;
       bottom: 0;
+      left: max(180px, 25%);
       width: 1px;
-      background: linear-gradient(to bottom, var(--accent), var(--border) 30%, var(--border) 70%, transparent);
+      background: var(--rule);
     }
 
-    .timeline-item {
-      padding-left: 3rem;
+    .journey-fill {
+      width: 2px;
+      margin-left: -0.5px;
+      background: var(--signal);
+      transform-origin: top;
+      display: none;
+    }
+
+    .motion .journey-fill {
+      display: block;
+    }
+
+    .role {
+      display: grid;
+      grid-template-columns: minmax(180px, 1fr) 3fr;
+      padding-bottom: clamp(2.5rem, 5vw, 4rem);
       position: relative;
     }
 
-    .timeline-item::before {
+    .role:last-child {
+      padding-bottom: 0;
+    }
+
+    .role-when {
+      position: sticky;
+      top: calc(var(--nav-h) + 1.5rem);
+      align-self: start;
+      padding-right: 1.5rem;
+    }
+
+    .role-date {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .role-now {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--signal-ink);
+    }
+
+    .role-now .blink {
+      width: 6px;
+      height: 6px;
+    }
+
+    .role-body {
+      position: relative;
+      padding-left: clamp(1.5rem, 3vw, 2.75rem);
+    }
+
+    .role-body::before {
       content: '';
       position: absolute;
       left: -4px;
-      top: 8px;
+      top: 0.55rem;
       width: 9px;
       height: 9px;
-      background: var(--bg);
-      border: 2px solid var(--accent);
-      border-radius: 50%;
+      background: var(--paper);
+      border: 1px solid var(--ink);
       z-index: 1;
     }
 
-    .timeline-item:first-child::before {
-      background: var(--accent);
-      box-shadow: 0 0 12px rgba(196, 240, 77, 0.4);
+    .role.is-current .role-body::before {
+      background: var(--signal);
+      border-color: var(--signal);
     }
 
-    .timeline-date {
+    .role h3 {
+      font-family: var(--display);
+      font-stretch: 80%;
+      font-weight: 640;
+      font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+
+    .role-org {
+      margin-top: 0.4rem;
+      font-weight: 500;
+    }
+
+    .role-loc {
       font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      margin-bottom: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--ink-3);
+      margin-top: 0.15rem;
     }
 
-    .timeline-card {
-      padding: 2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: all 0.3s ease;
+    .role ul {
+      display: grid;
+      gap: 0.75rem;
+      margin-top: 1.4rem;
+      max-width: 72ch;
     }
 
-    .timeline-card:hover {
-      border-color: rgba(196, 240, 77, 0.15);
-    }
-
-    .timeline-card h3 {
-      font-family: var(--sans);
-      font-size: 1.2rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    .timeline-card .company {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .timeline-card .location {
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
-    }
-
-    .timeline-card ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .timeline-card li {
+    .role li {
       position: relative;
-      padding-left: 1.2rem;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
+      padding-left: 1.6rem;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--ink-2);
     }
 
-    .timeline-card li::before {
-      content: '\2192';
+    .role li::before {
+      content: '\2014';
       position: absolute;
       left: 0;
-      color: var(--accent);
-      font-size: 0.8rem;
+      color: var(--signal-ink);
     }
 
-    /* ─── Education ─── */
-    .education-grid {
+    /* ─── Education & Certifications: ledger ─── */
+    .ledger {
+      border-top: 1px solid var(--ink);
+    }
+
+    .ledger-row {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--col-gap);
+      row-gap: 0.6rem;
+      align-items: baseline;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--rule);
     }
 
-    .edu-card {
-      padding: 2rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      transition: all 0.3s ease;
+    .ledger-main {
+      grid-column: 1 / 7;
+    }
+
+    .edu-degree {
+      font-family: var(--display);
+      font-stretch: 85%;
+      font-weight: 620;
+      font-size: clamp(1.25rem, 2vw, 1.6rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+    }
+
+    .edu-school {
+      margin-top: 0.3rem;
+      color: var(--ink-2);
+      font-size: 0.95rem;
+    }
+
+    .edu-year {
+      grid-column: 7 / 10;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-3);
+    }
+
+    .edu-grade {
+      grid-column: 10 / 13;
+      justify-self: end;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--signal-ink);
+      text-align: right;
+    }
+
+    /* ─── Contact (ink) ─── */
+    main>section.contact {
+      background: var(--ink);
+      color: var(--on-ink);
+      padding-bottom: clamp(4rem, 8vw, 6rem);
+    }
+
+    .contact .sec-rule {
+      background: var(--on-ink-rule);
+    }
+
+    .contact .sec-meta {
+      color: var(--on-ink-2);
+    }
+
+    .contact .sec-num {
+      color: var(--signal);
+    }
+
+    .contact-title {
+      grid-column: 4 / 13;
+      font-family: var(--display);
+      font-stretch: 72%;
+      font-weight: 700;
+      font-size: clamp(3rem, 8.6vw, 8.4rem);
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+    }
+
+    .contact .contact-title em {
+      color: var(--signal);
+    }
+
+    .contact-description {
+      grid-column: 4 / 11;
+      margin-top: 2rem;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--on-ink-2);
+      max-width: 54ch;
+    }
+
+    .contact-links {
+      border-top: 1px solid var(--on-ink-rule);
+    }
+
+    .contact-link {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--col-gap);
+      align-items: center;
+      padding: 1.3rem 0;
+      border-bottom: 1px solid var(--on-ink-rule);
+      color: var(--on-ink);
+      text-decoration: none;
       position: relative;
       overflow: hidden;
     }
 
-    .edu-card:hover {
-      border-color: rgba(196, 240, 77, 0.15);
-      transform: translateY(-2px);
-    }
-
-    .edu-degree {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      margin-bottom: 0.5rem;
-      line-height: 1.3;
-    }
-
-    .edu-school {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin-bottom: 0.3rem;
-    }
-
-    .edu-year {
+    .contact-link .cl-label {
+      grid-column: 1 / 4;
       font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--text-dim);
-      margin-bottom: 1rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--on-ink-2);
     }
 
-    .edu-grade {
-      display: inline-flex;
-      padding: 0.35rem 0.9rem;
-      background: var(--accent-glow);
-      border: 1px solid rgba(196, 240, 77, 0.15);
-      border-radius: 100px;
-      font-family: var(--mono);
-      font-size: 0.75rem;
-      color: var(--accent);
+    .contact-link .cl-value {
+      grid-column: 4 / 12;
+      font-family: var(--display);
+      font-stretch: 85%;
+      font-weight: 560;
+      font-size: clamp(1.3rem, 3.2vw, 2.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      overflow-wrap: anywhere;
+      transition: color 0.3s, transform 0.6s var(--ease-out);
     }
 
-    /* ─── Contact ─── */
-    .contact-section {
-      text-align: center;
-    }
-
-    .contact-section .section-header {
-      max-width: 600px;
-      margin: 0 auto 3rem;
-    }
-
-    .contact-description {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      margin-top: 1rem;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 4rem;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 1rem 1.8rem;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
-
-    .contact-link:hover {
-      border-color: var(--accent);
-      background: var(--accent-glow);
-      color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    .contact-link svg {
-      width: 18px;
-      height: 18px;
+    .contact-link .cl-arrow {
+      grid-column: 12 / 13;
+      justify-self: end;
+      width: clamp(18px, 2.2vw, 28px);
+      height: clamp(18px, 2.2vw, 28px);
       stroke: currentColor;
       fill: none;
-      stroke-width: 2;
+      stroke-width: 1.5;
+      transition: transform 0.6s var(--ease-out), color 0.3s;
     }
 
-    /* ─── Back to Top ─── */
+    .contact-link:hover .cl-value {
+      color: var(--signal);
+      transform: translateX(0.5rem);
+    }
+
+    .contact-link:hover .cl-arrow {
+      color: var(--signal);
+      transform: translate(4px, -4px);
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      background: var(--ink);
+      color: var(--on-ink-2);
+    }
+
+    footer .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem 2rem;
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-top: 1px solid var(--on-ink-rule);
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .footer-text span {
+      color: var(--signal);
+    }
+
+    /* ─── Back to top ─── */
     .back-to-top {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 44px;
-      height: 44px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 50%;
+      right: var(--gutter);
+      bottom: 1.5rem;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: var(--signal);
+      color: var(--ink);
+      border: 0;
       cursor: pointer;
-      color: var(--accent);
       z-index: 90;
       opacity: 0;
       visibility: hidden;
-      transform: translateY(10px);
-      transition: all 0.3s ease;
+      transform: translateY(12px);
+      transition: opacity 0.4s, visibility 0.4s, transform 0.5s var(--ease-out), background-color 0.3s;
     }
 
     .back-to-top.visible {
       opacity: 1;
       visibility: visible;
-      transform: translateY(0);
+      transform: none;
     }
 
     .back-to-top:hover {
-      border-color: var(--accent);
-      background: var(--accent-glow);
+      background: var(--paper);
     }
 
-    /* ─── Footer ─── */
-    footer {
-      padding: 3rem;
-      text-align: center;
-      border-top: 1px solid var(--border);
+    /* ─── Motion gate: hide what GSAP will reveal ─── */
+    .motion .hero-meta>*,
+    .motion [data-hero],
+    .motion .hero-fig,
+    .motion .stat-item,
+    .motion [data-reveal],
+    .motion [data-split] {
+      visibility: hidden;
     }
 
-    .footer-text {
-      font-size: 0.8rem;
-      color: var(--text-dim);
+    .motion .sec-rule {
+      transform: scaleX(0);
     }
 
-    .footer-text span {
-      color: var(--accent);
-    }
-
-    /* ─── Animations ─── */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .reveal.stagger-1 {
-      transition-delay: 0.1s;
-    }
-
-    .reveal.stagger-2 {
-      transition-delay: 0.2s;
-    }
-
-    .reveal.stagger-3 {
-      transition-delay: 0.3s;
-    }
-
-    .reveal.stagger-4 {
-      transition-delay: 0.4s;
-    }
-
-    .reveal.stagger-5 {
-      transition-delay: 0.5s;
-    }
-
-    .reveal.stagger-6 {
-      transition-delay: 0.6s;
+    .motion .about-lead strong {
+      background-size: 0% 2px;
     }
 
     /* ─── Responsive ─── */
-    @media (max-width: 1024px) {
-      .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        padding: 1rem 1.5rem;
+    @media (max-width: 1080px) {
+      .menu-toggle {
+        display: inline-flex;
       }
 
       .nav-links {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 101;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: calc(var(--nav-h) + 1rem) var(--gutter) 2rem;
+        background: var(--ink);
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.4s, visibility 0.4s;
       }
 
       .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        inset: 0;
-        background: rgba(10, 10, 11, 0.98);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        padding: 6rem 2rem 2rem;
-        gap: 2rem;
-        align-items: center;
-        justify-content: center;
-        z-index: 99;
+        visibility: visible;
+        opacity: 1;
       }
 
-      .nav-links.active a {
-        font-size: 1.5rem;
-        letter-spacing: 0.06em;
+      .nav-links a,
+      .nav-links a.nav-cta {
+        font-family: var(--display);
+        font-stretch: 80%;
+        font-weight: 650;
+        font-size: clamp(2rem, 8vw, 3.4rem);
+        letter-spacing: -0.02em;
+        text-transform: none;
+        line-height: 1.1;
+        color: var(--on-ink);
+        background: none;
+        padding: 0.1rem 0;
       }
 
-      .hero {
-        padding: 7rem 1.5rem 3rem;
+      .nav-links a[data-n]::before {
+        font-family: var(--mono);
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        vertical-align: super;
+        color: var(--signal);
       }
 
-      section {
-        padding: 4rem 1.5rem;
+      .nav-links a:hover,
+      .nav-links a.active,
+      .nav-links a.nav-cta,
+      .nav-links a.nav-cta:hover {
+        color: var(--signal);
+        background: none;
+      }
+
+      nav.menu-open {
+        background: transparent;
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        border-bottom-color: transparent;
+      }
+
+      nav.menu-open .nav-logo,
+      nav.menu-open .menu-toggle {
+        color: var(--on-ink);
+      }
+    }
+
+    @media (max-width: 860px) {
+
+      .hero-intro,
+      .hero-fig {
+        grid-column: 1 / -1;
       }
 
       .hero-stats {
-        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-item:nth-child(3) {
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      .stat-item:nth-child(n + 3) {
+        border-top: 1px solid var(--rule);
+        margin-top: 1.1rem;
+      }
+
+      .sec-meta,
+      .sec-title,
+      .contact-title,
+      .contact-description {
+        grid-column: 1 / -1;
+      }
+
+      .sec-meta {
+        margin-bottom: 1rem;
+      }
+
+      .about-details,
+      .about-text {
+        grid-column: 1 / -1;
+      }
+
+      .about-details,
+      .about-text {
+        grid-row: auto;
+      }
+
+      .about-details {
+        position: static;
+      }
+
+      .spec-idx {
+        grid-column: 1 / 2;
+      }
+
+      .spec-row h3 {
+        grid-column: 2 / -1;
+      }
+
+      .spec-items {
+        grid-column: 2 / -1;
+      }
+
+      .work-num {
+        grid-column: 1 / -1;
+      }
+
+      .work-head,
+      .work-body {
+        grid-column: 1 / -1;
+      }
+
+      .journey-rail,
+      .journey-fill {
+        left: 0;
+      }
+
+      .role {
+        grid-template-columns: 1fr;
+      }
+
+      .role-when {
+        position: static;
+        padding: 0 0 0.75rem clamp(1.5rem, 3vw, 2.75rem);
+      }
+
+      .role-body::before {
+        top: -1.65rem;
+      }
+
+      .role.is-current .role-when {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
         flex-wrap: wrap;
       }
 
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+      .role-now {
+        margin-top: 0;
       }
 
-      .skills-grid {
-        grid-template-columns: 1fr;
+      .ledger-main,
+      .edu-year,
+      .edu-grade {
+        grid-column: 1 / -1;
       }
 
-      .projects-grid {
-        grid-template-columns: 1fr;
+      .edu-grade {
+        justify-self: start;
+        text-align: left;
       }
 
-      .education-grid {
-        grid-template-columns: 1fr;
+      .contact-link .cl-label {
+        grid-column: 1 / -1;
+        margin-bottom: 0.35rem;
       }
 
-      .hero-bg-glow,
-      .hero-bg-glow-2 {
-        display: none;
-      }
-
-      .scroll-indicator {
-        display: none;
+      .contact-link .cl-value {
+        grid-column: 1 / 12;
       }
     }
 
     @media (max-width: 480px) {
-      .hero h1 {
-        font-size: clamp(2.4rem, 10vw, 3.2rem);
+      .hero-meta span:nth-child(2) {
+        display: none;
       }
 
-      .hero-stats {
-        flex-direction: column;
-        gap: 1.2rem;
+      .spec-idx {
+        display: none;
       }
 
-      .stat-item {
-        flex-direction: row;
-        align-items: center;
-        gap: 0.8rem;
-      }
-
-      .contact-links {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      nav {
-        padding: 1rem;
+      .spec-row h3,
+      .spec-items {
+        grid-column: 1 / -1;
       }
     }
 
     @media (pointer: coarse) {
 
-      .nav-links a,
-      .contact-link,
-      .btn-primary,
-      .btn-secondary,
+      .btn-ink,
+      .btn-text,
+      .menu-toggle,
       .back-to-top {
         min-height: 48px;
+      }
+
+      .btn-text {
         display: inline-flex;
         align-items: center;
       }
@@ -1233,21 +1573,7 @@
         scroll-behavior: auto !important;
       }
 
-      html {
-        scroll-behavior: auto;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
-
-      .scroll-indicator svg {
-        animation: none;
-      }
-
-      .hero-label .dot {
+      .blink {
         animation: none;
       }
     }
@@ -1256,73 +1582,117 @@
 
 <body>
 
+  <a href="#main" class="skip-link">Skip to content</a>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <!-- Navigation -->
-  <nav>
-    <a href="#" class="nav-logo">R<span>.</span>N</a>
+  <nav id="siteNav">
+    <a href="#" class="nav-logo">Rozeen Nakarmi</a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#certifications">Certs</a></li>
-      <li><a href="https://github.com/Rozein" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+      <li><a href="#about" data-n="01">About</a></li>
+      <li><a href="#skills" data-n="02">Skills</a></li>
+      <li><a href="#projects" data-n="03">Projects</a></li>
+      <li><a href="#experience" data-n="04">Experience</a></li>
+      <li><a href="#education" data-n="05">Education</a></li>
+      <li><a href="#certifications" data-n="06">Certs</a></li>
+      <li><a href="https://github.com/Rozein" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
       <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
     </ul>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
+      <span class="menu-label">Menu</span>
+      <span class="bars" aria-hidden="true"><span></span><span></span></span>
     </button>
   </nav>
 
-  <main>
+  <main id="main">
 
     <!-- Hero -->
-    <section class="hero">
-      <div class="hero-bg-glow"></div>
-      <div class="hero-bg-glow-2"></div>
-      <div class="hero-grid"></div>
-      <div class="hero-content">
-        <div class="hero-label">
-          <span class="dot"></span>
-          Available for Opportunities
+    <section class="hero" aria-label="Introduction">
+      <div class="wrap">
+        <div class="hero-meta">
+          <span class="status"><span class="blink" aria-hidden="true"></span>Available for Opportunities</span>
+          <span>Lead Software Engineer / Tech Lead</span>
+          <span>Kathmandu, Nepal · <time id="localTime">NPT</time></span>
         </div>
-        <h1>
+
+        <h1 class="hero-title" data-split="hero">
           Architecting <em>distributed</em><br>
           systems &amp; AI<br>
           backends that scale.
         </h1>
-        <p class="hero-description">
-          Lead Software Engineer / Tech Lead with 7+ years designing and delivering enterprise systems on
-          .NET, Python, AWS, and Azure — owning solutions from pre-sales proposals, costing, and high-level
-          design through to production. Architected Frost &amp; Sullivan's "7 Gates" platform (SSO across 6
-          products) and a core-banking integration middleware for Nepal SBI Bank, and am running the
-          AWS-to-Azure migration of Frost &amp; Sullivan's platforms. Grounded in hands-on performance
-          engineering — took critical APIs from ~24s to milliseconds and scaled capacity 5x. AWS Certified
-          Solutions Architect – Associate.
-        </p>
-        <div class="hero-actions">
-          <a href="#contact" class="btn-primary">
-            Let's Connect
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </a>
-          <a href="#experience" class="btn-secondary">View My Work</a>
+
+        <div class="hero-grid">
+          <div class="hero-intro">
+            <p class="hero-description" data-hero>
+              Lead Software Engineer / Tech Lead with 7+ years designing and delivering enterprise systems on
+              .NET, Python, AWS, and Azure — owning solutions from pre-sales proposals, costing, and high-level
+              design through to production. Architected Frost &amp; Sullivan's "7 Gates" platform (SSO across 6
+              products) and a core-banking integration middleware for Nepal SBI Bank, and am running the
+              AWS-to-Azure migration of Frost &amp; Sullivan's platforms. Grounded in hands-on performance
+              engineering — took critical APIs from ~24s to milliseconds and scaled capacity 5x. AWS Certified
+              Solutions Architect – Associate.
+            </p>
+            <div class="hero-actions" data-hero>
+              <a href="#contact" class="btn-ink">
+                <span class="roll"><span>Let's Connect</span><span aria-hidden="true">Let's Connect</span></span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a href="#experience" class="btn-text link-wipe">View My Work</a>
+            </div>
+          </div>
+
+          <figure class="hero-fig fig" id="heroFig">
+            <div class="fig-plate">
+              <svg viewBox="0 0 560 300" role="img" aria-labelledby="figTitle">
+                <title id="figTitle">Simplified diagram of a request travelling from a client through an API gateway
+                  to auth, services, a queue, workers and data.</title>
+                <g class="edges">
+                  <path class="edge" id="fig-e1" d="M100 150 H150" />
+                  <path class="edge" id="fig-e2" d="M250 150 H280 V50 H310" />
+                  <path class="edge" id="fig-e3" d="M250 150 H310" />
+                  <path class="edge" id="fig-e4" d="M420 150 H460" />
+                  <path class="edge" id="fig-e5" d="M365 170 V230" />
+                  <path class="edge" id="fig-e6" d="M420 250 H460" />
+                  <path class="edge" id="fig-e7" d="M505 230 V170" />
+                </g>
+                <g class="nodes">
+                  <g class="node" data-node="client"><rect x="10" y="130" width="90" height="40" /><text x="55"
+                      y="150">CLIENT</text></g>
+                  <g class="node is-key" data-node="gateway"><rect x="150" y="130" width="100" height="40" /><text
+                      x="200" y="150">GATEWAY</text></g>
+                  <g class="node" data-node="auth"><rect x="310" y="30" width="110" height="40" /><text x="365"
+                      y="50">AUTH · OIDC</text></g>
+                  <g class="node" data-node="services"><rect x="310" y="130" width="110" height="40" /><text x="365"
+                      y="150">SERVICES</text></g>
+                  <g class="node" data-node="queue"><rect x="310" y="230" width="110" height="40" /><text x="365"
+                      y="250">QUEUE</text></g>
+                  <g class="node" data-node="data"><rect x="460" y="130" width="90" height="40" /><text x="505"
+                      y="150">DATA</text></g>
+                  <g class="node" data-node="workers"><rect x="460" y="230" width="90" height="40" /><text x="505"
+                      y="250">WORKERS</text></g>
+                </g>
+                <g class="packets"></g>
+              </svg>
+            </div>
+            <figcaption><span>Fig. 01 — Request path, simplified</span><span aria-hidden="true">Live</span>
+            </figcaption>
+          </figure>
         </div>
+
         <div class="hero-stats">
           <div class="stat-item">
-            <span class="stat-number">7+</span>
+            <span class="stat-number" data-count="7" data-suffix="+">7+</span>
             <span class="stat-label">Years Experience</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number">5x</span>
+            <span class="stat-number" data-count="5" data-suffix="x">5x</span>
             <span class="stat-label">Capacity Scaled</span>
           </div>
           <div class="stat-item">
-            <span class="stat-number">30%</span>
+            <span class="stat-number" data-count="30" data-suffix="%">30%</span>
             <span class="stat-label">Query Optimization</span>
           </div>
           <div class="stat-item">
@@ -1331,518 +1701,614 @@
           </div>
         </div>
       </div>
-      <div class="scroll-indicator" aria-hidden="true">
-        <span>Scroll</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </div>
     </section>
 
-    <div class="section-divider"></div>
+    <!-- Stack marquee (decorative) -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marqueeTrack">
+        <span>C#</span><span>.NET Core</span><span>Python</span><span>FastAPI</span><span>Frappe</span>
+        <span>PostgreSQL</span><span>AWS</span><span>Azure</span><span>OpenIddict</span><span>RabbitMQ</span>
+        <span>gRPC</span><span>Redis</span>
+      </div>
+    </div>
 
     <!-- About -->
     <section id="about">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// About Me</div>
-        <h2 class="section-title">Passionate about <em>engineering<br>excellence</em> and clean code</h2>
-      </div>
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p>
-            I'm a <strong>Lead Software Engineer / Tech Lead</strong> with 7+ years designing and delivering
-            enterprise systems on <strong>.NET, Python, AWS, and Azure</strong>. I own solutions end to end on the
-            technical side — from <strong>pre-sales proposals, team allocation, and costing</strong> to
-            <strong>high-level design</strong> and production — and my architecture work is grounded in hands-on
-            performance engineering: I've taken critical APIs from <strong>~24s response times to
-            milliseconds</strong> and scaled capacity <strong>5x</strong>.
-          </p>
-          <p>
-            I work across two sibling verticals. At <strong>CAS Total Solutions</strong>, I'm Lead Software Engineer
-            for Frappe-based banking systems: I architected the <strong>Signature Middleware for Nepal SBI
-            Bank</strong>, integrating cheque-clearing with core banking, and took over technical ownership of the
-            <strong>Loan Management System for Bhutan's National Pension and Provident Fund (NPPF)</strong>. At
-            <strong>CAS Techno Sales (Frost Digital Ventures)</strong>, I'm Tech Lead for <strong>Frost &amp;
-            Sullivan</strong>: I architected <strong>"7 Gates"</strong>, a multi-product microservices platform with
-            SSO across six products, I'm running the <strong>AWS-to-Azure migration</strong> of their platforms, and I
-            own technical proposals for prospective clients. Previously at <strong>Innovate Tech</strong>, I was a
-            backend engineer on <strong>My Second Teacher</strong>, a globally deployed EdTech platform.
-          </p>
-          <p>
-            I hold an <strong>MSc in IT &amp; Applied Security</strong> and a <strong>BSc First Class Honours in
-              Computing</strong> from London Metropolitan University, and I'm an
-            <strong>AWS Certified Solutions Architect – Associate</strong>. Alongside my engineering work, I lead a
-            5-person engineering team and supervise final-year projects at Islington College.
-          </p>
-        </div>
-        <div class="about-details reveal">
-          <div class="detail-card">
-            <div class="detail-label">Location</div>
-            <div class="detail-value">Kathmandu, Nepal</div>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-rule" aria-hidden="true"></span>
+          <div class="sec-meta"><span class="sec-num">01</span><span>About Me</span></div>
+          <h2 class="sec-title" data-split>Passionate about <em>engineering excellence</em> and clean code</h2>
+        </header>
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="about-lead" data-reveal>
+              I'm a <strong>Lead Software Engineer / Tech Lead</strong> with 7+ years designing and delivering
+              enterprise systems on <strong>.NET, Python, AWS, and Azure</strong>. I own solutions end to end on the
+              technical side — from <strong>pre-sales proposals, team allocation, and costing</strong> to
+              <strong>high-level design</strong> and production — and my architecture work is grounded in hands-on
+              performance engineering: I've taken critical APIs from <strong>~24s response times to
+                milliseconds</strong> and scaled capacity <strong>5x</strong>.
+            </p>
+            <p data-reveal>
+              I work across two sibling verticals. At <strong>CAS Total Solutions</strong>, I'm Lead Software Engineer
+              for Frappe-based banking systems: I architected the <strong>Signature Middleware for Nepal SBI
+                Bank</strong>, integrating cheque-clearing with core banking, and took over technical ownership of the
+              <strong>Loan Management System for Bhutan's National Pension and Provident Fund (NPPF)</strong>. At
+              <strong>CAS Techno Sales (Frost Digital Ventures)</strong>, I'm Tech Lead for <strong>Frost &amp;
+                Sullivan</strong>: I architected <strong>"7 Gates"</strong>, a multi-product microservices platform with
+              SSO across six products, I'm running the <strong>AWS-to-Azure migration</strong> of their platforms, and I
+              own technical proposals for prospective clients. Previously at <strong>Innovate Tech</strong>, I was a
+              backend engineer on <strong>My Second Teacher</strong>, a globally deployed EdTech platform.
+            </p>
+            <p data-reveal>
+              I hold an <strong>MSc in IT &amp; Applied Security</strong> and a <strong>BSc First Class Honours in
+                Computing</strong> from London Metropolitan University, and I'm an
+              <strong>AWS Certified Solutions Architect – Associate</strong>. Alongside my engineering work, I lead a
+              5-person engineering team and supervise final-year projects at Islington College.
+            </p>
           </div>
-          <div class="detail-card">
-            <div class="detail-label">Email</div>
-            <div class="detail-value"><a href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a></div>
-          </div>
-          <div class="detail-card">
-            <div class="detail-label">Phone</div>
-            <div class="detail-value">+977-9860028647</div>
-          </div>
-          <div class="detail-card">
-            <div class="detail-label">Specialization</div>
-            <div class="detail-value">Solution Architecture &amp; Performance Engineering</div>
-          </div>
-          <div class="detail-card">
-            <div class="detail-label">Website</div>
-            <div class="detail-value"><a href="https://rozeen.com.np" target="_blank"
-                rel="noopener noreferrer">rozeen.com.np</a></div>
-          </div>
-          <div class="detail-card">
-            <div class="detail-label">LinkedIn</div>
-            <div class="detail-value"><a href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/" target="_blank"
-                rel="noopener noreferrer">linkedin.com/in/rozeen-nakarmi</a></div>
-          </div>
+          <dl class="about-details" data-reveal>
+            <div class="detail-row">
+              <dt class="detail-label">Location</dt>
+              <dd class="detail-value">Kathmandu, Nepal</dd>
+            </div>
+            <div class="detail-row">
+              <dt class="detail-label">Email</dt>
+              <dd class="detail-value"><a class="link-wipe"
+                  href="mailto:rozeennakarmi5@gmail.com">rozeennakarmi5@gmail.com</a></dd>
+            </div>
+            <div class="detail-row">
+              <dt class="detail-label">Phone</dt>
+              <dd class="detail-value">+977-9860028647</dd>
+            </div>
+            <div class="detail-row">
+              <dt class="detail-label">Specialization</dt>
+              <dd class="detail-value">Solution Architecture &amp; Performance Engineering</dd>
+            </div>
+            <div class="detail-row">
+              <dt class="detail-label">Website</dt>
+              <dd class="detail-value"><a class="link-wipe" href="https://rozeen.com.np" target="_blank"
+                  rel="noopener noreferrer">rozeen.com.np</a></dd>
+            </div>
+            <div class="detail-row">
+              <dt class="detail-label">LinkedIn</dt>
+              <dd class="detail-value"><a class="link-wipe" href="https://www.linkedin.com/in/rozeen-nakarmi-68999a160/"
+                  target="_blank" rel="noopener noreferrer">linkedin.com/in/rozeen-nakarmi</a></dd>
+            </div>
+          </dl>
         </div>
       </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Skills -->
     <section id="skills">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// Technical Arsenal</div>
-        <h2 class="section-title">Tools & technologies I <em>work with</em></h2>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-card reveal stagger-1">
-          <div class="skill-icon">&#9881;&#65039;</div>
-          <h3>Languages & Frameworks</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">C#</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">TypeScript</span>
-            <span class="skill-tag">.NET Core</span>
-            <span class="skill-tag">ASP.NET Core</span>
-            <span class="skill-tag">Web APIs</span>
-            <span class="skill-tag">EF Core</span>
-            <span class="skill-tag">LINQ</span>
-            <span class="skill-tag">SignalR</span>
-            <span class="skill-tag">ABP</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">Frappe</span>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-rule" aria-hidden="true"></span>
+          <div class="sec-meta"><span class="sec-num">02</span><span>Technical Arsenal</span></div>
+          <h2 class="sec-title" data-split>Tools &amp; technologies I <em>work with</em></h2>
+        </header>
+        <div class="spec">
+          <div class="spec-row" data-reveal>
+            <span class="spec-idx">A</span>
+            <h3>Languages &amp; Frameworks</h3>
+            <div class="spec-items">
+              <ul class="skill-tags">
+                <li class="skill-tag">C#</li>
+                <li class="skill-tag">Python</li>
+                <li class="skill-tag">TypeScript</li>
+                <li class="skill-tag">.NET Core</li>
+                <li class="skill-tag">ASP.NET Core</li>
+                <li class="skill-tag">Web APIs</li>
+                <li class="skill-tag">EF Core</li>
+                <li class="skill-tag">LINQ</li>
+                <li class="skill-tag">SignalR</li>
+                <li class="skill-tag">ABP</li>
+                <li class="skill-tag">FastAPI</li>
+                <li class="skill-tag">Frappe</li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="skill-card reveal stagger-2">
-          <div class="skill-icon">&#128451;&#65039;</div>
-          <h3>Databases</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">PostgreSQL</span>
-            <span class="skill-tag">SQL Server</span>
-            <span class="skill-tag">DynamoDB</span>
-            <span class="skill-tag">Redis</span>
+          <div class="spec-row" data-reveal>
+            <span class="spec-idx">B</span>
+            <h3>Databases</h3>
+            <div class="spec-items">
+              <ul class="skill-tags">
+                <li class="skill-tag">PostgreSQL</li>
+                <li class="skill-tag">SQL Server</li>
+                <li class="skill-tag">DynamoDB</li>
+                <li class="skill-tag">Redis</li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="skill-card reveal stagger-3">
-          <div class="skill-icon">&#9729;&#65039;</div>
-          <h3>Cloud</h3>
-          <div class="skill-group-label">AWS</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Lambda</span>
-            <span class="skill-tag">EC2</span>
-            <span class="skill-tag">S3</span>
-            <span class="skill-tag">RDS</span>
-            <span class="skill-tag">Aurora</span>
-            <span class="skill-tag">SQS</span>
-            <span class="skill-tag">SNS</span>
-            <span class="skill-tag">SES</span>
-            <span class="skill-tag">CloudWatch</span>
+          <div class="spec-row" data-reveal>
+            <span class="spec-idx">C</span>
+            <h3>Cloud</h3>
+            <div class="spec-items">
+              <div>
+                <div class="skill-group-label">AWS</div>
+                <ul class="skill-tags">
+                  <li class="skill-tag">Lambda</li>
+                  <li class="skill-tag">EC2</li>
+                  <li class="skill-tag">S3</li>
+                  <li class="skill-tag">RDS</li>
+                  <li class="skill-tag">Aurora</li>
+                  <li class="skill-tag">SQS</li>
+                  <li class="skill-tag">SNS</li>
+                  <li class="skill-tag">SES</li>
+                  <li class="skill-tag">CloudWatch</li>
+                </ul>
+              </div>
+              <div>
+                <div class="skill-group-label">Azure</div>
+                <ul class="skill-tags">
+                  <li class="skill-tag">Azure</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="skill-group-label">Azure</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Azure</span>
+          <div class="spec-row" data-reveal>
+            <span class="spec-idx">D</span>
+            <h3>Auth &amp; Messaging</h3>
+            <div class="spec-items">
+              <ul class="skill-tags">
+                <li class="skill-tag">OpenIddict</li>
+                <li class="skill-tag">Keycloak</li>
+                <li class="skill-tag">OAuth2/OIDC</li>
+                <li class="skill-tag">JWT/JWKS</li>
+                <li class="skill-tag">REST</li>
+                <li class="skill-tag">gRPC</li>
+                <li class="skill-tag">RabbitMQ</li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="skill-card reveal stagger-4">
-          <div class="skill-icon">&#128274;</div>
-          <h3>Auth & Messaging</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">OpenIddict</span>
-            <span class="skill-tag">Keycloak</span>
-            <span class="skill-tag">OAuth2/OIDC</span>
-            <span class="skill-tag">JWT/JWKS</span>
-            <span class="skill-tag">REST</span>
-            <span class="skill-tag">gRPC</span>
-            <span class="skill-tag">RabbitMQ</span>
-          </div>
-        </div>
-        <div class="skill-card reveal stagger-5">
-          <div class="skill-icon">&#128208;</div>
-          <h3>Practices</h3>
-          <div class="skill-tags">
-            <span class="skill-tag">Solution Architecture &amp; HLD</span>
-            <span class="skill-tag">Microservices</span>
-            <span class="skill-tag">System Design</span>
-            <span class="skill-tag">Cloud Migration</span>
-            <span class="skill-tag">AI/ML Integration</span>
-            <span class="skill-tag">Performance Optimization</span>
-            <span class="skill-tag">Security Assessment</span>
-            <span class="skill-tag">Technical Proposals &amp; Costing</span>
-            <span class="skill-tag">Team Leadership</span>
-            <span class="skill-tag">Mentoring</span>
+          <div class="spec-row" data-reveal>
+            <span class="spec-idx">E</span>
+            <h3>Practices</h3>
+            <div class="spec-items">
+              <ul class="skill-tags">
+                <li class="skill-tag">Solution Architecture &amp; HLD</li>
+                <li class="skill-tag">Microservices</li>
+                <li class="skill-tag">System Design</li>
+                <li class="skill-tag">Cloud Migration</li>
+                <li class="skill-tag">AI/ML Integration</li>
+                <li class="skill-tag">Performance Optimization</li>
+                <li class="skill-tag">Security Assessment</li>
+                <li class="skill-tag">Technical Proposals &amp; Costing</li>
+                <li class="skill-tag">Team Leadership</li>
+                <li class="skill-tag">Mentoring</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Featured Projects -->
     <section id="projects">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// Featured Work</div>
-        <h2 class="section-title">Projects that made <em>an impact</em></h2>
-      </div>
-      <div class="projects-grid">
-        <div class="project-card reveal stagger-1">
-          <div class="project-card-eyebrow">Platform Architecture</div>
-          <h3>"7 Gates" Multi-Product Microservices Platform</h3>
-          <p>Architected a multi-product microservices platform for Frost &amp; Sullivan — 7 application services plus
-            AWS Lambda workers, with a centralized AuthServer (OpenIddict, OAuth2/OIDC) providing SSO across 6 products
-            and decentralized JWT/JWKS validation.</p>
-          <div class="project-impact">Launched enterprise-wide to Frost & Sullivan's global workforce</div>
-          <div class="project-tags">
-            <span class="project-tag">.NET Core</span>
-            <span class="project-tag">OpenIddict</span>
-            <span class="project-tag">OAuth2/OIDC</span>
-            <span class="project-tag">JWT/JWKS</span>
-            <span class="project-tag">Microservices</span>
-          </div>
-        </div>
-        <div class="project-card reveal stagger-2">
-          <div class="project-card-eyebrow">Banking Integration</div>
-          <h3>Signature Middleware — Nepal SBI Bank</h3>
-          <p>Architected a Frappe-based middleware that embeds account, balance, signature, and cheque-status
-            verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing workflow. Authored the client-ready
-            Solution Architecture &amp; High-Level Design (HLD) covering DC/DR and security considerations, defined the
-            Module I/II scope boundary, routed all core-banking access through an approved integration layer instead of
-            direct database access, and led the security assessment against the vendor security checklist.</p>
-          <div class="project-impact">Verification embedded in the clearing workflow</div>
-          <div class="project-tags">
-            <span class="project-tag">Frappe</span>
-            <span class="project-tag">Solution Architecture</span>
-            <span class="project-tag">Finacle</span>
-            <span class="project-tag">Security Assessment</span>
-          </div>
-        </div>
-        <div class="project-card reveal stagger-3">
-          <div class="project-card-eyebrow">Enterprise Sales Engineering</div>
-          <h3>Technical Proposals &amp; Enterprise RFPs</h3>
-          <p>Own technical proposals for prospective clients — designing the solution architecture, allocating team
-            members, and making costing decisions — including multi-million NPR banking RFP responses (technical,
-            compliance, and financial) featuring a multilingual AI chatbot architecture (.NET + Python FastAPI).</p>
-          <div class="project-impact">Multi-million NPR enterprise tenders</div>
-          <div class="project-tags">
-            <span class="project-tag">.NET</span>
-            <span class="project-tag">Python</span>
-            <span class="project-tag">FastAPI</span>
-          </div>
-        </div>
-        <div class="project-card reveal stagger-4">
-          <div class="project-card-eyebrow">Banking &amp; Pension Fund</div>
-          <h3>NPPF — Loan Management System (Bhutan)</h3>
-          <p>Took over technical ownership of the Loan Management System for Bhutan's National Pension and Provident
-            Fund — a Frappe (Python) middleware platform spanning digital lending, loan origination, servicing, and
-            collections/litigation, integrated with Finacle CBS, Newgen DMS, the Credit Information Bureau, National
-            Digital Identity, the Pension &amp; PF system, and bank payment gateways.</p>
-          <div class="project-impact">Replaces the legacy Kastle LOS</div>
-          <div class="project-tags">
-            <span class="project-tag">Frappe</span>
-            <span class="project-tag">Python</span>
-            <span class="project-tag">Finacle CBS</span>
-            <span class="project-tag">Newgen DMS</span>
-          </div>
-        </div>
-        <div class="project-card reveal stagger-5">
-          <div class="project-card-eyebrow">Banking & Insurance</div>
-          <h3>Veni — Loan Management System Integration</h3>
-          <p>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product — a Python
-            FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services behind a single
-            interface for AI-integrated document workflows.</p>
-          <div class="project-impact">3 disparate systems unified behind one API</div>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">FastAPI</span>
-            <span class="project-tag">API Gateway</span>
-            <span class="project-tag">Frappe</span>
-            <span class="project-tag">NewGen DMS</span>
-          </div>
-        </div>
-        <div class="project-card reveal stagger-6">
-          <div class="project-card-eyebrow">Performance Engineering</div>
-          <h3>Critical API Performance Overhaul</h3>
-          <p>Optimized multiple critical APIs from ~24s response times down to milliseconds, scaling capacity from 500
-            concurrent users across multiple pods to 2,500+ users on a single pod.</p>
-          <div class="project-impact">5x throughput, reduced infrastructure</div>
-          <div class="project-tags">
-            <span class="project-tag">ASP.NET Core</span>
-            <span class="project-tag">PostgreSQL</span>
-            <span class="project-tag">AWS</span>
-            <span class="project-tag">Performance Tuning</span>
-          </div>
-        </div>
-        <div class="project-card reveal stagger-5">
-          <div class="project-card-eyebrow">Global EdTech</div>
-          <h3>My Second Teacher — Global EdTech Platform</h3>
-          <p>Backend engineer on a global EdTech platform deployed in Indonesia and international markets, adopted
-            across all Ing Group colleges, built on ASP.NET Core, PostgreSQL, and AWS.</p>
-          <div class="project-impact">Deployed across international markets</div>
-          <div class="project-tags">
-            <span class="project-tag">ASP.NET Core</span>
-            <span class="project-tag">PostgreSQL</span>
-            <span class="project-tag">AWS</span>
-          </div>
-        </div>
-        <div class="project-card reveal stagger-6">
-          <div class="project-card-eyebrow">Cloud Migration</div>
-          <h3>Lambda Functions: Node.js to .NET Migration</h3>
-          <p>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with the core
-            platform, eliminating schema drift and the recurring production issues it caused in legacy modules.</p>
-          <div class="project-impact">Schema drift eliminated</div>
-          <div class="project-tags">
-            <span class="project-tag">AWS Lambda</span>
-            <span class="project-tag">.NET Core</span>
-            <span class="project-tag">Node.js</span>
-            <span class="project-tag">C#</span>
-          </div>
-        </div>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-rule" aria-hidden="true"></span>
+          <div class="sec-meta"><span class="sec-num">03</span><span>Featured Work</span></div>
+          <h2 class="sec-title" data-split>Projects that made <em>an impact</em></h2>
+        </header>
+        <ol class="work-list">
+          <li class="work" data-reveal>
+            <span class="work-num">01</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Platform Architecture</div>
+              <h3>"7 Gates" Multi-Product Microservices Platform</h3>
+            </div>
+            <div class="work-body">
+              <p>Architected a multi-product microservices platform for Frost &amp; Sullivan — 7 application services
+                plus AWS Lambda workers, with a centralized AuthServer (OpenIddict, OAuth2/OIDC) providing SSO across 6
+                products and decentralized JWT/JWKS validation.</p>
+              <div class="work-impact">Launched enterprise-wide to Frost &amp; Sullivan's global workforce</div>
+              <ul class="work-tags">
+                <li>.NET Core</li>
+                <li>OpenIddict</li>
+                <li>OAuth2/OIDC</li>
+                <li>JWT/JWKS</li>
+                <li>Microservices</li>
+              </ul>
+            </div>
+          </li>
+          <li class="work" data-reveal>
+            <span class="work-num">02</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Banking Integration</div>
+              <h3>Signature Middleware — Nepal SBI Bank</h3>
+            </div>
+            <div class="work-body">
+              <p>Architected a Frappe-based middleware that embeds account, balance, signature, and cheque-status
+                verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing workflow. Authored the
+                client-ready Solution Architecture &amp; High-Level Design (HLD) covering DC/DR and security
+                considerations, defined the Module I/II scope boundary, routed all core-banking access through an
+                approved integration layer instead of direct database access, and led the security assessment against
+                the vendor security checklist.</p>
+              <div class="work-impact">Verification embedded in the clearing workflow</div>
+              <ul class="work-tags">
+                <li>Frappe</li>
+                <li>Solution Architecture</li>
+                <li>Finacle</li>
+                <li>Security Assessment</li>
+              </ul>
+            </div>
+          </li>
+          <li class="work" data-reveal>
+            <span class="work-num">03</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Enterprise Sales Engineering</div>
+              <h3>Technical Proposals &amp; Enterprise RFPs</h3>
+            </div>
+            <div class="work-body">
+              <p>Own technical proposals for prospective clients — designing the solution architecture, allocating
+                team members, and making costing decisions — including multi-million NPR banking RFP responses
+                (technical, compliance, and financial) featuring a multilingual AI chatbot architecture (.NET + Python
+                FastAPI).</p>
+              <div class="work-impact">Multi-million NPR enterprise tenders</div>
+              <ul class="work-tags">
+                <li>.NET</li>
+                <li>Python</li>
+                <li>FastAPI</li>
+              </ul>
+            </div>
+          </li>
+          <li class="work" data-reveal>
+            <span class="work-num">04</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Banking &amp; Pension Fund</div>
+              <h3>NPPF — Loan Management System (Bhutan)</h3>
+            </div>
+            <div class="work-body">
+              <p>Took over technical ownership of the Loan Management System for Bhutan's National Pension and
+                Provident Fund — a Frappe (Python) middleware platform spanning digital lending, loan origination,
+                servicing, and collections/litigation, integrated with Finacle CBS, Newgen DMS, the Credit Information
+                Bureau, National Digital Identity, the Pension &amp; PF system, and bank payment gateways.</p>
+              <div class="work-impact">Replaces the legacy Kastle LOS</div>
+              <ul class="work-tags">
+                <li>Frappe</li>
+                <li>Python</li>
+                <li>Finacle CBS</li>
+                <li>Newgen DMS</li>
+              </ul>
+            </div>
+          </li>
+          <li class="work" data-reveal>
+            <span class="work-num">05</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Banking &amp; Insurance</div>
+              <h3>Veni — Loan Management System Integration</h3>
+            </div>
+            <div class="work-body">
+              <p>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product — a
+                Python FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services behind a
+                single interface for AI-integrated document workflows.</p>
+              <div class="work-impact">3 disparate systems unified behind one API</div>
+              <ul class="work-tags">
+                <li>Python</li>
+                <li>FastAPI</li>
+                <li>API Gateway</li>
+                <li>Frappe</li>
+                <li>NewGen DMS</li>
+              </ul>
+            </div>
+          </li>
+          <li class="work" data-reveal>
+            <span class="work-num">06</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Performance Engineering</div>
+              <h3>Critical API Performance Overhaul</h3>
+            </div>
+            <div class="work-body">
+              <p>Optimized multiple critical APIs from ~24s response times down to milliseconds, scaling capacity from
+                500 concurrent users across multiple pods to 2,500+ users on a single pod.</p>
+              <div class="work-impact">5x throughput, reduced infrastructure</div>
+              <ul class="work-tags">
+                <li>ASP.NET Core</li>
+                <li>PostgreSQL</li>
+                <li>AWS</li>
+                <li>Performance Tuning</li>
+              </ul>
+            </div>
+          </li>
+          <li class="work" data-reveal>
+            <span class="work-num">07</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Global EdTech</div>
+              <h3>My Second Teacher — Global EdTech Platform</h3>
+            </div>
+            <div class="work-body">
+              <p>Backend engineer on a global EdTech platform deployed in Indonesia and international markets, adopted
+                across all Ing Group colleges, built on ASP.NET Core, PostgreSQL, and AWS.</p>
+              <div class="work-impact">Deployed across international markets</div>
+              <ul class="work-tags">
+                <li>ASP.NET Core</li>
+                <li>PostgreSQL</li>
+                <li>AWS</li>
+              </ul>
+            </div>
+          </li>
+          <li class="work" data-reveal>
+            <span class="work-num">08</span>
+            <div class="work-head">
+              <div class="work-eyebrow">Cloud Migration</div>
+              <h3>Lambda Functions: Node.js to .NET Migration</h3>
+            </div>
+            <div class="work-body">
+              <p>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with the
+                core platform, eliminating schema drift and the recurring production issues it caused in legacy
+                modules.</p>
+              <div class="work-impact">Schema drift eliminated</div>
+              <ul class="work-tags">
+                <li>AWS Lambda</li>
+                <li>.NET Core</li>
+                <li>Node.js</li>
+                <li>C#</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Experience -->
     <section id="experience">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// Career Journey</div>
-        <h2 class="section-title">Where I've built <em>things<br>that matter</em></h2>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Aug 2026 — Present</div>
-          <div class="timeline-card">
-            <h3>Lead Software Engineer</h3>
-            <div class="company">CAS Total Solutions</div>
-            <div class="location">Kathmandu, Nepal</div>
-            <ul>
-              <li>Architected the Signature Middleware for Nepal SBI Bank on Frappe — embedding account, balance,
-                signature, and cheque-status verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing
-                workflow, removing the need for clearing users to check core banking separately. Authored the
-                client-ready Solution Architecture &amp; HLD covering DC/DR and security considerations; defined the
-                Module I/II scope boundary and routed all CBS access through an approved integration layer instead of
-                direct database access.</li>
-              <li>Led the security assessment of the SBI Signature Middleware against the vendor security checklist,
-                defining scope and responsibility boundaries.</li>
-              <li>Took over technical ownership of the Loan Management System for Bhutan's National Pension and
-                Provident Fund (NPPF) — a Frappe (Python) middleware platform spanning digital lending, loan
-                origination, servicing, and collections/litigation, integrated with Finacle CBS, Newgen DMS, the Credit
-                Information Bureau, National Digital Identity, the Pension &amp; PF system, and bank payment
-                gateways.</li>
-              <li>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product — a
-                Python FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services behind a
-                single interface for AI-integrated document workflows.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Oct 2025 — Present</div>
-          <div class="timeline-card">
-            <h3>Senior Software Engineer (Tech Lead)</h3>
-            <div class="company">CAS Techno Sales (Frost Digital Ventures)</div>
-            <div class="location">Kathmandu, Nepal</div>
-            <ul>
-              <li>Architected "7 Gates" for Frost &amp; Sullivan — 7 application services plus AWS Lambda workers
-                behind a centralized OpenIddict AuthServer (OAuth2/OIDC), delivering SSO across 6 products; launched
-                enterprise-wide to the client's global workforce.</li>
-              <li>Planning and executing the AWS-to-Azure migration of Frost &amp; Sullivan's platforms (MyClient, 7
-                Gates, AI Growth Coach) as a phased 8-week programme, with board-ready migration plans and Gantt
-                timelines.</li>
-              <li>Own technical proposals for prospective clients — designing the solution architecture, allocating
-                team members, and making costing decisions — including multi-million NPR banking RFP responses
-                (technical, compliance, and financial) featuring a multilingual AI chatbot architecture (.NET + Python
-                FastAPI).</li>
-              <li>Re-architected a lab-stage AI prototype into production microservices — async AI job orchestration
-                via AWS SQS with dedicated Lambda workers for compute-heavy document processing, eliminating
-                out-of-memory failures, enabling EC2 right-sizing, and cutting infrastructure cost.</li>
-              <li>Defined the enterprise-readiness roadmap for Navi, an in-house workflow automation platform —
-                security, multi-tenancy, and commercialization strategy — presented to executive leadership.</li>
-              <li>Lead technical decision-making for a 5-person engineering team and serve as the sole technical
-                representative on client and executive calls — reviewing BRDs and presenting feasibility assessments and
-                delivery timelines directly to the board.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Sep 2024 — Present</div>
-          <div class="timeline-card">
-            <h3>Final Year Project Supervisor (Part-time)</h3>
-            <div class="company">Islington College</div>
-            <div class="location">Kathmandu, Nepal</div>
-            <ul>
-              <li>Supervise final-year students through full project lifecycles — scoping, stack selection, and
-                delivery — with structured feedback on documentation, implementation quality, and non-functional
-                requirements.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Feb 2022 — Aug 2025</div>
-          <div class="timeline-card">
-            <h3>Senior Software Engineer</h3>
-            <div class="company">Innovate Tech Pvt. Ltd.</div>
-            <div class="location">Kathmandu, Nepal</div>
-            <ul>
-              <li>Cut critical API response times from ~24s to milliseconds, scaling capacity 5x — from 500 concurrent
-                users across multiple pods to 2,500+ users on a single pod with reduced infrastructure.</li>
-              <li>Reduced average query execution time by 30% through LINQ optimization, query-plan analysis, and
-                targeted PostgreSQL indexing.</li>
-              <li>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with the
-                core platform, eliminating schema drift and the recurring production issues it caused in legacy
-                modules.</li>
-              <li>Significantly reduced storage costs by building ETL and archival pipelines across DynamoDB,
-                PostgreSQL, and S3 — Parquet serialization with lifecycle policies to Glacier — plus Python-based data
-                migration pipelines.</li>
-              <li>Delivered backend services for My Second Teacher — a global EdTech platform deployed in Indonesia
-                and international markets and adopted across all Ing Group colleges — and Home School Asia, on ASP.NET
-                Core, PostgreSQL, and AWS.</li>
-              <li>Mentored junior engineers and interns through a self-designed onboarding curriculum (C#, ASP.NET
-                Core, PostgreSQL) and regular code reviews.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Nov 2019 — Feb 2022</div>
-          <div class="timeline-card">
-            <h3>Software Engineer</h3>
-            <div class="company">Percoid IT Solution</div>
-            <div class="location">Kathmandu, Nepal</div>
-            <ul>
-              <li>Delivered full-stack client systems on ASP.NET Core MVC, Web APIs, AngularJS, and SQL Server —
-                including a Billboard Management System for outdoor advertising operations.</li>
-              <li>Optimized high-volume SQL queries and stored procedures and resolved production issues across
-                concurrent client engagements.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-date">Sep 2018 — Oct 2019</div>
-          <div class="timeline-card">
-            <h3>Earlier Roles</h3>
-            <div class="company">Insight Workshop (Trainee, 2019) &middot; Braindigit (Intern, 2018–19)</div>
-            <div class="location">Kathmandu, Nepal</div>
-            <ul>
-              <li>Built a real-time chat application (SignalR), a serverless email service (Azure Functions), and
-                backend modules for a School Bus Management System (ASP.NET Core, SQL Server)</li>
-            </ul>
-          </div>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-rule" aria-hidden="true"></span>
+          <div class="sec-meta"><span class="sec-num">04</span><span>Career Journey</span></div>
+          <h2 class="sec-title" data-split>Where I've built <em>things that matter</em></h2>
+        </header>
+        <div class="journey" id="journey">
+          <span class="journey-rail" aria-hidden="true"></span>
+          <span class="journey-fill" aria-hidden="true"></span>
+
+          <article class="role is-current" data-reveal>
+            <div class="role-when">
+              <span class="role-date">Aug 2026 — Present</span>
+              <span class="role-now"><span class="blink" aria-hidden="true"></span>Current</span>
+            </div>
+            <div class="role-body">
+              <h3>Lead Software Engineer</h3>
+              <div class="role-org">CAS Total Solutions</div>
+              <div class="role-loc">Kathmandu, Nepal</div>
+              <ul>
+                <li>Architected the Signature Middleware for Nepal SBI Bank on Frappe — embedding account, balance,
+                  signature, and cheque-status verification (Finacle/SVS) directly into the ECC/NCHL cheque-clearing
+                  workflow, removing the need for clearing users to check core banking separately. Authored the
+                  client-ready Solution Architecture &amp; HLD covering DC/DR and security considerations; defined the
+                  Module I/II scope boundary and routed all CBS access through an approved integration layer instead of
+                  direct database access.</li>
+                <li>Led the security assessment of the SBI Signature Middleware against the vendor security checklist,
+                  defining scope and responsibility boundaries.</li>
+                <li>Took over technical ownership of the Loan Management System for Bhutan's National Pension and
+                  Provident Fund (NPPF) — a Frappe (Python) middleware platform spanning digital lending, loan
+                  origination, servicing, and collections/litigation, integrated with Finacle CBS, Newgen DMS, the
+                  Credit Information Bureau, National Digital Identity, the Pension &amp; PF system, and bank payment
+                  gateways.</li>
+                <li>Built the Loan Management System integration layer for Veni, a banking &amp; insurance product — a
+                  Python FastAPI gateway unifying Frappe, NewGen DMS (OmniDocs), and downstream banking services behind
+                  a single interface for AI-integrated document workflows.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role is-current" data-reveal>
+            <div class="role-when">
+              <span class="role-date">Oct 2025 — Present</span>
+              <span class="role-now"><span class="blink" aria-hidden="true"></span>Current</span>
+            </div>
+            <div class="role-body">
+              <h3>Senior Software Engineer (Tech Lead)</h3>
+              <div class="role-org">CAS Techno Sales (Frost Digital Ventures)</div>
+              <div class="role-loc">Kathmandu, Nepal</div>
+              <ul>
+                <li>Architected "7 Gates" for Frost &amp; Sullivan — 7 application services plus AWS Lambda workers
+                  behind a centralized OpenIddict AuthServer (OAuth2/OIDC), delivering SSO across 6 products; launched
+                  enterprise-wide to the client's global workforce.</li>
+                <li>Planning and executing the AWS-to-Azure migration of Frost &amp; Sullivan's platforms (MyClient, 7
+                  Gates, AI Growth Coach) as a phased 8-week programme, with board-ready migration plans and Gantt
+                  timelines.</li>
+                <li>Own technical proposals for prospective clients — designing the solution architecture, allocating
+                  team members, and making costing decisions — including multi-million NPR banking RFP responses
+                  (technical, compliance, and financial) featuring a multilingual AI chatbot architecture (.NET +
+                  Python FastAPI).</li>
+                <li>Re-architected a lab-stage AI prototype into production microservices — async AI job orchestration
+                  via AWS SQS with dedicated Lambda workers for compute-heavy document processing, eliminating
+                  out-of-memory failures, enabling EC2 right-sizing, and cutting infrastructure cost.</li>
+                <li>Defined the enterprise-readiness roadmap for Navi, an in-house workflow automation platform —
+                  security, multi-tenancy, and commercialization strategy — presented to executive leadership.</li>
+                <li>Lead technical decision-making for a 5-person engineering team and serve as the sole technical
+                  representative on client and executive calls — reviewing BRDs and presenting feasibility assessments
+                  and delivery timelines directly to the board.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role is-current" data-reveal>
+            <div class="role-when">
+              <span class="role-date">Sep 2024 — Present</span>
+              <span class="role-now"><span class="blink" aria-hidden="true"></span>Current</span>
+            </div>
+            <div class="role-body">
+              <h3>Final Year Project Supervisor (Part-time)</h3>
+              <div class="role-org">Islington College</div>
+              <div class="role-loc">Kathmandu, Nepal</div>
+              <ul>
+                <li>Supervise final-year students through full project lifecycles — scoping, stack selection, and
+                  delivery — with structured feedback on documentation, implementation quality, and non-functional
+                  requirements.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role" data-reveal>
+            <div class="role-when">
+              <span class="role-date">Feb 2022 — Aug 2025</span>
+            </div>
+            <div class="role-body">
+              <h3>Senior Software Engineer</h3>
+              <div class="role-org">Innovate Tech Pvt. Ltd.</div>
+              <div class="role-loc">Kathmandu, Nepal</div>
+              <ul>
+                <li>Cut critical API response times from ~24s to milliseconds, scaling capacity 5x — from 500
+                  concurrent users across multiple pods to 2,500+ users on a single pod with reduced infrastructure.
+                </li>
+                <li>Reduced average query execution time by 30% through LINQ optimization, query-plan analysis, and
+                  targeted PostgreSQL indexing.</li>
+                <li>Migrated 5+ AWS Lambda functions from Node.js to .NET to share a common data access layer with the
+                  core platform, eliminating schema drift and the recurring production issues it caused in legacy
+                  modules.</li>
+                <li>Significantly reduced storage costs by building ETL and archival pipelines across DynamoDB,
+                  PostgreSQL, and S3 — Parquet serialization with lifecycle policies to Glacier — plus Python-based
+                  data migration pipelines.</li>
+                <li>Delivered backend services for My Second Teacher — a global EdTech platform deployed in Indonesia
+                  and international markets and adopted across all Ing Group colleges — and Home School Asia, on
+                  ASP.NET Core, PostgreSQL, and AWS.</li>
+                <li>Mentored junior engineers and interns through a self-designed onboarding curriculum (C#, ASP.NET
+                  Core, PostgreSQL) and regular code reviews.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role" data-reveal>
+            <div class="role-when">
+              <span class="role-date">Nov 2019 — Feb 2022</span>
+            </div>
+            <div class="role-body">
+              <h3>Software Engineer</h3>
+              <div class="role-org">Percoid IT Solution</div>
+              <div class="role-loc">Kathmandu, Nepal</div>
+              <ul>
+                <li>Delivered full-stack client systems on ASP.NET Core MVC, Web APIs, AngularJS, and SQL Server —
+                  including a Billboard Management System for outdoor advertising operations.</li>
+                <li>Optimized high-volume SQL queries and stored procedures and resolved production issues across
+                  concurrent client engagements.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role" data-reveal>
+            <div class="role-when">
+              <span class="role-date">Sep 2018 — Oct 2019</span>
+            </div>
+            <div class="role-body">
+              <h3>Earlier Roles</h3>
+              <div class="role-org">Insight Workshop (Trainee, 2019) &middot; Braindigit (Intern, 2018–19)</div>
+              <div class="role-loc">Kathmandu, Nepal</div>
+              <ul>
+                <li>Built a real-time chat application (SignalR), a serverless email service (Azure Functions), and
+                  backend modules for a School Bus Management System (ASP.NET Core, SQL Server)</li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Education -->
     <section id="education">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// Education</div>
-        <h2 class="section-title">Academic <em>foundation</em></h2>
-      </div>
-      <div class="education-grid">
-        <div class="edu-card reveal stagger-1">
-          <div class="edu-degree">MSc Information Technology & Applied Security</div>
-          <div class="edu-school">London Metropolitan University</div>
-          <div class="edu-year">2021 — 2024 · Islington College, Kathmandu</div>
-          <span class="edu-grade">Merit — 66.44%</span>
-        </div>
-        <div class="edu-card reveal stagger-2">
-          <div class="edu-degree">BSc (Hons) Computing</div>
-          <div class="edu-school">London Metropolitan University</div>
-          <div class="edu-year">2016 — 2019 · Islington College, Kathmandu</div>
-          <span class="edu-grade">First Class Honours — 73.11%</span>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-rule" aria-hidden="true"></span>
+          <div class="sec-meta"><span class="sec-num">05</span><span>Education</span></div>
+          <h2 class="sec-title" data-split>Academic <em>foundation</em></h2>
+        </header>
+        <div class="ledger">
+          <div class="ledger-row" data-reveal>
+            <div class="ledger-main">
+              <h3 class="edu-degree">MSc Information Technology &amp; Applied Security</h3>
+              <div class="edu-school">London Metropolitan University</div>
+            </div>
+            <div class="edu-year">2021 — 2024 · Islington College, Kathmandu</div>
+            <div class="edu-grade">Merit — 66.44%</div>
+          </div>
+          <div class="ledger-row" data-reveal>
+            <div class="ledger-main">
+              <h3 class="edu-degree">BSc (Hons) Computing</h3>
+              <div class="edu-school">London Metropolitan University</div>
+            </div>
+            <div class="edu-year">2016 — 2019 · Islington College, Kathmandu</div>
+            <div class="edu-grade">First Class Honours — 73.11%</div>
+          </div>
         </div>
       </div>
     </section>
-
-    <div class="section-divider"></div>
 
     <!-- Certifications -->
     <section id="certifications">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// Certifications</div>
-        <h2 class="section-title">Certified &amp; <em>validated</em></h2>
-      </div>
-      <div class="education-grid">
-        <div class="edu-card reveal stagger-1">
-          <div class="edu-degree">AWS Certified Solutions Architect – Associate (SAA-C03)</div>
-          <div class="edu-school">Amazon Web Services</div>
-          <div class="edu-year">Mar 2026</div>
-          <span class="edu-grade">Active</span>
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-rule" aria-hidden="true"></span>
+          <div class="sec-meta"><span class="sec-num">06</span><span>Certifications</span></div>
+          <h2 class="sec-title" data-split>Certified &amp; <em>validated</em></h2>
+        </header>
+        <div class="ledger">
+          <div class="ledger-row" data-reveal>
+            <div class="ledger-main">
+              <h3 class="edu-degree">AWS Certified Solutions Architect – Associate (SAA-C03)</h3>
+              <div class="edu-school">Amazon Web Services</div>
+            </div>
+            <div class="edu-year">Mar 2026</div>
+            <div class="edu-grade">Active</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <div class="section-divider"></div>
-
     <!-- Contact -->
-    <section id="contact" class="contact-section">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">// Let's Connect</div>
-        <h2 class="section-title">Have a project in mind?<br><em>Let's talk.</em></h2>
-        <p class="contact-description">
-          I'm open to discussing new opportunities, collaborations, or just chatting about backend architecture, AI and
-          cloud systems .
-        </p>
-      </div>
-      <div class="contact-links reveal">
-        <a href="mailto:rozeennakarmi5@gmail.com" class="contact-link">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <polyline points="22,6 12,13 2,6" />
-          </svg>
-          rozeennakarmi5@gmail.com
-        </a>
-        <a href="tel:+9779860028647" class="contact-link">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-          </svg>
-          +977-9860028647
-        </a>
-        <a href="https://www.linkedin.com/in/rozeen-nakarmi" target="_blank" rel="noopener noreferrer"
-          class="contact-link">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z" />
-            <rect x="2" y="9" width="4" height="12" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
-          LinkedIn
-        </a>
-        <a href="https://github.com/Rozein" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22" />
-          </svg>
-          GitHub
-        </a>
-        <a href="https://rozeen.com.np" target="_blank" rel="noopener noreferrer" class="contact-link">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="2" y1="12" x2="22" y2="12" />
-            <path
-              d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
-          </svg>
-          rozeen.com.np
-        </a>
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <header class="sec-head">
+          <span class="sec-rule" aria-hidden="true"></span>
+          <div class="sec-meta"><span class="sec-num">07</span><span>Let's Connect</span></div>
+          <h2 class="contact-title" data-split>Have a project in mind?<br><em>Let's talk.</em></h2>
+          <p class="contact-description" data-reveal>
+            I'm open to discussing new opportunities, collaborations, or just chatting about backend architecture, AI
+            and cloud systems.
+          </p>
+        </header>
+        <div class="contact-links">
+          <a href="mailto:rozeennakarmi5@gmail.com" class="contact-link" data-reveal>
+            <span class="cl-label">Email</span>
+            <span class="cl-value">rozeennakarmi5@gmail.com</span>
+            <svg class="cl-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17L17 7M8 7h9v9" />
+            </svg>
+          </a>
+          <a href="tel:+9779860028647" class="contact-link" data-reveal>
+            <span class="cl-label">Phone</span>
+            <span class="cl-value">+977-9860028647</span>
+            <svg class="cl-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17L17 7M8 7h9v9" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/rozeen-nakarmi" target="_blank" rel="noopener noreferrer"
+            class="contact-link" data-reveal>
+            <span class="cl-label">LinkedIn</span>
+            <span class="cl-value">LinkedIn</span>
+            <svg class="cl-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17L17 7M8 7h9v9" />
+            </svg>
+          </a>
+          <a href="https://github.com/Rozein" target="_blank" rel="noopener noreferrer" class="contact-link"
+            data-reveal>
+            <span class="cl-label">GitHub</span>
+            <span class="cl-value">GitHub</span>
+            <svg class="cl-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17L17 7M8 7h9v9" />
+            </svg>
+          </a>
+          <a href="https://rozeen.com.np" target="_blank" rel="noopener noreferrer" class="contact-link" data-reveal>
+            <span class="cl-label">Website</span>
+            <span class="cl-value">rozeen.com.np</span>
+            <svg class="cl-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 17L17 7M8 7h9v9" />
+            </svg>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -1850,141 +2316,318 @@
 
   <!-- Back to Top -->
   <button class="back-to-top" id="backToTop" aria-label="Scroll to top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       aria-hidden="true">
-      <path d="M18 15l-6-6-6 6" />
+      <path d="M12 19V5M5 12l7-7 7 7" />
     </svg>
   </button>
 
   <!-- Footer -->
   <footer>
-    <p class="footer-text">
-      &copy; 2026 Rozeen Nakarmi <span>&middot;</span> Built with precision and purpose
-    </p>
+    <div class="wrap">
+      <p class="footer-text">
+        &copy; 2026 Rozeen Nakarmi <span>&middot;</span> Built with precision and purpose
+      </p>
+      <p>Kathmandu · 27.7172° N, 85.3240° E</p>
+    </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
   <script>
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    (() => {
+      const root = document.documentElement;
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const hasGsap = !!(window.gsap && window.ScrollTrigger && window.SplitText);
+      let motion = root.classList.contains('motion') && hasGsap;
+      if (!motion) root.classList.remove('motion');
 
-    // Intersection Observer for scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      const nav = document.getElementById('siteNav');
+      const navLinks = document.getElementById('navLinks');
+      const menuToggle = document.getElementById('menuToggle');
+      const menuLabel = menuToggle.querySelector('.menu-label');
+      const scrollProgress = document.getElementById('scrollProgress');
+      const backToTop = document.getElementById('backToTop');
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      // ── Local time in Kathmandu ──
+      const timeEl = document.getElementById('localTime');
+      const fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kathmandu' });
+      const tick = () => { timeEl.textContent = fmt.format(new Date()) + ' NPT'; };
+      tick();
+      setInterval(tick, 30000);
 
-    // Mobile menu toggle
-    const menuToggle = document.getElementById('menuToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    menuToggle.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('active');
-      menuToggle.classList.toggle('active', isOpen);
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-
-    // Close mobile menu on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // Active nav indicator
-    const sections = document.querySelectorAll('section[id]');
-    const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
-
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navItems.forEach(link => {
-            link.classList.toggle('active',
-              link.getAttribute('href') === '#' + entry.target.id
-            );
-          });
-        }
-      });
-    }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
-
-    sections.forEach(section => sectionObserver.observe(section));
-
-    // Animated stat counters
-    function animateStats() {
-      document.querySelectorAll('.stat-number').forEach(stat => {
-        const text = stat.textContent;
-        const match = text.match(/^(\d+)/);
-        if (!match) return;
-
-        const target = parseInt(match[1], 10);
-        const suffix = text.replace(match[1], '');
-
-        if (prefersReducedMotion) {
-          stat.textContent = target + suffix;
-          return;
-        }
-
-        let current = 0;
-        const duration = 1500;
-        const increment = target / (duration / 16);
-
-        function update() {
-          current += increment;
-          if (current >= target) {
-            stat.textContent = target + suffix;
-            return;
-          }
-          stat.textContent = Math.floor(current) + suffix;
-          requestAnimationFrame(update);
-        }
-        update();
-      });
-    }
-
-    const heroStats = document.querySelector('.hero-stats');
-    if (heroStats) {
-      const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            animateStats();
-            statsObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      statsObserver.observe(heroStats);
-    }
-
-    // Consolidated scroll handler
-    const scrollProgress = document.getElementById('scrollProgress');
-    const backToTop = document.getElementById('backToTop');
-
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-
-      // Nav compact on scroll
-      const nav = document.querySelector('nav');
-      nav.style.padding = scrollTop > 100 ? '0.8rem 3rem' : '1.2rem 3rem';
-
-      // Scroll progress
-      if (docHeight > 0) {
-        scrollProgress.style.width = ((scrollTop / docHeight) * 100) + '%';
+      // ── Smooth scroll (Lenis) ──
+      let lenis = null;
+      if (motion && window.Lenis) {
+        lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1 });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((t) => lenis.raf(t * 1000));
+        gsap.ticker.lagSmoothing(0);
       }
 
-      // Back to top
-      backToTop.classList.toggle('visible', scrollTop > 500);
-    });
+      const scrollToTarget = (target) => {
+        if (lenis) {
+          lenis.scrollTo(target, { duration: 1.4, easing: (t) => 1 - Math.pow(1 - t, 4) });
+        } else if (typeof target === 'number') {
+          window.scrollTo({ top: target, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        } else {
+          target.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        }
+      };
 
-    // Back to top click
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-    });
+      // ── Mobile menu ──
+      let menuOpen = false;
+      const setMenu = (open) => {
+        menuOpen = open;
+        navLinks.classList.toggle('active', open);
+        nav.classList.toggle('menu-open', open);
+        nav.classList.remove('nav-hidden');
+        menuToggle.setAttribute('aria-expanded', String(open));
+        menuLabel.textContent = open ? 'Close' : 'Menu';
+        document.body.classList.toggle('menu-locked', open);
+        if (lenis) open ? lenis.stop() : lenis.start();
+        if (open && motion) {
+          gsap.fromTo(navLinks.querySelectorAll('li'), { yPercent: 60, autoAlpha: 0 },
+            { yPercent: 0, autoAlpha: 1, duration: 0.8, stagger: 0.045, ease: 'expo.out', delay: 0.05 });
+        }
+      };
+      menuToggle.addEventListener('click', () => setMenu(!menuOpen));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && menuOpen) { setMenu(false); menuToggle.focus(); } });
+
+      // ── In-page anchors ──
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          const target = href === '#' ? 0 : document.querySelector(href);
+          if (target === null) return;
+          e.preventDefault();
+          if (menuOpen) setMenu(false);
+          scrollToTarget(target);
+          if (href !== '#') history.replaceState(null, '', href);
+          if (target !== 0) {
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+          }
+        });
+      });
+
+      // ── Active nav item ──
+      const navItems = navLinks.querySelectorAll('a[href^="#"]');
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          navItems.forEach((link) => {
+            link.classList.toggle('active', !!entry.target.id && link.getAttribute('href') === '#' + entry.target.id);
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      document.querySelectorAll('main > section').forEach((s) => sectionObserver.observe(s));
+
+      // ── Scroll: progress, nav state, back-to-top ──
+      let lastY = window.scrollY;
+      const onScroll = () => {
+        const y = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+        nav.classList.toggle('scrolled', y > 24);
+        if (!menuOpen) nav.classList.toggle('nav-hidden', y > 480 && y > lastY);
+        backToTop.classList.toggle('visible', y > 600);
+        lastY = y;
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      backToTop.addEventListener('click', () => scrollToTarget(0));
+
+      if (!motion) return;
+
+      // ─────────────────────────── GSAP motion ───────────────────────────
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+      const revealAll = () => {
+        root.classList.remove('motion');
+        gsap.set('.hero-meta > *, [data-hero], .hero-fig, .stat-item, [data-reveal], [data-split], .sec-rule, .about-lead strong',
+          { clearProps: 'all' });
+      };
+
+      // Animated request-path figure
+      const fig = document.getElementById('heroFig');
+      const packetLayer = fig.querySelector('.packets');
+      const packetLoops = [];
+
+      const flashNode = (name) => {
+        const node = fig.querySelector(`[data-node="${name}"]`);
+        if (!node || node.classList.contains('is-key')) return;
+        node.classList.add('hit');
+        setTimeout(() => node.classList.remove('hit'), 380);
+      };
+
+      const startPackets = () => {
+        const routes = [
+          { path: ['fig-e1', 'fig-e2'], end: 'auth', delay: 0 },
+          { path: ['fig-e1', 'fig-e3', 'fig-e4'], end: 'data', delay: 0.9 },
+          { path: ['fig-e1', 'fig-e3', 'fig-e5', 'fig-e6', 'fig-e7'], end: 'data', delay: 1.8 },
+        ];
+        routes.forEach((route) => {
+          const dot = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+          dot.setAttribute('class', 'packet');
+          dot.setAttribute('width', '7');
+          dot.setAttribute('height', '7');
+          dot.setAttribute('x', '-3.5');
+          dot.setAttribute('y', '-3.5');
+          packetLayer.appendChild(dot);
+          gsap.set(dot, { autoAlpha: 0 });
+
+          const tl = gsap.timeline({ repeat: -1, repeatDelay: 1.6, delay: route.delay });
+          tl.set(dot, { autoAlpha: 1, scale: 1 });
+          route.path.forEach((id) => {
+            const path = fig.querySelector('#' + id);
+            const len = path.getTotalLength();
+            const p = { t: 0 };
+            tl.fromTo(p, { t: 0 }, {
+              t: 1, duration: len / 150, ease: 'none',
+              onUpdate: () => {
+                const pt = path.getPointAtLength(p.t * len);
+                dot.setAttribute('transform', `translate(${pt.x} ${pt.y})`);
+              },
+            });
+          });
+          tl.call(() => flashNode(route.end));
+          tl.to(dot, { autoAlpha: 0, duration: 0.25 });
+          packetLoops.push(tl);
+        });
+
+        // Pause the loop when the hero is off screen
+        ScrollTrigger.create({
+          trigger: '.hero',
+          start: 'top bottom',
+          end: 'bottom top',
+          onToggle: (self) => packetLoops.forEach((tl) => (self.isActive ? tl.play() : tl.pause())),
+        });
+      };
+
+      const drawFigure = () => {
+        const edges = fig.querySelectorAll('.edge');
+        edges.forEach((p) => {
+          const len = p.getTotalLength();
+          gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
+        });
+        return gsap.timeline()
+          .set(fig, { autoAlpha: 1 })
+          .fromTo(fig.querySelectorAll('.node'), { autoAlpha: 0, scale: 0.85, transformOrigin: '50% 50%' },
+            { autoAlpha: 1, scale: 1, duration: 0.6, stagger: 0.07, ease: 'back.out(2)' })
+          .to(edges, { strokeDashoffset: 0, duration: 0.7, stagger: 0.08, ease: 'power2.inOut' }, '-=0.35')
+          .call(startPackets);
+      };
+
+      const countStats = () => {
+        document.querySelectorAll('.stat-number[data-count]').forEach((el) => {
+          const target = parseInt(el.dataset.count, 10);
+          const suffix = el.dataset.suffix || '';
+          const o = { v: 0 };
+          gsap.to(o, {
+            v: target, duration: 1.8, ease: 'power3.out',
+            onUpdate: () => { el.textContent = Math.round(o.v) + suffix; },
+          });
+        });
+      };
+
+      const init = () => {
+        // Hero intro
+        const heroTitle = document.querySelector('.hero-title');
+        gsap.set(heroTitle, { autoAlpha: 1 });
+        SplitText.create(heroTitle, {
+          type: 'lines', mask: 'lines', autoSplit: true,
+          onSplit: (self) => gsap.from(self.lines, { yPercent: 115, duration: 1.5, stagger: 0.1, ease: 'expo.out', delay: 0.2 }),
+        });
+
+        gsap.timeline({ defaults: { ease: 'expo.out' } })
+          .fromTo('.hero-meta > *', { y: 14, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.9, stagger: 0.08 })
+          .fromTo('[data-hero]', { y: 28, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1.2, stagger: 0.12 }, 0.75)
+          .add(drawFigure(), 0.9)
+          .fromTo('.stat-item', { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 1, stagger: 0.08 }, 1.1)
+          .call(countStats, null, 1.1);
+
+        // Hero drift on scroll
+        gsap.to('.hero-title', {
+          yPercent: -14, ease: 'none',
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+        });
+        gsap.to('.hero-fig', {
+          yPercent: -8, ease: 'none',
+          scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
+        });
+
+        // Marquee: endless loop that speeds up with scroll velocity and follows scroll direction
+        const track = document.getElementById('marqueeTrack');
+        track.innerHTML += track.innerHTML;
+        const loop = gsap.to(track, { xPercent: -50, duration: 38, ease: 'none', repeat: -1 });
+        ScrollTrigger.create({
+          start: 0, end: 'max',
+          onUpdate: (self) => {
+            const boost = gsap.utils.clamp(1, 6, 1 + Math.abs(self.getVelocity()) / 300);
+            gsap.killTweensOf(loop);
+            loop.timeScale(self.direction * boost);
+            gsap.to(loop, { timeScale: self.direction, duration: 1.2, ease: 'power2.out' });
+          },
+        });
+
+        // Section rules draw in
+        gsap.utils.toArray('.sec-rule').forEach((rule) => {
+          gsap.to(rule, {
+            scaleX: 1, duration: 1.4, ease: 'expo.inOut',
+            scrollTrigger: { trigger: rule, start: 'top 88%', once: true },
+          });
+        });
+
+        // Section titles: masked line reveal
+        gsap.utils.toArray('[data-split]:not([data-split="hero"])').forEach((el) => {
+          gsap.set(el, { autoAlpha: 1 });
+          SplitText.create(el, {
+            type: 'lines', mask: 'lines', autoSplit: true,
+            onSplit: (self) => gsap.from(self.lines, {
+              yPercent: 110, duration: 1.3, stagger: 0.09, ease: 'expo.out',
+              scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+            }),
+          });
+        });
+
+        // Everything else rises in, batched so neighbours stagger together
+        ScrollTrigger.batch('[data-reveal]', {
+          start: 'top 90%',
+          once: true,
+          onEnter: (batch) => gsap.fromTo(batch, { y: 36, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 1.2, stagger: 0.09, ease: 'expo.out', overwrite: true }),
+        });
+
+        // About: underline the key phrases once the lead paragraph is in view
+        gsap.to('.about-lead strong', {
+          backgroundSize: '100% 2px', duration: 0.9, stagger: 0.14, ease: 'power3.inOut',
+          scrollTrigger: { trigger: '.about-lead', start: 'top 70%', once: true },
+        });
+
+        // Experience: the rail fills as you read down the journey
+        gsap.fromTo('.journey-fill', { scaleY: 0 }, {
+          scaleY: 1, ease: 'none',
+          scrollTrigger: { trigger: '#journey', start: 'top 65%', end: 'bottom 65%', scrub: 0.6 },
+        });
+      };
+
+      const fontsReady = Promise.race([
+        document.fonts ? document.fonts.ready : Promise.resolve(),
+        new Promise((r) => setTimeout(r, 1500)),
+      ]);
+      fontsReady.then(() => {
+        try {
+          init();
+        } catch (err) {
+          console.error(err);
+          revealAll();
+        }
+      });
+    })();
   </script>
 
 </body>
